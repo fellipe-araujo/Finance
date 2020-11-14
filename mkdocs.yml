@@ -1,0 +1,16 @@
+site_name: Finance
+
+repo_name: Finance
+repo_url: 'https://github.com/fellipe-araujo/Finance'
+
+copyright: 'Copyright &copy; 2020 Finance'
+
+theme: material
+
+nav:
+  - Início: index.md
+  - Políticas:
+    - Branches: Policies/branch.md
+    - Commits: Policies/commit.md
+    - Issues: Policies/issue.md
+    - PRs: Policies/pr.md
