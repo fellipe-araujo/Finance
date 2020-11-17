@@ -13,7 +13,7 @@
     
     
       
-        <title>PRs - Finance</title>
+        <title>ME-R - Finance</title>
       
     
     
@@ -58,7 +58,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#politica-de-pull-request-pr" class="md-skip">
+        <a href="#modelo-de-entidade-relacionamento-me-r" class="md-skip">
           Skip to content
         </a>
       
@@ -86,7 +86,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              PRs
+              ME-R
             
           </span>
         </div>
@@ -194,10 +194,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       Banco de Dados
@@ -215,11 +217,63 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../Database/mer/" title="ME-R" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        ME-R
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="ME-R" class="md-nav__link md-nav__link--active">
       ME-R
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#entidades" class="md-nav__link">
+    Entidades
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atributos" class="md-nav__link">
+    Atributos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relacionamentos" class="md-nav__link">
+    Relacionamentos
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -232,12 +286,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
       Políticas
@@ -257,7 +309,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../branch/" title="Branches" class="md-nav__link">
+    <a href="../../Policies/branch/" title="Branches" class="md-nav__link">
       Branches
     </a>
   </li>
@@ -269,7 +321,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../commit/" title="Commits" class="md-nav__link">
+    <a href="../../Policies/commit/" title="Commits" class="md-nav__link">
       Commits
     </a>
   </li>
@@ -281,7 +333,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../issue/" title="Issues" class="md-nav__link">
+    <a href="../../Policies/issue/" title="Issues" class="md-nav__link">
       Issues
     </a>
   </li>
@@ -291,20 +343,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-    <a href="./" title="PRs" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../Policies/pr/" title="PRs" class="md-nav__link">
       PRs
     </a>
-    
   </li>
 
         
@@ -330,6 +373,35 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#entidades" class="md-nav__link">
+    Entidades
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atributos" class="md-nav__link">
+    Atributos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relacionamentos" class="md-nav__link">
+    Relacionamentos
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -340,37 +412,54 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/fellipe-araujo/Finance/edit/master/docs/Policies/pr.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/fellipe-araujo/Finance/edit/master/docs/Database/mer.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="politica-de-pull-request-pr">Política de Pull Request (PR)</h1>
-<p>Os <em>Pull Requests</em> devem seguir o seguinte padrão:</p>
+                <h1 id="modelo-de-entidade-relacionamento-me-r">Modelo de Entidade-Relacionamento (ME-R)</h1>
+<h2 id="entidades">Entidades</h2>
 <ul>
-<li>
-<p>O PR deve indicar em seu título o número e nome da issue ao qual se refere.</p>
-<p><strong>Exemplo:</strong></p>
-</li>
+<li>USER</li>
+<li>FINANCE</li>
+<li>CATEGORY</li>
+<li>ACCOUNT</li>
+<li>OBJECTIVE</li>
 </ul>
-<pre><code>#4 Create Database Document.
-</code></pre>
+<h2 id="atributos">Atributos</h2>
 <ul>
-<li>
-<p>Caso o PR não esteja pronto para o merge, deve-se indicar utilizando a tag <strong>WIP</strong> (<em>Work in Progress</em>).</p>
-<p><strong>Exemplo:</strong></p>
-</li>
+<li>USER (user_id, name, email, password)</li>
+<li>FINANCE (financy_id, expense, price, date, description, category_id, user_id)</li>
+<li>CATEGORY (category_id, name, color)</li>
+<li>ACCOUNT (accouunt_id, name, balance, user_id, objective_id)</li>
+<li>OBJECTIVE (goal_id, name, goal, description, user_id)</li>
 </ul>
-<pre><code>WIP #4 Create Database Document.
-</code></pre>
+<h2 id="relacionamentos">Relacionamentos</h2>
+<p>ACCOUNT - pertence - USER</p>
 <ul>
-<li>O corpo da descrição do <em>pull request</em> deve ser escrito de forma clara e seguir a seguinte estrutura:</li>
+<li>Uma conta pertence a somente um usuário, e um usuário pode ter várias contas.</li>
+<li><strong>CARDINALIDADE</strong>: n:1</li>
 </ul>
-<pre><code>Neste Pull Request foi feito:
-  * Descrição 1...
-  * Descrição 2...
-  * Descrição 3...
-</code></pre>
+<p>USER - tem - OBJECTIVE</p>
+<ul>
+<li>Um usuário tem nenhum ou vários objetivos, e um objetivo pertence a um usuário.</li>
+<li><strong>CARDINALIDADE</strong>: 1:n</li>
+</ul>
+<p>USER - adquire - FINANCE</p>
+<ul>
+<li>Um usuário adquire nenhuma ou várias finanças, e uma finança é adquirida por um usuário.</li>
+<li><strong>CARDINALIDADE</strong>: 1:n</li>
+</ul>
+<p>FINANCE - contém - CATEGORY</p>
+<ul>
+<li>Uma finança pode conter uma categoria, e uma categoria pode estar contida em várias finanças.</li>
+<li><strong>CARDINALIDADE</strong>: n:1</li>
+</ul>
+<p>OBJECTIVE - possui - ACCOUNT</p>
+<ul>
+<li>Um objetivo possui uma ou várias contas, e uma conta pertence a um objetivo.</li>
+<li><strong>CARDINALIDADE</strong>: 1:n</li>
+</ul>
                 
               
               
@@ -389,7 +478,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../issue/" title="Issues" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../.." title="Início" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -398,11 +487,25 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Issues
+                Início
               </div>
             </div>
           </a>
         
+        
+          <a href="../../Policies/branch/" title="Branches" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Branches
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
         
       </nav>
     </div>
