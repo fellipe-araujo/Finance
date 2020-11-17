@@ -13,6 +13,8 @@ theme:
       accent: 'purple'
 nav:
   - Início: index.md
+  - Banco de Dados:
+    - ME-R: Database/mer.md
   - Políticas:
     - Branches: Policies/branch.md
     - Commits: Policies/commit.md
