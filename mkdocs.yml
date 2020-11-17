@@ -5,8 +5,12 @@ repo_url: 'https://github.com/fellipe-araujo/Finance'
 
 copyright: 'Copyright &copy; 2020 Finance'
 
-theme: material
-
+theme:
+  name: 'material'
+  palette:
+    - scheme: 'slate'
+      primary: 'purple'
+      accent: 'purple'
 nav:
   - Início: index.md
   - Políticas:
