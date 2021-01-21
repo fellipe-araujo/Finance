@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import mongoose from 'mongoose';
 import User from '../models/User';
+import { generateToken } from '../utils/tokenConfig';
 
 export default {
   async store(request: Request, response: Response) {
@@ -18,7 +18,9 @@ export default {
 
       user.password = undefined;
 
-      return response.status(201).json(user);
+      return response
+        .status(201)
+        .json({ user, token: generateToken({ id: user.id }) });
     }
 
     return response.status(400).json({ error: 'User already exists.' });
