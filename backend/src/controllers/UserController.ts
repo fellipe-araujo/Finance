@@ -1,11 +1,12 @@
 import { Request, Response } from 'express';
+import mongoose from 'mongoose';
 import User from '../models/User';
 
 export default {
   async store(request: Request, response: Response) {
     const { name, email, password } = request.body;
 
-    let user = await User.findOne({ email });
+    let user: any = await User.findOne({ email });
 
     if (!user) {
       user = await User.create({
@@ -14,6 +15,8 @@ export default {
         password,
         avatar: 'image.png',
       });
+
+      user.password = undefined;
 
       return response.status(201).json(user);
     }
