@@ -11,6 +11,8 @@ const routes = Router();
 routes.use(authMiddleware);
 
 routes.get('/categories', CategoryController.index);
+routes.get('/users/all', UserController.index);
+routes.get('/users/:_id', UserController.show);
 routes.post('/register', UserController.store);
 routes.post('/authenticate', AuthController.store);
 
