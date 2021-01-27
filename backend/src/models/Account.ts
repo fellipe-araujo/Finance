@@ -7,7 +7,7 @@ const AccountSchema = new mongoose.Schema({
   },
   balance: {
     type: Number,
-    required: true,
+    default: 0.0,
   },
   createAt: {
     type: Date,
