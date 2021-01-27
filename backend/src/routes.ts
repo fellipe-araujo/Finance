@@ -5,6 +5,7 @@ import AuthController from './controllers/AuthController';
 import FinanceController from './controllers/FinanceController';
 import CategoryController from './controllers/CategoryController';
 import AccountController from './controllers/AccountController';
+import ObjectiveController from './controllers/ObjectiveController';
 
 import authMiddleware from './middlewares/auth';
 
@@ -28,5 +29,9 @@ routes.get('/categories/:categoryId', CategoryController.show);
 routes.post('/accounts', AccountController.store);
 routes.get('/accounts/all', AccountController.index);
 routes.get('/accounts/:accountId', AccountController.show);
+
+routes.post('/objectives', ObjectiveController.store);
+routes.get('/objectives/all', ObjectiveController.index);
+routes.get('/objectives/:objectiveId', ObjectiveController.show);
 
 export default routes;
