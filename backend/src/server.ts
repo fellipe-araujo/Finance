@@ -1,6 +1,5 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import routes from './routes';
 
 const app = express();
 
@@ -10,6 +9,12 @@ mongoose.connect(
 );
 
 app.use(express.json());
-app.use(routes);
+
+require('./controllers/AuthController')(app);
+require('./controllers/AccountController')(app);
+require('./controllers/CategoryController')(app);
+require('./controllers/FinanceController')(app);
+require('./controllers/ObjectiveController')(app);
+require('./controllers/UserController')(app);
 
 app.listen(3333);

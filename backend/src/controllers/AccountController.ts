@@ -1,27 +1,33 @@
-import { Request, Response } from 'express';
+import { Request, Response, Router } from 'express';
 import Account from '../models/Account';
+import authMiddleware from '../middlewares/auth';
 
-export default {
-  async index(request: Request, response: Response) {
-    const accounts = await Account.find();
+const router = Router();
 
-    return response.json(accounts);
-  },
+router.use(authMiddleware);
 
-  async show(request: Request, response: Response) {
-    const account = await Account.findById(request.params.accountId);
+router.get('/all', async (request: Request, response: Response) => {
+  const accounts = await Account.find();
 
-    return response.json(account);
-  },
+  return response.json(accounts);
+});
 
-  async store(request: Request, response: Response) {
-    const { name, balance } = request.body;
+router.get('/:accountId', async (request: Request, response: Response) => {
+  const account = await Account.findById(request.params.accountId);
 
-    const account = await Account.create({
-      name,
-      balance,
-    });
+  return response.json(account);
+});
 
-    return response.status(201).json(account);
-  },
-};
+router.post('/', async (request: Request, response: Response) => {
+  const { name, balance } = request.body;
+
+  const account = await Account.create({
+    name,
+    balance,
+  });
+
+  return response.status(201).json(account);
+});
+
+module.exports = (app: { use: (arg0: string, arg1: Router) => any }) =>
+  app.use('/accounts', router);

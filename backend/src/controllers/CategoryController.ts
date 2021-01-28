@@ -1,27 +1,33 @@
-import { Request, Response } from 'express';
+import { Request, Response, Router } from 'express';
 import Category from '../models/Category';
+import authMiddleware from '../middlewares/auth';
 
-export default {
-  async index(request: Request, response: Response) {
-    const categories = await Category.find();
+const router = Router();
 
-    return response.json(categories);
-  },
+router.use(authMiddleware);
 
-  async show(request: Request, response: Response) {
-    const category = await Category.findById(request.params.categoryId);
+router.get('/all', async (request: Request, response: Response) => {
+  const categories = await Category.find();
 
-    return response.json(category);
-  },
+  return response.json(categories);
+});
 
-  async store(request: Request, response: Response) {
-    const { name, color } = request.body;
+router.get('/:categoryId', async (request: Request, response: Response) => {
+  const category = await Category.findById(request.params.categoryId);
 
-    const category = await Category.create({
-      name,
-      color,
-    });
+  return response.json(category);
+});
 
-    return response.status(201).json(category);
-  },
-};
+router.post('/', async (request: Request, response: Response) => {
+  const { name, color } = request.body;
+
+  const category = await Category.create({
+    name,
+    color,
+  });
+
+  return response.status(201).json(category);
+});
+
+module.exports = (app: { use: (arg0: string, arg1: Router) => any }) =>
+  app.use('/categories', router);

@@ -1,28 +1,28 @@
-import { Request, Response } from 'express';
+import { Request, Response, Router } from 'express';
 import Finance from '../models/Finance';
+import authMiddleware from '../middlewares/auth';
 
-export default {
-  async index(request: Request, response: Response) {
-    const finances = await Finance.find();
+const router = Router();
 
-    return response.json(finances);
-  },
+router.use(authMiddleware);
 
-  async show(request: Request, response: Response) {
-    const finance = await Finance.findById(request.params.financeId);
+router.get('/all', async (request: Request, response: Response) => {
+  const finances = await Finance.find().populate(['account', 'category']);
 
-    return response.json(finance);
-  },
+  return response.json(finances);
+});
 
-  async store(request: Request, response: Response) {
-    const { expense, price, date } = request.body;
+router.get('/:financeId', async (request: Request, response: Response) => {
+  const finance = await Finance.findById(request.params.financeId);
 
-    const finance = await Finance.create({
-      expense,
-      price,
-      date,
-    });
+  return response.json(finance);
+});
 
-    return response.status(201).json(finance);
-  },
-};
+router.post('/', async (request: Request, response: Response) => {
+  const finance = await Finance.create(request.body);
+
+  return response.status(201).json(finance);
+});
+
+module.exports = (app: { use: (arg0: string, arg1: Router) => any }) =>
+  app.use('/finances', router);

@@ -1,28 +1,34 @@
-import { Request, Response } from 'express';
+import { Request, Response, Router } from 'express';
 import Objective from '../models/Objective';
+import authMiddleware from '../middlewares/auth';
 
-export default {
-  async index(request: Request, response: Response) {
-    const objectives = await Objective.find();
+const router = Router();
 
-    return response.json(objectives);
-  },
+router.use(authMiddleware);
 
-  async show(request: Request, response: Response) {
-    const objective = await Objective.findById(request.params.objectiveId);
+router.get('/all', async (request: Request, response: Response) => {
+  const objectives = await Objective.find();
 
-    return response.json(objective);
-  },
+  return response.json(objectives);
+});
 
-  async store(request: Request, response: Response) {
-    const { name, goal, description } = request.body;
+router.get('/:objectiveId', async (request: Request, response: Response) => {
+  const objective = await Objective.findById(request.params.objectiveId);
 
-    const objective = await Objective.create({
-      name,
-      goal,
-      description,
-    });
+  return response.json(objective);
+});
 
-    return response.status(201).json(objective);
-  },
-};
+router.post('/', async (request: Request, response: Response) => {
+  const { name, goal, description } = request.body;
+
+  const objective = await Objective.create({
+    name,
+    goal,
+    description,
+  });
+
+  return response.status(201).json(objective);
+});
+
+module.exports = (app: { use: (arg0: string, arg1: Router) => any }) =>
+  app.use('/objectives', router);

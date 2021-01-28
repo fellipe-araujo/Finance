@@ -1,42 +1,24 @@
-import { Request, Response } from 'express';
+import { Request, Response, Router } from 'express';
 import User from '../models/User';
-import { generateToken } from '../utils/tokenConfig';
+import authMiddleware from '../middlewares/auth';
 
-export default {
-  async index(request: Request, response: Response) {
-    const users = await User.find();
+const router = Router();
 
-    return response.json(users);
-  },
+router.use(authMiddleware);
 
-  async show(request: Request, response: Response) {
-    const { _id } = request.params;
+router.get('/all', async (request: Request, response: Response) => {
+  const users = await User.find();
 
-    const user = await User.findOne({ _id });
+  return response.json(users);
+});
 
-    return response.json(user);
-  },
+router.get('/:_id', async (request: Request, response: Response) => {
+  const { _id } = request.params;
 
-  async store(request: Request, response: Response) {
-    const { name, email, password } = request.body;
+  const user = await User.findOne({ _id });
 
-    let user: any = await User.findOne({ email });
+  return response.json(user);
+});
 
-    if (!user) {
-      user = await User.create({
-        name,
-        email,
-        password,
-        avatar: 'image.png',
-      });
-
-      user.password = undefined;
-
-      return response
-        .status(201)
-        .json({ user, token: generateToken({ id: user.id }) });
-    }
-
-    return response.status(400).json({ error: 'User already exists.' });
-  },
-};
+module.exports = (app: { use: (arg0: string, arg1: Router) => any }) =>
+  app.use('/users', router);
