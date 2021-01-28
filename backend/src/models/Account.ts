@@ -9,6 +9,11 @@ const AccountSchema = new mongoose.Schema({
     type: Number,
     default: 0.0,
   },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
   createAt: {
     type: Date,
     default: Date.now(),

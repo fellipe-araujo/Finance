@@ -1,24 +1,78 @@
-import { Request, Response, Router } from 'express';
+import { Request, Response } from 'express';
 import User from '../models/User';
-import authMiddleware from '../middlewares/auth';
+import { generateToken } from '../utils/tokenConfig';
 
-const router = Router();
+export default {
+  async index(request: Request, response: Response) {
+    try {
+      const users = await User.find();
 
-router.use(authMiddleware);
+      return response.json(users);
+    } catch (error) {
+      return response.status(400).json({ error: 'Users not found.' });
+    }
+  },
 
-router.get('/all', async (request: Request, response: Response) => {
-  const users = await User.find();
+  async show(request: Request, response: Response) {
+    try {
+      const { _id } = request.params;
 
-  return response.json(users);
-});
+      const user = await User.findOne({ _id });
 
-router.get('/:_id', async (request: Request, response: Response) => {
-  const { _id } = request.params;
+      return response.json(user);
+    } catch (error) {
+      return response.status(400).json({ error: 'User not found.' });
+    }
+  },
 
-  const user = await User.findOne({ _id });
+  async store(request: Request, response: Response) {
+    const { name, email, password } = request.body;
 
-  return response.json(user);
-});
+    let user: any = await User.findOne({ email });
 
-module.exports = (app: { use: (arg0: string, arg1: Router) => any }) =>
-  app.use('/users', router);
+    if (!user) {
+      user = await User.create({
+        name,
+        email,
+        password,
+        avatar: 'image.png',
+      });
+
+      user.password = undefined;
+
+      return response
+        .status(201)
+        .json({ user, token: generateToken({ id: user.id }) });
+    }
+
+    return response.status(400).json({ error: 'User already exists.' });
+  },
+
+  async update(request: Request, response: Response) {
+    try {
+      const { name } = request.body;
+
+      const user = await User.findByIdAndUpdate(
+        request.params._id,
+        {
+          name,
+        },
+        { new: true }
+      );
+
+      return response.json(user);
+    } catch (error) {
+      return response.status(400).json({ error: 'Error updating user.' });
+    }
+  },
+
+  async delete(request: Request, response: Response) {
+    try {
+      await User.findByIdAndDelete(request.params._id);
+
+      return response.json({ message: 'User deleted.' });
+    } catch (error) {
+      return response.status(400).json({ error: 'Error deleting user.' });
+    }
+  },
+};

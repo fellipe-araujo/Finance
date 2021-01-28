@@ -1,33 +1,68 @@
-import { Request, Response, Router } from 'express';
+import { Request, Response } from 'express';
 import Category from '../models/Category';
-import authMiddleware from '../middlewares/auth';
 
-const router = Router();
+export default {
+  async index(request: Request, response: Response) {
+    try {
+      const categories = await Category.find();
 
-router.use(authMiddleware);
+      return response.json(categories);
+    } catch (error) {
+      return response.status(400).json({ error: 'Categories not found.' });
+    }
+  },
 
-router.get('/all', async (request: Request, response: Response) => {
-  const categories = await Category.find();
+  async show(request: Request, response: Response) {
+    try {
+      const category = await Category.findById(request.params.categoryId);
 
-  return response.json(categories);
-});
+      return response.json(category);
+    } catch (error) {
+      return response.status(400).json({ error: 'Category not found.' });
+    }
+  },
 
-router.get('/:categoryId', async (request: Request, response: Response) => {
-  const category = await Category.findById(request.params.categoryId);
+  async store(request: Request, response: Response) {
+    try {
+      const { name, color } = request.body;
 
-  return response.json(category);
-});
+      const category = await Category.create({
+        name,
+        color,
+      });
 
-router.post('/', async (request: Request, response: Response) => {
-  const { name, color } = request.body;
+      return response.status(201).json(category);
+    } catch (error) {
+      return response.status(400).json({ error: 'Error creating category.' });
+    }
+  },
 
-  const category = await Category.create({
-    name,
-    color,
-  });
+  async update(request: Request, response: Response) {
+    try {
+      const { name, color } = request.body;
 
-  return response.status(201).json(category);
-});
+      const category = await Category.findByIdAndUpdate(
+        request.params.categoryId,
+        {
+          name,
+          color,
+        },
+        { new: true }
+      );
 
-module.exports = (app: { use: (arg0: string, arg1: Router) => any }) =>
-  app.use('/categories', router);
+      return response.json(category);
+    } catch (error) {
+      return response.status(400).json({ error: 'Error updating category.' });
+    }
+  },
+
+  async delete(request: Request, response: Response) {
+    try {
+      await Category.findByIdAndRemove(request.params.categoryId);
+
+      return response.json({ message: 'Category deleted.' });
+    } catch (error) {
+      return response.status(400).json({ error: 'Error deleting category.' });
+    }
+  },
+};
