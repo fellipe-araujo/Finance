@@ -15,9 +15,7 @@ export default {
 
   async show(request: Request, response: Response) {
     try {
-      const { _id } = request.params;
-
-      const user = await User.findOne({ _id });
+      const user = await User.findById(request.params.userId);
 
       return response.json(user);
     } catch (error) {
@@ -42,7 +40,7 @@ export default {
 
       return response
         .status(201)
-        .json({ user, token: generateToken({ id: user.id }) });
+        .json({ user, token: generateToken({ id: user._id }) });
     }
 
     return response.status(400).json({ error: 'User already exists.' });
@@ -53,7 +51,7 @@ export default {
       const { name } = request.body;
 
       const user = await User.findByIdAndUpdate(
-        request.params._id,
+        request.params.userId,
         {
           name,
         },
@@ -68,7 +66,7 @@ export default {
 
   async delete(request: Request, response: Response) {
     try {
-      await User.findByIdAndDelete(request.params._id);
+      await User.findByIdAndDelete(request.params.userId);
 
       return response.json({ message: 'User deleted.' });
     } catch (error) {

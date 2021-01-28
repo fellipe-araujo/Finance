@@ -25,4 +25,8 @@ export default {
 
     return response.status(201).json(objective);
   },
+
+  async update(request: Request, response: Response) {},
+
+  async delete(request: Request, response: Response) {},
 };

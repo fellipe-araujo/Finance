@@ -4,7 +4,9 @@ import Category from '../models/Category';
 export default {
   async index(request: Request, response: Response) {
     try {
-      const categories = await Category.find();
+      const categories = await Category.find({
+        user: request.params.userId,
+      });
 
       return response.json(categories);
     } catch (error) {
@@ -25,10 +27,12 @@ export default {
   async store(request: Request, response: Response) {
     try {
       const { name, color } = request.body;
+      const { userId } = request.params;
 
       const category = await Category.create({
         name,
         color,
+        user: userId,
       });
 
       return response.status(201).json(category);
@@ -39,13 +43,10 @@ export default {
 
   async update(request: Request, response: Response) {
     try {
-      const { name, color } = request.body;
-
       const category = await Category.findByIdAndUpdate(
         request.params.categoryId,
         {
-          name,
-          color,
+          ...request.body,
         },
         { new: true }
       );
@@ -58,9 +59,22 @@ export default {
 
   async delete(request: Request, response: Response) {
     try {
-      await Category.findByIdAndRemove(request.params.categoryId);
+      const { userId, categoryId } = request.params;
+      
+      const category: any = await Category.findById(categoryId);
 
-      return response.json({ message: 'Category deleted.' });
+      if (category?.user == userId) {
+        await category.deleteOne({ _id: categoryId });
+        return response.json({ message: 'Category deleted.' });
+      } else if (category?.user != userId) {
+        return response
+          .status(401)
+          .json({
+            message: 'You dont have authorization to delete this category.',
+          });
+      }
+
+      return response.status(400).json({ message: 'Category not found.' });
     } catch (error) {
       return response.status(400).json({ error: 'Error deleting category.' });
     }
