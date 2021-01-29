@@ -17,7 +17,12 @@ export default {
 
   async show(request: Request, response: Response) {
     try {
-      const finance = await Finance.findById(request.params.financeId);
+      const { userId, financeId } = request.params;
+
+      const finance: any = await Finance.findOne({
+        _id: financeId,
+        user: userId,
+      });
 
       return response.json(finance);
     } catch (error) {
@@ -39,7 +44,10 @@ export default {
         category,
       });
 
-      const account: any = await Account.findById(accountId);
+      const account: any = await Account.findOne({
+        _id: accountId,
+        user: userId,
+      });
 
       let transactionAccount: number = 0.0;
 
@@ -49,7 +57,7 @@ export default {
         transactionAccount = account.balance - finance.price;
       }
 
-      await account?.update({ balance: transactionAccount });
+      await account?.updateOne({ balance: transactionAccount });
       await account.save();
 
       return response.status(201).json(finance);
@@ -64,22 +72,13 @@ export default {
     try {
       const { userId, financeId } = request.params;
 
-      const finance: any = await Finance.findById(financeId);
+      await Finance.findOneAndRemove({
+        _id: financeId,
+        user: userId,
+      });
 
-      if (finance?.user == userId) {
-        await finance.deleteOne({ _id: financeId });
-        return response.json({ message: 'Finance deleted.' });
-      } else if (finance?.user != userId) {
-        return response
-          .status(401)
-          .json({
-            message: 'You dont have authorization to delete this finance.',
-          });
-      }
-
-      return response.status(400).json({ message: 'Finance not found.' });
+      return response.json({ message: 'Finance deleted.' });
     } catch (error) {
-      console.log(error);
       return response.status(400).json({ error: 'Error deleting finance.' });
     }
   },

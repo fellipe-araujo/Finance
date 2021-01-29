@@ -40,10 +40,14 @@ routes.delete('/users/:userId/categories/:categoryId/delete', CategoryController
 routes.post('/users/:userId/accounts', AccountController.store);
 routes.get('/users/:userId/accounts/all', AccountController.index);
 routes.get('/users/:userId/accounts/:accountId', AccountController.show);
+routes.put('/users/:userId/accounts/:accountId/update', AccountController.update);
+routes.delete('/users/:userId/accounts/:accountId/delete', AccountController.delete);
 
 // OBJECTIVES
 routes.post('/users/:userId/objectives', ObjectiveController.store);
 routes.get('/users/:userId/objectives/all', ObjectiveController.index);
 routes.get('/users/:userId/objectives/:objectiveId', ObjectiveController.show);
+routes.put('/users/:userId/objectives/:objectiveId/update', ObjectiveController.update);
+routes.delete('/users/:userId/objectives/:objectiveId/delete', ObjectiveController.delete);
 
 export default routes;

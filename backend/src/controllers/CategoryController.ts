@@ -16,7 +16,12 @@ export default {
 
   async show(request: Request, response: Response) {
     try {
-      const category = await Category.findById(request.params.categoryId);
+      const { userId, categoryId } = request.params;
+
+      const category: any = await Category.findOne({
+        _id: categoryId,
+        user: userId,
+      });
 
       return response.json(category);
     } catch (error) {
@@ -43,8 +48,13 @@ export default {
 
   async update(request: Request, response: Response) {
     try {
-      const category = await Category.findByIdAndUpdate(
-        request.params.categoryId,
+      const { userId, categoryId } = request.params;
+
+      const category: any = await Category.findOneAndUpdate(
+        {
+          _id: categoryId,
+          user: userId,
+        },
         {
           ...request.body,
         },
@@ -60,21 +70,13 @@ export default {
   async delete(request: Request, response: Response) {
     try {
       const { userId, categoryId } = request.params;
-      
-      const category: any = await Category.findById(categoryId);
 
-      if (category?.user == userId) {
-        await category.deleteOne({ _id: categoryId });
-        return response.json({ message: 'Category deleted.' });
-      } else if (category?.user != userId) {
-        return response
-          .status(401)
-          .json({
-            message: 'You dont have authorization to delete this category.',
-          });
-      }
+      await Category.findOneAndRemove({
+        _id: categoryId,
+        user: userId,
+      });
 
-      return response.status(400).json({ message: 'Category not found.' });
+      return response.json({ message: 'Category deleted.' });
     } catch (error) {
       return response.status(400).json({ error: 'Error deleting category.' });
     }

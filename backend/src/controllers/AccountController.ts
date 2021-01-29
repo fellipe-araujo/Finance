@@ -1,10 +1,12 @@
 import { Request, Response } from 'express';
 import Account from '../models/Account';
 
-export default { 
+export default {
   async index(request: Request, response: Response) {
     try {
-      const accounts = await Account.find();
+      const accounts = await Account.find({
+        user: request.params.userId,
+      });
 
       return response.json(accounts);
     } catch (error) {
@@ -14,7 +16,12 @@ export default {
 
   async show(request: Request, response: Response) {
     try {
-      const account = await Account.findById(request.params.accountId);
+      const { userId, accountId } = request.params;
+
+      const account: any = await Account.findOne({
+        _id: accountId,
+        user: userId,
+      });
 
       return response.json(account);
     } catch (error) {
@@ -32,14 +39,47 @@ export default {
         balance,
         user: userId,
       });
-  
+
       return response.status(201).json(account);
     } catch (error) {
       return response.status(400).json({ error: 'Error creating account.' });
     }
   },
 
-  async update(request: Request, response: Response) {},
+  async update(request: Request, response: Response) {
+    try {
+      const { name } = request.body;
+      const { userId, accountId } = request.params;
 
-  async delete(request: Request, response: Response) {},
+      const account: any = await Account.findOneAndUpdate(
+        {
+          _id: accountId,
+          user: userId,
+        },
+        {
+          name,
+        },
+        { new: true }
+      );
+
+      return response.json(account)
+    } catch (error) {
+      return response.status(400).json({ error: 'Error updating account.' });
+    }
+  },
+
+  async delete(request: Request, response: Response) {
+    try {
+      const { userId, accountId } = request.params;
+
+      await Account.findOneAndRemove({
+        _id: accountId,
+        user: userId,
+      });
+
+      return response.json({ message: 'Account deleted.' });
+    } catch (error) {
+      return response.status(400).json({ error: 'Error deleting account.' });
+    }
+  },
 };
