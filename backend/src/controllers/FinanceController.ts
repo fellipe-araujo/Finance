@@ -19,14 +19,18 @@ export default {
     try {
       const { userId, financeId } = request.params;
 
-      const finance: any = await Finance.findOne({
+      const finance = await Finance.findOne({
         _id: financeId,
         user: userId,
-      });
+      }).populate(['account', 'category']);
 
-      return response.json(finance);
-    } catch (error) {
+      if (finance) {
+        return response.json(finance);
+      }
+
       return response.status(400).json({ error: 'Finance not found.' });
+    } catch (error) {
+      return response.status(400).json({ error: 'Error searching finance.' });
     }
   },
 

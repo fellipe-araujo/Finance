@@ -18,14 +18,18 @@ export default {
     try {
       const { userId, accountId } = request.params;
 
-      const account: any = await Account.findOne({
+      const account = await Account.findOne({
         _id: accountId,
         user: userId,
       });
 
-      return response.json(account);
-    } catch (error) {
+      if (account) {
+        return response.json(account);
+      }
+
       return response.status(400).json({ error: 'Account not found.' });
+    } catch (error) {
+      return response.status(400).json({ error: 'Erro searching account.' });
     }
   },
 

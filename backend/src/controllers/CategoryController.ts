@@ -18,14 +18,18 @@ export default {
     try {
       const { userId, categoryId } = request.params;
 
-      const category: any = await Category.findOne({
+      const category = await Category.findOne({
         _id: categoryId,
         user: userId,
       });
 
-      return response.json(category);
-    } catch (error) {
+      if (category) {
+        return response.json(category);
+      }
+
       return response.status(400).json({ error: 'Category not found.' });
+    } catch (error) {
+      return response.status(400).json({ error: 'Error searching category.' });
     }
   },
 

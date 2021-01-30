@@ -23,9 +23,13 @@ export default {
         user: userId,
       });
 
-      return response.json(objective);
-    } catch (error) {
+      if (objective) {
+        return response.json(objective);
+      }
+
       return response.status(400).json({ error: 'Objective not found.' });
+    } catch (error) {
+      return response.status(400).json({ error: 'Error searching objective.' });
     }
   },
 
