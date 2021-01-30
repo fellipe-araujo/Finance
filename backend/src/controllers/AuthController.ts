@@ -13,7 +13,7 @@ export default {
       return response.status(400).json({ error: 'User not found.' });
     }
 
-    if (!await bcrypt.compare(password, user.password)) {
+    if (!(await bcrypt.compare(password, user.password))) {
       return response.status(400).json({ error: 'Invalid password.' });
     }
 

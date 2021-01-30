@@ -13,25 +13,41 @@ const routes = Router();
 
 routes.use(authMiddleware);
 
-routes.post('/register', UserController.store);
+// AUTH
 routes.post('/authenticate', AuthController.store);
+
+// USERS
 routes.get('/users/all', UserController.index);
-routes.get('/users/:_id', UserController.show);
+routes.get('/users/:userId', UserController.show);
+routes.post('/register', UserController.store);
+routes.put('/users/:userId/update', UserController.update);
+routes.delete('/users/:userId/delete', UserController.delete);
 
-routes.post('/finances', FinanceController.store);
-routes.get('/finances/all', FinanceController.index);
-routes.get('/finances/:financeId', FinanceController.show);
+// FINANCES
+routes.post('/users/:userId/accounts/:accountId/finances', FinanceController.store);
+routes.get('/users/:userId/finances/all', FinanceController.index);
+routes.get('/users/:userId/finances/:financeId', FinanceController.show);
+routes.delete('/users/:userId/finances/:financeId/delete', FinanceController.delete);
 
-routes.post('/categories', CategoryController.store);
-routes.get('/categories/all', CategoryController.index);
-routes.get('/categories/:categoryId', CategoryController.show);
+// CATEGORIES
+routes.post('/users/:userId/categories', CategoryController.store);
+routes.get('/users/:userId/categories/all', CategoryController.index);
+routes.get('/users/:userId/categories/:categoryId', CategoryController.show);
+routes.put('/users/:userId/categories/:categoryId/update', CategoryController.update);
+routes.delete('/users/:userId/categories/:categoryId/delete', CategoryController.delete);
 
-routes.post('/accounts', AccountController.store);
-routes.get('/accounts/all', AccountController.index);
-routes.get('/accounts/:accountId', AccountController.show);
+// ACCOUNTS
+routes.post('/users/:userId/accounts', AccountController.store);
+routes.get('/users/:userId/accounts/all', AccountController.index);
+routes.get('/users/:userId/accounts/:accountId', AccountController.show);
+routes.put('/users/:userId/accounts/:accountId/update', AccountController.update);
+routes.delete('/users/:userId/accounts/:accountId/delete', AccountController.delete);
 
-routes.post('/objectives', ObjectiveController.store);
-routes.get('/objectives/all', ObjectiveController.index);
-routes.get('/objectives/:objectiveId', ObjectiveController.show);
+// OBJECTIVES
+routes.post('/users/:userId/objectives', ObjectiveController.store);
+routes.get('/users/:userId/objectives/all', ObjectiveController.index);
+routes.get('/users/:userId/objectives/:objectiveId', ObjectiveController.show);
+routes.put('/users/:userId/objectives/:objectiveId/update', ObjectiveController.update);
+routes.delete('/users/:userId/objectives/:objectiveId/delete', ObjectiveController.delete);
 
 export default routes;
