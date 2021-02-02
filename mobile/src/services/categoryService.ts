@@ -3,6 +3,7 @@ import api from './api';
 interface Category {
   name: string;
   color: string;
+  user: string;
 }
 
 class CategoryService {

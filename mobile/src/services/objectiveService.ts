@@ -4,6 +4,7 @@ interface Objective {
   name: string;
   goal: number;
   description: string;
+  user: string;
 }
 
 class ObjectiveService {

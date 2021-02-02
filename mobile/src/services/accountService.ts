@@ -3,6 +3,7 @@ import api from './api';
 interface Account {
   name: string;
   balance: number;
+  user: string;
 }
 
 class AccountService {
