@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 import UserController from './controllers/UserController';
 import AuthController from './controllers/AuthController';
-import FinanceController from './controllers/FinanceController';
+import TransactionController from './controllers/TransactionController';
 import CategoryController from './controllers/CategoryController';
 import AccountController from './controllers/AccountController';
 import ObjectiveController from './controllers/ObjectiveController';
@@ -23,11 +23,11 @@ routes.post('/register', UserController.store);
 routes.put('/users/:userId/update', UserController.update);
 routes.delete('/users/:userId/delete', UserController.delete);
 
-// FINANCES
-routes.post('/users/:userId/accounts/:accountId/finances', FinanceController.store);
-routes.get('/users/:userId/finances/all', FinanceController.index);
-routes.get('/users/:userId/finances/:financeId', FinanceController.show);
-routes.delete('/users/:userId/finances/:financeId/delete', FinanceController.delete);
+// TRANSACTIONS
+routes.post('/users/:userId/accounts/:accountId/finances', TransactionController.store);
+routes.get('/users/:userId/finances/all', TransactionController.index);
+routes.get('/users/:userId/finances/:financeId', TransactionController.show);
+routes.delete('/users/:userId/finances/:financeId/delete', TransactionController.delete);
 
 // CATEGORIES
 routes.post('/users/:userId/categories', CategoryController.store);

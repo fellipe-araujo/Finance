@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const FinanceSchema = new mongoose.Schema({
+const TransactionSchema = new mongoose.Schema({
   expense: {
     type: Boolean,
     required: true,
@@ -30,6 +30,6 @@ const FinanceSchema = new mongoose.Schema({
   },
 });
 
-const Finance = mongoose.model('Finance', FinanceSchema);
+const Transaction = mongoose.model('Transaction', TransactionSchema);
 
-export default Finance;
+export default Transaction;
