@@ -11,6 +11,7 @@ import Category from './pages/Category';
 import Transaction from './pages/Transaction';
 import Home from './pages/Home';
 import Objective from './pages/Objective';
+import Login from './pages/Login';
 
 const AccountStack = createStackNavigator();
 
@@ -52,10 +53,15 @@ const ObjectiveScreen = () => (
   </ObjectiveStack.Navigator>
 );
 
+const AuthenticateStack = createStackNavigator();
+
 const Tab = createBottomTabNavigator();
 
 function Routes() {
+  const signed = false;
+
   return (
+    signed? (
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
@@ -116,7 +122,13 @@ function Routes() {
         <Tab.Screen name="Objective" component={ObjectiveScreen} />
         <Tab.Screen name="Category" component={CategoryScreen} />
       </Tab.Navigator>
-    </NavigationContainer>
+    </NavigationContainer> ) : (
+      <NavigationContainer>
+        <AuthenticateStack.Navigator headerMode={"none"}>
+          <AuthenticateStack.Screen name="Login" component={Login} />
+        </AuthenticateStack.Navigator>
+      </NavigationContainer>
+    )
   );
 }
 
