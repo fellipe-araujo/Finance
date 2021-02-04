@@ -2,11 +2,18 @@ import React, { useState } from 'react';
 import { View, Text, Image, TextInput } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useAuth } from '../../context/auth';
 import styles from './styles';
 
-const Login = () => {
+const Login: React.FC = () => {
   const [email, setEmail] = useState('');
-  const [paswword, setPassword] = useState('');
+  const [password, setPassword] = useState('');
+
+  const { signIn } = useAuth();
+
+  const handleLogin = () => {
+    signIn(email, password);
+  }
 
   return (
     <LinearGradient
@@ -29,12 +36,12 @@ const Login = () => {
           style={styles.input}
           secureTextEntry
           onChangeText={setPassword}
-          value={paswword}
+          value={password}
         />
       </View>
 
       <View style={styles.buttonGroup}>
-        <RectButton style={styles.button}>
+        <RectButton style={styles.button} onPress={handleLogin}>
           <Text style={styles.buttonLogin}>Entrar</Text>
         </RectButton>
         <RectButton>
