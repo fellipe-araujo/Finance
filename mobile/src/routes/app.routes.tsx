@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialIcons as Icon } from '@expo/vector-icons';
@@ -86,9 +86,8 @@ const Routes: React.FC = () => {
       })}
       tabBarOptions={{
         activeTintColor: '#B8C0FF',
-        inactiveTintColor: '#fff',
-        showLabel: false,
-        style: { backgroundColor: '#39393a' },
+        inactiveTintColor: '#FFF',
+        style: { backgroundColor: '#39393A' },
       }}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
@@ -98,16 +97,14 @@ const Routes: React.FC = () => {
         component={TransactionScreen}
         options={() => ({
           tabBarIcon: () => (
-            <View style={styles.iconTabRound}>
-              <LinearGradient
-                style={styles.iconTabRound}
-                start={{ x: 0.3, y: 0.3 }}
-                end={{ x: 1, y: 1 }}
-                colors={['#B9C0FF', '#42A1DC']}
-              >
-                <Icon name="add" size={26} color="#FFF" />
-              </LinearGradient>
-            </View>
+            <LinearGradient
+              style={styles.iconTabRound}
+              start={{ x: 0.3, y: 0.3 }}
+              end={{ x: 1, y: 1 }}
+              colors={['#B9C0FF', '#42A1DC']}
+            >
+              <Icon name="add" size={26} color="#FFF" />
+            </LinearGradient>
           ),
         })}
       />
@@ -122,7 +119,7 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    marginBottom: 20,
+    marginBottom: 25,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
