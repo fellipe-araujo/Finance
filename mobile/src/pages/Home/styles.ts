@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
   },
   containerWelcome: {
     width: '80%',
+    flexDirection: 'row',
     alignItems: 'center',
   },
   textWelcome: {
@@ -20,6 +21,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: '#39393A',
     fontFamily: 'Nunito_400Regular',
+    marginLeft: 20,
   },
   containerAccount: {
     width: '80%',
@@ -30,6 +32,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#39393A',
     fontFamily: 'Nunito_700Bold',
+    marginVertical: 30,
   },
   content: {
     flex: 1,

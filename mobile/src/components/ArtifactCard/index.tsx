@@ -9,6 +9,7 @@ interface Props {
   borderTopColor: string;
   colorTotal: string;
   artifactName: string;
+  quantity: number;
 }
 
 const ArtifactCard: React.FC<Props> = ({
@@ -16,7 +17,8 @@ const ArtifactCard: React.FC<Props> = ({
   colorLinearY,
   borderTopColor,
   colorTotal,
-  artifactName
+  artifactName,
+  quantity,
 }) => {
   return (
     <LinearGradient
@@ -30,7 +32,7 @@ const ArtifactCard: React.FC<Props> = ({
         style={[styles.quantityContainer, { borderTopColor: borderTopColor }]}
       >
         <Text style={[styles.total, { color: colorTotal }]}>Total:</Text>
-        <Text style={[styles.total, { color: colorTotal }]}>5</Text>
+        <Text style={[styles.total, { color: colorTotal }]}>{quantity}</Text>
       </View>
     </LinearGradient>
   );

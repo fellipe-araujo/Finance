@@ -8,6 +8,8 @@ import {
 import AppLoading from 'expo-app-loading';
 import { AuthProvider } from './src/context/auth';
 import Routes from './src/routes';
+import 'intl';
+import 'intl/locale-data/jsonp/pt';
 
 const App: React.FC = () => {
   let [fontsLoaded] = useFonts({ Nunito_700Bold, Nunito_400Regular });
