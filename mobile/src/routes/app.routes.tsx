@@ -6,6 +6,7 @@ import { MaterialIcons as Icon } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import Account from '../pages/Account';
+import NewAccount from '../pages/NewAccount';
 import Category from '../pages/Category';
 import Transaction from '../pages/Transaction';
 import Home from '../pages/Home';
@@ -16,6 +17,7 @@ const AccountStack = createStackNavigator();
 const AccountScreen: React.FC = () => (
   <AccountStack.Navigator headerMode={'none'}>
     <AccountStack.Screen name="Account" component={Account} />
+    <AccountStack.Screen name="NewAccount" component={NewAccount} />
   </AccountStack.Navigator>
 );
 
