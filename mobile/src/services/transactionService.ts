@@ -1,12 +1,5 @@
 import api from './api';
-
-interface Transaction {
-  expense: boolean;
-  price: number;
-  user: string;
-  account: string;
-  category: string;
-}
+import { Transaction } from '../utils/types';
 
 class TransactionService {
   async transactionCreate(userId: string, data: Transaction) {
