@@ -4,9 +4,10 @@ import api from '../services/api';
 import userService from '../services/userService';
 
 interface User {
+  _id: string;
   name: string;
   email: string;
-  paswword: string;
+  password: string;
 }
 
 interface AuthContextData {
