@@ -1,11 +1,5 @@
 import api from './api';
-
-interface User {
-  name: string;
-  email: string;
-  password: string;
-  avatar: string;
-}
+import { User } from '../utils/types';
 
 class UserService {
   async register(data: User) {

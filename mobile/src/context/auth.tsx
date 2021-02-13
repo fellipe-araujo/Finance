@@ -2,12 +2,7 @@ import React, { createContext, useState, useEffect, useContext } from "react";
 import AsyncStorage from "@react-native-community/async-storage";
 import api from '../services/api';
 import userService from '../services/userService';
-
-interface User {
-  name: string;
-  email: string;
-  paswword: string;
-}
+import { User } from "../utils/types";
 
 interface AuthContextData {
   signed: boolean;

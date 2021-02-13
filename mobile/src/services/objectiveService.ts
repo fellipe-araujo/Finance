@@ -1,11 +1,5 @@
 import api from './api';
-
-interface Objective {
-  name: string;
-  goal: number;
-  description: string;
-  user: string;
-}
+import { Objective } from '../utils/types';
 
 class ObjectiveService {
   async objectiveCreate(userId: string, data: Objective) {

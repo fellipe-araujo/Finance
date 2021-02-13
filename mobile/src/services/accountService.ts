@@ -1,13 +1,7 @@
 import api from './api';
-
-interface Account {
-  name: string;
-  balance: number;
-  user: string;
-}
-
+import { UserAccount } from '../utils/types';
 class AccountService {
-  async accountCreate(userId: string, data: Account) {
+  async accountCreate(userId: string, data: UserAccount) {
     await api.post(`/users/${userId}/accounts`, data);
   }
 

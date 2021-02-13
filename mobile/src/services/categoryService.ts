@@ -1,10 +1,5 @@
 import api from './api';
-
-interface Category {
-  name: string;
-  color: string;
-  user: string;
-}
+import { Category } from '../utils/types';
 
 class CategoryService {
   async categoryCreate(userId: string, data: Category) {

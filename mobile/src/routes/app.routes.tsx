@@ -87,7 +87,10 @@ const Routes: React.FC = () => {
       tabBarOptions={{
         activeTintColor: '#B8C0FF',
         inactiveTintColor: '#FFF',
-        style: { backgroundColor: '#39393A' },
+        labelStyle: {
+          fontFamily: 'Nunito_400Regular',
+        },
+        style: { backgroundColor: '#39393A'},
       }}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
