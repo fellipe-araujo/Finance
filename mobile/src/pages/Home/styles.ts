@@ -7,10 +7,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 20 + Constants.statusBarHeight,
   },
-  containerWelcome: {
+  headerWelcome: {
     width: '80%',
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+  userInfoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   textWelcome: {
     fontSize: 14,

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { useIsFocused } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import ArtifactCard from '../../components/ArtifactCard';
 import { useAuth } from '../../context/auth';
+import { Feather as Icon } from '@expo/vector-icons';
 import styles from './styles';
 import accountService from '../../services/accountService';
 import userService from '../../services/userService';
@@ -19,9 +21,13 @@ const Home: React.FC = () => {
   const [transactionsTotal, setTransactionsTotal] = useState(0);
   const [categoriesTotal, setCategoriesTotal] = useState(0);
 
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
 
   const isFocused = useIsFocused();
+
+  const handleLogOut = () => {
+    signOut();
+  }
 
   const formatPrice = (price: number) => {
     const formatter = new Intl.NumberFormat('pt-br', {
@@ -82,9 +88,15 @@ const Home: React.FC = () => {
       end={{ x: 1, y: 1 }}
       colors={['#B9C0FF', '#42A1DC']}
     >
-      <View style={styles.containerWelcome}>
-        <Image source={require('../../../assets/profile.png')} />
-        <Text style={styles.textName}>{username}</Text>
+      <View style={styles.headerWelcome}>
+        <View style={styles.userInfoContainer}>
+          <Image source={require('../../../assets/profile.png')} />
+          <Text style={styles.textName}>{username}</Text>
+        </View>
+
+        <TouchableWithoutFeedback onPress={() => handleLogOut()}>
+          <Icon name="log-out" size={30} color="#39393A" />
+        </TouchableWithoutFeedback>        
       </View>
 
       <Text style={styles.value}>{formatPrice(accountTotalValue)}</Text>
