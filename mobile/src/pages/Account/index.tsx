@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useIsFocused } from '@react-navigation/native';
 import PrimaryHeader from '../../components/PrimaryHeader';
 import ArtifactResume from '../../components/ArtifactResume';
+import AccountCard from '../../components/AccountCard';
 import styles from './styles';
+import { UserAccount } from '../../utils/types';
+import { useAuth } from '../../context/auth';
+import accountService from '../../services/accountService';
 
 const Account = () => {
+  const [accounts, setAccounts] = useState<UserAccount[]>([]);
+  const [accountsAmount, setAccountsAmout] = useState(0);
+
+  const { user } = useAuth();
+
+  const isFocused = useIsFocused();
+
   const formatPrice = (price: number) => {
     const formatter = new Intl.NumberFormat('pt-br', {
       style: 'currency',
@@ -15,6 +27,23 @@ const Account = () => {
     return formatter.format(price);
   };
 
+  useEffect(() => {
+    const fetchAllAccounts = async () => {
+      const response = await accountService.accountAll(user!._id);
+      setAccounts(response);
+
+      var values = 0;
+
+      Object.keys(response).forEach((item) => {
+        values += response[item].balance;
+      });
+
+      setAccountsAmout(values);
+    };
+
+    fetchAllAccounts();
+  }, [isFocused]);
+
   return (
     <LinearGradient
       style={styles.container}
@@ -23,11 +52,20 @@ const Account = () => {
       colors={['#B9C0FF', '#42A1DC']}
     >
       <PrimaryHeader route="NewAccount" title="Minhas Contas" />
+
       <ArtifactResume
         title="Total"
         subTitle="acumulado"
-        value={formatPrice(5)}
+        value={formatPrice(accountsAmount)}
       />
+
+      {accounts.map((account) => (
+        <AccountCard
+          key={account._id}
+          accountName={account.name}
+          accountValue={formatPrice(account.balance)}
+        />
+      ))}
     </LinearGradient>
   );
 };
