@@ -5,6 +5,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
+  scrollContainer: {
+    width: '100%',
+    marginTop: 10,
+  },
 });
 
 export default styles;

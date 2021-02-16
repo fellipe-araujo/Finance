@@ -11,15 +11,18 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
+    color: '#202020',
     fontFamily: 'Nunito_400Regular',
   },
   subTitle: {
     fontSize: 16,
+    color: '#202020',
     fontFamily: 'Nunito_400Regular',
   },
   value: {
     marginTop: 10,
-    fontSize: 24,
+    fontSize: 22,
+    color: '#39393A',
     fontFamily: 'Nunito_700Bold',
   },
 });

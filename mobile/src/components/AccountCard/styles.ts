@@ -25,10 +25,12 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'Nunito_400Regular',
     fontSize: 18,
+    color: '#202020',
     textAlign: 'center'
   },
   value: {
     fontSize: 24,
+    color: '#39393A',
     fontFamily: 'Nunito_700Bold'
   }
 });

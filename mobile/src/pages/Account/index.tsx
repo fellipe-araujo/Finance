@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useIsFocused } from '@react-navigation/native';
 import PrimaryHeader from '../../components/PrimaryHeader';
@@ -59,13 +60,19 @@ const Account = () => {
         value={formatPrice(accountsAmount)}
       />
 
-      {accounts.map((account) => (
-        <AccountCard
-          key={account._id}
-          accountName={account.name}
-          accountValue={formatPrice(account.balance)}
-        />
-      ))}
+      <ScrollView
+        style={styles.scrollContainer}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ alignItems: 'center' }}
+      >
+        {accounts.map((account) => (
+          <AccountCard
+            key={account._id}
+            accountName={account.name}
+            accountValue={formatPrice(account.balance)}
+          />
+        ))}
+      </ScrollView>
     </LinearGradient>
   );
 };
