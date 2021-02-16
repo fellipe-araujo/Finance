@@ -1,6 +1,6 @@
 import React from 'react';
 import { View,  Text } from 'react-native';
-import { useIsFocused, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Feather as Icon } from '@expo/vector-icons';
 import styles from './styles';

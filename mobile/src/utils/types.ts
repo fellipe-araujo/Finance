@@ -7,10 +7,10 @@ export interface User {
 }
 
 export interface UserAccount {
-  _id: string;
+  _id?: string;
   name: string;
-  balance: number;
-  user: string;
+  balance?: number;
+  user?: string;
 }
 
 export interface Objective {
