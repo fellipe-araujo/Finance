@@ -25,7 +25,7 @@ const Account = () => {
       minimumFractionDigits: 2,
     });
 
-    return formatter.format(price);
+    return formatter.format(price!);
   };
 
   useEffect(() => {
@@ -68,8 +68,9 @@ const Account = () => {
         {accounts.map((account) => (
           <AccountCard
             key={account._id}
+            accountId={account._id!}
             accountName={account.name}
-            accountValue={formatPrice(account.balance)}
+            accountValue={formatPrice(account.balance!)}
           />
         ))}
       </ScrollView>
