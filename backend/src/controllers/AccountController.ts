@@ -35,12 +35,11 @@ export default {
 
   async store(request: Request, response: Response) {
     try {
-      const { name, balance } = request.body;
+      const { name } = request.body;
       const { userId } = request.params;
 
       const account = await Account.create({
         name,
-        balance,
         user: userId,
       });
 

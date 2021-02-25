@@ -6,6 +6,8 @@ import { MaterialIcons as Icon } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import Account from '../pages/Account';
+import NewAccount from '../pages/NewAccount';
+import AccountDetail from '../pages/AccountDetail';
 import Category from '../pages/Category';
 import Transaction from '../pages/Transaction';
 import Home from '../pages/Home';
@@ -16,6 +18,8 @@ const AccountStack = createStackNavigator();
 const AccountScreen: React.FC = () => (
   <AccountStack.Navigator headerMode={'none'}>
     <AccountStack.Screen name="Account" component={Account} />
+    <AccountStack.Screen name="NewAccount" component={NewAccount} />
+    <AccountStack.Screen name="AccountDetail" component={AccountDetail} />
   </AccountStack.Navigator>
 );
 
@@ -87,6 +91,7 @@ const Routes: React.FC = () => {
       tabBarOptions={{
         activeTintColor: '#B8C0FF',
         inactiveTintColor: '#FFF',
+        keyboardHidesTabBar: true,
         labelStyle: {
           fontFamily: 'Nunito_400Regular',
         },
