@@ -13,7 +13,7 @@ export interface UserAccount {
   user?: string;
 }
 
-export interface Objective {
+export interface UserObjective {
   _id: string;
   name: string;
   goal: number;
@@ -21,7 +21,7 @@ export interface Objective {
   user: string;
 }
 
-export interface Transaction {
+export interface UserTransaction {
   _id: string;
   expense: boolean;
   price: number;
@@ -30,7 +30,7 @@ export interface Transaction {
   category: string;
 }
 
-export interface Category {
+export interface UserCategory {
   _id: string;
   name: string;
   color: string;

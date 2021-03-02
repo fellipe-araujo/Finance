@@ -58,6 +58,8 @@ const Account = () => {
         title="Total"
         subTitle="acumulado"
         value={formatPrice(accountsAmount)}
+        color1="#A9DEF9"
+        color2="#E4F2FA"
       />
 
       <ScrollView
