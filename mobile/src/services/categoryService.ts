@@ -1,8 +1,8 @@
 import api from './api';
-import { Category } from '../utils/types';
+import { UserCategory } from '../utils/types';
 
 class CategoryService {
-  async categoryCreate(userId: string, data: Category) {
+  async categoryCreate(userId: string, data: UserCategory) {
     await api.post(`/users/${userId}/categories`, data);
   }
 
@@ -16,7 +16,7 @@ class CategoryService {
     return category.data;
   }
 
-  async categoryUpdate(userId: string, categoryId: string, data: Category) {
+  async categoryUpdate(userId: string, categoryId: string, data: UserCategory) {
     await api.put(`/users/${userId}/categories/${categoryId}/update`, data);
   }
 

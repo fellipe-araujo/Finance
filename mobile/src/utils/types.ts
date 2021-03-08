@@ -31,8 +31,8 @@ export interface UserTransaction {
 }
 
 export interface UserCategory {
-  _id: string;
-  name: string;
-  color: string;
-  user: string;
+  _id?: string;
+  name?: string;
+  color?: string;
+  user?: string;
 }
