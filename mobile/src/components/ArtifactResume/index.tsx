@@ -7,20 +7,22 @@ interface Props {
   title: string;
   subTitle: string;
   value: string;
+  color1: string;
+  color2: string;
 }
 
-const ArtifactResume = ({ title, subTitle, value }: Props) => {
+const ArtifactResume = ({ title, subTitle, value, color1, color2 }: Props) => {
   return (
     <LinearGradient
-    style={styles.container}
-    start={{ x: 0.3, y: 0.3 }}
-    end={{ x: 1, y: 1 }}
-    colors={['#A9DEF9', '#E4F2FA']}
-  >
-    <Text style={styles.title}>{title}</Text>
-    <Text style={styles.subTitle}>{subTitle}</Text>
-    <Text style={styles.value}>{value}</Text>
-  </LinearGradient>
+      style={styles.container}
+      start={{ x: 0.3, y: 0.3 }}
+      end={{ x: 1, y: 1 }}
+      colors={[`${color1}`, `${color2}`]}
+    >
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.subTitle}>{subTitle}</Text>
+      <Text style={styles.value}>{value}</Text>
+    </LinearGradient>
   );
 };
 

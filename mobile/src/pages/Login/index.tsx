@@ -23,7 +23,7 @@ const Login: React.FC = () => {
       colors={['#B9C0FF', '#42A1DC']}
     >
       <Image
-        source={require('../../../assets/Logo.png')}
+        source={require('../../../assets/logo/Logo.png')}
         style={styles.image}
       />
 

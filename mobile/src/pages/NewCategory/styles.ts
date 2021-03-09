@@ -6,10 +6,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  scrollContainer: {
+  content: {
+    flex: 1,
     width: '80%',
-    marginTop: 10,
   },
+
+  accountLogo: {
+    marginTop: 20,
+  },
+
+  break: {
+    height: 50
+  }
 });
 
 export default styles;

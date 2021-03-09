@@ -9,6 +9,8 @@ import Account from '../pages/Account';
 import NewAccount from '../pages/NewAccount';
 import AccountDetail from '../pages/AccountDetail';
 import Category from '../pages/Category';
+import NewCategory from '../pages/NewCategory';
+import CategoryDetail from '../pages/CategoryDetail';
 import Transaction from '../pages/Transaction';
 import Home from '../pages/Home';
 import Objective from '../pages/Objective';
@@ -28,6 +30,8 @@ const CategoryStack = createStackNavigator();
 const CategoryScreen: React.FC = () => (
   <CategoryStack.Navigator headerMode={'none'}>
     <CategoryStack.Screen name="Category" component={Category} />
+    <CategoryStack.Screen name="NewCategory" component={NewCategory} />
+    <CategoryStack.Screen name="CategoryDetail" component={CategoryDetail} />
   </CategoryStack.Navigator>
 );
 
