@@ -53,7 +53,7 @@ const NewAccount = () => {
 
       <View style={styles.content}>
         <Image
-          source={require('../../../assets/account-logo.png')}
+          source={require('../../../assets/account/account-logo.png')}
           style={styles.accountLogo}
         />
 
