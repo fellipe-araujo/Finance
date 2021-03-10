@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'Nunito_700Bold',
     fontSize: 20,
-    color: '#39393A'
+    color: '#39393A',
   },
 });
 

@@ -1,15 +1,10 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Text, TouchableOpacity } from 'react-native';
+import { UserCategory } from '../../utils/types';
 import styles from './styles';
 
-interface Props {
-  categoryId?: string;
-  categoryName: string;
-  categoryColor: string;
-}
-
-const CategoryCard = ({ categoryId, categoryName, categoryColor }: Props) => {
+const CategoryCard = ({ _id, name, color }: UserCategory) => {
   const navigation = useNavigation();
 
   const goToCategoryDetails = (_id?: string) => {
@@ -20,10 +15,10 @@ const CategoryCard = ({ categoryId, categoryName, categoryColor }: Props) => {
 
   return (
     <TouchableOpacity
-      style={[styles.container, { backgroundColor: categoryColor }]}
-      onPress={() => goToCategoryDetails(categoryId)}
+      style={[styles.container, { backgroundColor: color }]}
+      onPress={() => goToCategoryDetails(_id)}
     >
-      <Text style={styles.title}>{categoryName}</Text>
+      <Text style={styles.title}>{name}</Text>
     </TouchableOpacity>
   );
 };

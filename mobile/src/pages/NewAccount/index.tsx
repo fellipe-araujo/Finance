@@ -6,37 +6,27 @@ import SecondaryHeader from '../../components/SecondaryHeader';
 import styles from './styles';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import ModalConfirm from '../../components/ModalConfirm';
 import accountService from '../../services/accountService';
 import { useAuth } from '../../context/auth';
 
 const NewAccount = () => {
   const [name, setName] = useState('');
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const { user } = useAuth();
 
   const navigation = useNavigation();
 
-  const handleCreateAccount = async () => {
+  const modalCreateDescription = `Você deseja criar a conta ${name}?`;
+
+  const toggleModalCreate = async () => {
     try {
-      Alert.alert(
-        'Criação de Conta',
-        `Deseja criar a conta ${name}?`,
-        [
-          {
-            text: 'Cancelar',
-            style: 'cancel',
-          },
-          {
-            text: 'Confirmar',
-            onPress: async () => {
-              await accountService.accountCreate(user!._id, { name });
-              navigation.navigate('Account');
-            },
-          },
-        ],
-        { cancelable: false }
-      );
+      await accountService.accountCreate(user?._id!, { name });
+      setIsModalVisible(!isModalVisible);
+      navigation.navigate('Account');
     } catch (error) {
+      setIsModalVisible(!isModalVisible);
       navigation.navigate('Account');
       Alert.alert(error);
     }
@@ -51,6 +41,13 @@ const NewAccount = () => {
     >
       <SecondaryHeader route="Account" title="Nova Conta" />
 
+      <ModalConfirm
+        isModalVisible={isModalVisible}
+        toggleModalConfirm={toggleModalCreate}
+        toggleModalCancel={() => setIsModalVisible(false)}
+        description={modalCreateDescription}
+      />
+
       <View style={styles.content}>
         <Image
           source={require('../../../assets/account/account-logo.png')}
@@ -64,7 +61,7 @@ const NewAccount = () => {
           <Button
             color="#505050"
             title="Criar Conta"
-            onPress={handleCreateAccount}
+            onPress={() => setIsModalVisible(true)}
           />
         </View>
       </View>

@@ -4,6 +4,7 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { useIsFocused } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import ArtifactCard from '../../components/ArtifactCard';
+import { formatPrice } from '../../utils/formatPrice';
 import { useAuth } from '../../context/auth';
 import { Feather as Icon } from '@expo/vector-icons';
 import styles from './styles';
@@ -28,16 +29,6 @@ const Home: React.FC = () => {
   const handleLogOut = () => {
     signOut();
   }
-
-  const formatPrice = (price: number) => {
-    const formatter = new Intl.NumberFormat('pt-br', {
-      style: 'currency',
-      currency: 'BRL',
-      minimumFractionDigits: 2,
-    });
-
-    return formatter.format(price);
-  };
 
   useEffect(() => {
     const fetchName = async () => {

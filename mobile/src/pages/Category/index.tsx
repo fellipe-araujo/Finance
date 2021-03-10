@@ -52,9 +52,9 @@ const Category = () => {
         {categories.map((category) => (
           <CategoryCard
             key={category._id}
-            categoryId={category._id!}
-            categoryName={category.name!}
-            categoryColor={category.color!}
+            _id={category._id!}
+            name={category.name!}
+            color={category.color!}
           />
         ))}
       </ScrollView>

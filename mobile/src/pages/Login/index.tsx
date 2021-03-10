@@ -13,7 +13,7 @@ const Login: React.FC = () => {
 
   const handleLogin = () => {
     signIn(email, password);
-  }
+  };
 
   return (
     <LinearGradient

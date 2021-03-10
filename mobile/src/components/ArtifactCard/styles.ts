@@ -16,17 +16,20 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOpacity: 0.25,
   },
+
   title: {
     fontSize: 18,
     color: '#505050',
     fontFamily: 'Nunito_700Bold',
   },
+
   quantityContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderTopWidth: 1,
     paddingTop: 5,
   },
+
   total: {
     fontFamily: 'Nunito_400Regular',
   },

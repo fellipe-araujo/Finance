@@ -7,31 +7,37 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 20 + Constants.statusBarHeight,
   },
+
   headerWelcome: {
     width: '80%',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
+
   userInfoContainer: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
   },
+
   textWelcome: {
     fontSize: 14,
     color: '#39393A',
     fontFamily: 'Nunito_400Regular',
   },
+
   textName: {
     fontSize: 24,
     color: '#39393A',
     fontFamily: 'Nunito_400Regular',
     marginLeft: 20,
   },
+
   containerAccount: {
     width: '80%',
     marginVertical: 30,
   },
+
   value: {
     fontSize: 30,
     fontWeight: 'bold',
@@ -39,6 +45,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito_700Bold',
     marginVertical: 30,
   },
+
   content: {
     flex: 1,
     width: '100%',
@@ -52,12 +59,13 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOpacity: 0.25,
   },
+
   title: {
     marginTop: 20,
     color: '#39393A',
     fontSize: 24,
     fontFamily: 'Nunito_400Regular',
-  }
+  },
 });
 
 export default styles;

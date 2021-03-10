@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   inputTitle: {
     fontSize: 16,
     fontFamily: 'Nunito_400Regular',
-    color: '#202020'
+    color: '#202020',
   },
 });
 

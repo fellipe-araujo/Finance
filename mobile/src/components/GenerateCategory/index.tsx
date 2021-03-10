@@ -31,11 +31,7 @@ const GenerateCategory = ({
   return (
     <View style={styles.visualizationContainer}>
       <Text style={styles.title}>Pré-visualização:</Text>
-      <CategoryCard
-        categoryId={id}
-        categoryName={oldName}
-        categoryColor={newColor}
-      />
+      <CategoryCard _id={id} name={oldName} color={newColor} />
 
       <View style={styles.inputGroup}>
         <TextInput
