@@ -5,17 +5,20 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useRoute } from '@react-navigation/native';
 import styles from './styles';
 import { UserAccount } from '../../utils/types';
+import { formatPrice } from '../../utils/formatPrice';
 import accountService from '../../services/accountService';
 import { useAuth } from '../../context/auth';
 import SecondaryHeader from '../../components/SecondaryHeader';
 import AccountDetailCard from '../../components/AccountDetailCard';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import { modalConfirm } from '../../components/ModalConfirm';
+import ModalConfirm from '../../components/ModalConfirm';
 
 const AccountDetail = () => {
   const [account, setAccount] = useState<UserAccount>();
   const [newAccountName, setNewAccountName] = useState('');
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalAction, setModalAction] = useState('');
 
   const { user } = useAuth();
   const route = useRoute();
@@ -24,52 +27,35 @@ const AccountDetail = () => {
 
   const navigation = useNavigation();
 
-  const handleUpdateAccount = async () => {
+  const modalUpdateDescription = `Você deseja atualizar a conta ${account?.name}?`;
+  const modalDeleteDescription = `Você deseja excluir a conta ${account?.name}?`;
+
+  const toggleModalUpdate = async () => {
     try {
-      modalConfirm(
-        'Atualizar Conta',
-        'Você deseja atualizar a conta',
-        `${account?.name}`,
-        async () => {
-          await accountService.accountUpdate(
-            user?._id!,
-            account?._id!,
-            newAccountName
-          );
-          navigation.navigate('Account');
-        }
+      await accountService.accountUpdate(
+        user?._id!,
+        account?._id!,
+        newAccountName
       );
+      setIsModalVisible(!isModalVisible);
+      navigation.navigate('Account');
     } catch (error) {
+      setIsModalVisible(!isModalVisible);
       navigation.navigate('Account');
       Alert.alert(error);
     }
   };
 
-  const handleDeleteAccount = async () => {
+  const toggleModalDelete = async () => {
     try {
-      modalConfirm(
-        'Excluir Conta',
-        'Você deseja excluir a conta',
-        `${account?.name}`,
-        async () => {
-          await accountService.accountDelete(user?._id!, account?._id!);
-          navigation.navigate('Account');
-        }
-      );
+      await accountService.accountDelete(user?._id!, account?._id!);
+      setIsModalVisible(!isModalVisible);
+      navigation.navigate('Account');
     } catch (error) {
+      setIsModalVisible(!isModalVisible);
       navigation.navigate('Account');
       Alert.alert(error);
     }
-  };
-
-  const formatPrice = (price: number) => {
-    const formatter = new Intl.NumberFormat('pt-br', {
-      style: 'currency',
-      currency: 'BRL',
-      minimumFractionDigits: 2,
-    });
-
-    return formatter.format(price!);
   };
 
   useEffect(() => {
@@ -90,6 +76,19 @@ const AccountDetail = () => {
     >
       <SecondaryHeader title={`${account?.name}`} route="Account" />
 
+      <ModalConfirm
+        isModalVisible={isModalVisible}
+        toggleModalConfirm={
+          modalAction === 'Update' ? toggleModalUpdate : toggleModalDelete
+        }
+        toggleModalCancel={() => setIsModalVisible(false)}
+        description={
+          modalAction === 'Update'
+            ? modalUpdateDescription
+            : modalDeleteDescription
+        }
+      />
+
       <View style={styles.content}>
         <AccountDetailCard
           value={account?.balance ? formatPrice(account?.balance!) : 'R$0,00'}
@@ -107,12 +106,18 @@ const AccountDetail = () => {
           <Button
             title="Atualizar Conta"
             color="#39393A"
-            onPress={handleUpdateAccount}
+            onPress={() => {
+              setModalAction('Update');
+              setIsModalVisible(true);
+            }}
           />
           <Button
             title="Excluir Conta"
             color="#FF8888"
-            onPress={handleDeleteAccount}
+            onPress={() => {
+              setModalAction('Delete');
+              setIsModalVisible(true);
+            }}
           />
         </View>
       </View>

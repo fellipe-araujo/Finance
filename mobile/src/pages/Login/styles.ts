@@ -5,16 +5,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
   },
+
   image: {
     marginTop: Constants.statusBarHeight + 30,
   },
+
   inputGroup: {
     width: '80%',
     alignItems: 'center',
     marginTop: 50,
   },
+
   text: {
     alignSelf: 'flex-start',
     fontSize: 18,
@@ -22,6 +25,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 20,
   },
+
   input: {
     height: 56,
     width: '100%',
@@ -31,11 +35,13 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 10,
   },
+
   buttonGroup: {
     width: '80%',
     alignItems: 'center',
     marginTop: 50,
   },
+
   button: {
     height: 56,
     width: '100%',
@@ -45,16 +51,18 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 20,
   },
+
   buttonLogin: {
     color: '#fff',
     fontSize: 24,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
+
   buttonSignin: {
     color: '#A9DEF9',
     fontSize: 18,
-    fontWeight: 'bold'
-  }
+    fontWeight: 'bold',
+  },
 });
 
 export default styles;

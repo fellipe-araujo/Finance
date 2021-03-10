@@ -5,7 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import SecondaryHeader from '../../components/SecondaryHeader';
 import Button from '../../components/Button';
 import GenerateCategory from '../../components/GenerateCategory';
-import { modalConfirm } from '../../components/ModalConfirm';
+import ModalConfirm from '../../components/ModalConfirm';
 import categoryService from '../../services/categoryService';
 import { useAuth } from '../../context/auth';
 import styles from './styles';
@@ -13,26 +13,24 @@ import styles from './styles';
 const NewCategory = () => {
   const [newCategoryName, setNewCategoryName] = useState('');
   const [newCategoryColor, setNewCategoryColor] = useState('');
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const { user } = useAuth();
 
   const navigation = useNavigation();
 
-  const handleCreateCategory = async () => {
+  const modalCreateDescription = `Você deseja criar a categoria ${newCategoryName}?`;
+
+  const toggleModalCreate = async () => {
     try {
-      modalConfirm(
-        'Criar Categoria',
-        'Você deseja criar a categoria',
-        `${newCategoryName}`,
-        async () => {
-          await categoryService.categoryCreate(user?._id!, {
-            name: newCategoryName,
-            color: newCategoryColor,
-          });
-          navigation.navigate('Category');
-        }
-      );
+      await categoryService.categoryCreate(user?._id!, {
+        name: newCategoryName,
+        color: newCategoryColor,
+      });
+      setIsModalVisible(!isModalVisible);
+      navigation.navigate('Category');
     } catch (error) {
+      setIsModalVisible(!isModalVisible);
       navigation.navigate('Category');
       Alert.alert(error);
     }
@@ -48,6 +46,13 @@ const NewCategory = () => {
       <SecondaryHeader title="Nova Categoria" route="Category" />
 
       <ScrollView style={styles.content}>
+        <ModalConfirm
+          isModalVisible={isModalVisible}
+          toggleModalConfirm={toggleModalCreate}
+          toggleModalCancel={() => setIsModalVisible(false)}
+          description={modalCreateDescription}
+        />
+
         <Image
           source={require('../../../assets/category/category-logo.png')}
           style={styles.accountLogo}
@@ -68,7 +73,7 @@ const NewCategory = () => {
         <Button
           color="#505050"
           title="Criar Conta"
-          onPress={handleCreateCategory}
+          onPress={() => setIsModalVisible(true)}
         />
       </ScrollView>
     </LinearGradient>

@@ -16,8 +16,8 @@ const styles = StyleSheet.create({
   },
 
   break: {
-    height: 50
-  }
+    height: 50,
+  },
 });
 
 export default styles;

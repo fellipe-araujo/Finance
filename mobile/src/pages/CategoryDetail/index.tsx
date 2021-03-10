@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Alert, View } from 'react-native';
 import Button from '../../components/Button';
 import GenerateCategory from '../../components/GenerateCategory';
-import { modalConfirm } from '../../components/ModalConfirm';
+import ModalConfirm from '../../components/ModalConfirm';
 import SecondaryHeader from '../../components/SecondaryHeader';
 import { useAuth } from '../../context/auth';
 import categoryService from '../../services/categoryService';
@@ -15,6 +15,8 @@ const CategoryDetail = () => {
   const [category, setCategory] = useState<UserCategory>();
   const [newCategoryName, setNewCategoryName] = useState('');
   const [newCategoryColor, setNewCategoryColor] = useState('');
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalAction, setModalAction] = useState('');
 
   const { user } = useAuth();
   const route = useRoute();
@@ -25,38 +27,35 @@ const CategoryDetail = () => {
 
   const newCategory: UserCategory = {
     name: newCategoryName ? newCategoryName : category?.name,
-    color: newCategoryColor ? newCategoryColor: category?.color,
+    color: newCategoryColor ? newCategoryColor : category?.color,
   };
 
-  const handleUpdateCategory = async () => {
+  const modalUpdateDescription = `Você deseja atualizar a categoria ${category?.name}?`;
+  const modalDeleteDescription = `Você deseja excluir a categoria ${category?.name}?`;
+
+  const toggleModalUpdate = async () => {
     try {
-      modalConfirm(
-        'Atualizar Categoria',
-        'Você deseja atualizar a categoria',
-        `${category?.name}`,
-        async () => {
-          await categoryService.categoryUpdate(user?._id!, category?._id!, newCategory);
-          navigation.navigate('Category');
-        }
+      await categoryService.categoryUpdate(
+        user?._id!,
+        category?._id!,
+        newCategory
       );
+      setIsModalVisible(!isModalVisible);
+      navigation.navigate('Category');
     } catch (error) {
+      setIsModalVisible(!isModalVisible);
       navigation.navigate('Category');
       Alert.alert(error);
     }
   };
 
-  const handleDeleteCategory = async () => {
+  const toggleModalDelete = async () => {
     try {
-      modalConfirm(
-        'Excluir Conta',
-        'Você deseja excluir a conta',
-        `${category?.name}`,
-        async () => {
-          await categoryService.categoryDelete(user?._id!, category?._id!);
-          navigation.navigate('Category');
-        }
-      );
+      await categoryService.categoryDelete(user?._id!, category?._id!);
+      setIsModalVisible(!isModalVisible);
+      navigation.navigate('Category');
     } catch (error) {
+      setIsModalVisible(!isModalVisible);
       navigation.navigate('Category');
       Alert.alert(error);
     }
@@ -86,6 +85,19 @@ const CategoryDetail = () => {
     >
       <SecondaryHeader title={`${category?.name}`} route="Category" />
 
+      <ModalConfirm
+        isModalVisible={isModalVisible}
+        toggleModalConfirm={
+          modalAction === 'Update' ? toggleModalUpdate : toggleModalDelete
+        }
+        toggleModalCancel={() => setIsModalVisible(false)}
+        description={
+          modalAction === 'Update'
+            ? modalUpdateDescription
+            : modalDeleteDescription
+        }
+      />
+
       <View style={styles.content}>
         <GenerateCategory
           id={category?._id!}
@@ -100,12 +112,18 @@ const CategoryDetail = () => {
           <Button
             title="Atualizar Categoria"
             color="#39393A"
-            onPress={handleUpdateCategory}
+            onPress={() => {
+              setModalAction('Update');
+              setIsModalVisible(true);
+            }}
           />
           <Button
             title="Excluir Categoria"
             color="#FF8888"
-            onPress={handleDeleteCategory}
+            onPress={() => {
+              setModalAction('Delete');
+              setIsModalVisible(true);
+            }}
           />
         </View>
       </View>
