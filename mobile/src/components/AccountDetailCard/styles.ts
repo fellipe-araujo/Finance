@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: '#39393A',
     opacity: 0.3,
-    marginVertical: 8
+    marginVertical: 8,
   },
 
   valueContainer: {

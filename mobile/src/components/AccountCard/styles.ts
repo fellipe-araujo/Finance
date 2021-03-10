@@ -7,13 +7,15 @@ const styles = StyleSheet.create({
     height: 80,
     marginVertical: 20,
   },
+
   accountName: {
     width: '40%',
     alignItems: 'center',
     justifyContent: 'center',
     borderTopLeftRadius: 8,
-    borderBottomLeftRadius: 8
+    borderBottomLeftRadius: 8,
   },
+
   accountValue: {
     width: '60%',
     alignItems: 'center',
@@ -22,17 +24,19 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 8,
     borderBottomRightRadius: 8,
   },
+
   title: {
     fontFamily: 'Nunito_400Regular',
     fontSize: 18,
     color: '#202020',
-    textAlign: 'center'
+    textAlign: 'center',
   },
+
   value: {
     fontSize: 24,
     color: '#39393A',
-    fontFamily: 'Nunito_700Bold'
-  }
+    fontFamily: 'Nunito_700Bold',
+  },
 });
 
 export default styles;

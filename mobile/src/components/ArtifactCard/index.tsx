@@ -12,14 +12,14 @@ interface Props {
   quantity: number;
 }
 
-const ArtifactCard: React.FC<Props> = ({
+const ArtifactCard = ({
   colorLinearX,
   colorLinearY,
   borderTopColor,
   colorTotal,
   artifactName,
   quantity,
-}) => {
+}: Props) => {
   return (
     <LinearGradient
       style={styles.container}

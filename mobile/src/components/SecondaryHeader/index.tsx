@@ -1,6 +1,6 @@
 import React from 'react';
-import { View,  Text } from 'react-native';
-import { useIsFocused, useNavigation } from '@react-navigation/native';
+import { View, Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Feather as Icon } from '@expo/vector-icons';
 import styles from './styles';
@@ -15,7 +15,7 @@ const SecondaryHeader = ({ route, title }: Props) => {
 
   const goToPage = () => {
     navigation.navigate(`${route}`);
-  }
+  };
 
   return (
     <View style={styles.container}>

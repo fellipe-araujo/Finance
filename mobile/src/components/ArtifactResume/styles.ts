@@ -7,18 +7,21 @@ const styles = StyleSheet.create({
     borderRadius: 80,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: -60
+    marginTop: -60,
   },
+
   title: {
     fontSize: 20,
     color: '#202020',
     fontFamily: 'Nunito_400Regular',
   },
+
   subTitle: {
     fontSize: 16,
     color: '#202020',
     fontFamily: 'Nunito_400Regular',
   },
+
   value: {
     marginTop: 10,
     fontSize: 22,

@@ -10,12 +10,13 @@ const styles = StyleSheet.create({
     borderBottomEndRadius: 40,
     paddingTop: Constants.statusBarHeight + 20,
   },
+
   content: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    
   },
+
   title: {
     color: '#FFF',
     fontSize: 28,

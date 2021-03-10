@@ -11,11 +11,13 @@ const styles = StyleSheet.create({
     borderBottomStartRadius: 200,
     borderBottomEndRadius: 200,
   },
+
   content: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
   },
+
   title: {
     color: '#FFF',
     fontSize: 28,
