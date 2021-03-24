@@ -1,8 +1,8 @@
 import api from './api';
-import { Objective } from '../utils/types';
+import { UserObjective } from '../utils/types';
 
 class ObjectiveService {
-  async objectiveCreate(userId: string, data: Objective) {
+  async objectiveCreate(userId: string, data: UserObjective) {
     await api.post(`/users/${userId}/objectives`, data);
   }
 
@@ -18,7 +18,7 @@ class ObjectiveService {
     return objective.data;
   }
 
-  async objectiveUpdate(userId: string, objectiveId: string, data: Objective) {
+  async objectiveUpdate(userId: string, objectiveId: string, data: UserObjective) {
     await api.put(`/users/${userId}/objectives/${objectiveId}/update`, data);
   }
 
