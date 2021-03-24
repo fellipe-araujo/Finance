@@ -14,11 +14,13 @@ export interface UserAccount {
 }
 
 export interface UserObjective {
-  _id: string;
-  name: string;
-  goal: number;
-  description: string;
-  user: string;
+  _id?: string;
+  name?: string;
+  goal?: number;
+  amount?: number;
+  progress?: number;
+  description?: string;
+  user?: string;
 }
 
 export interface UserTransaction {
