@@ -12,7 +12,7 @@ import accountService from '../../services/accountService';
 
 const Account = () => {
   const [accounts, setAccounts] = useState<UserAccount[]>([]);
-  const [accountsAmount, setAccountsAmout] = useState(0);
+  const [accountsAmount, setAccountsAmount] = useState(0);
 
   const { user } = useAuth();
 
@@ -39,7 +39,7 @@ const Account = () => {
         values += response[item].balance;
       });
 
-      setAccountsAmout(values);
+      setAccountsAmount(values);
     };
 
     fetchAllAccounts();
