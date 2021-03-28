@@ -14,6 +14,8 @@ import CategoryDetail from '../pages/CategoryDetail';
 import Transaction from '../pages/Transaction';
 import Home from '../pages/Home';
 import Objective from '../pages/Objective';
+import NewObjective from '../pages/NewObjective';
+import ObjectiveDetail from '../pages/ObjectiveDetail';
 
 const AccountStack = createStackNavigator();
 
@@ -56,6 +58,8 @@ const ObjectiveStack = createStackNavigator();
 const ObjectiveScreen: React.FC = () => (
   <ObjectiveStack.Navigator headerMode={'none'}>
     <ObjectiveStack.Screen name="Objective" component={Objective} />
+    <ObjectiveStack.Screen name="NewObjective" component={NewObjective} />
+    <ObjectiveStack.Screen name="ObjectiveDetail" component={ObjectiveDetail} />
   </ObjectiveStack.Navigator>
 );
 
@@ -99,7 +103,7 @@ const Routes: React.FC = () => {
         labelStyle: {
           fontFamily: 'Nunito_400Regular',
         },
-        style: { backgroundColor: '#39393A'},
+        style: { backgroundColor: '#39393A' },
       }}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
