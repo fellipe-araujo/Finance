@@ -24,7 +24,12 @@ const NewObjective = () => {
 
   const toggleModalCreate = async () => {
     try {
-      await objectiveService.objectiveCreate(user?._id!, { name, description });
+      const goalFormat = parseInt(goal);
+      await objectiveService.objectiveCreate(user?._id!, {
+        name,
+        goal: goalFormat,
+        description,
+      });
       setIsModalVisible(!isModalVisible);
       navigation.navigate('Objective');
     } catch (error) {
@@ -41,7 +46,7 @@ const NewObjective = () => {
       end={{ x: 1, y: 1 }}
       colors={['#B9C0FF', '#42A1DC']}
     >
-      <SecondaryHeader route="Objective" title="Nova Categoria" />
+      <SecondaryHeader route="Objective" title="Novo Objetivo" />
 
       <ModalConfirm
         isModalVisible={isModalVisible}
@@ -71,7 +76,6 @@ const NewObjective = () => {
             onChangeText={setDescription}
             borderColor="#E4C1F9"
             keyboardType="default"
-            
           />
 
           <Text style={styles.title}>Valor (sem vírgula ou ponto):</Text>
