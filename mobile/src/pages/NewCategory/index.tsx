@@ -72,7 +72,7 @@ const NewCategory = () => {
 
         <Button
           color="#505050"
-          title="Criar Conta"
+          title="Criar Categoria"
           onPress={() => setIsModalVisible(true)}
         />
       </ScrollView>
