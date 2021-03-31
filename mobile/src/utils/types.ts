@@ -24,12 +24,14 @@ export interface UserObjective {
 }
 
 export interface UserTransaction {
-  _id: string;
-  expense: boolean;
-  price: number;
-  user: string;
-  account: string;
-  category: string;
+  _id?: string;
+  name?: string;
+  expense?: boolean
+  price?: number;
+  date?: Date;
+  user?: string;
+  account?: string;
+  category?: string;
 }
 
 export interface UserCategory {
