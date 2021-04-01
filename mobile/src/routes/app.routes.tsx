@@ -12,6 +12,7 @@ import Category from '../pages/Category';
 import NewCategory from '../pages/NewCategory';
 import CategoryDetail from '../pages/CategoryDetail';
 import Transaction from '../pages/Transaction';
+import NewTransaction from '../pages/NewTransaction';
 import Home from '../pages/Home';
 import Objective from '../pages/Objective';
 import NewObjective from '../pages/NewObjective';
@@ -42,6 +43,7 @@ const TransactionStack = createStackNavigator();
 const TransactionScreen: React.FC = () => (
   <TransactionStack.Navigator headerMode={'none'}>
     <TransactionStack.Screen name="Transaction" component={Transaction} />
+    <TransactionStack.Screen name="NewTransaction" component={NewTransaction} />
   </TransactionStack.Navigator>
 );
 
