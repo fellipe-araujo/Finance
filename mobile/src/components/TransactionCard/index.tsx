@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { MaterialIcons as Icon } from '@expo/vector-icons';
 import styles from './styles';
 import { formatPrice } from '../../utils/formatPrice';
@@ -12,6 +12,7 @@ interface Props {
   accountName: string;
   categoryName: string;
   categoryColor: string;
+  onDelete(): void;
 }
 
 const TransactionCard = ({
@@ -22,6 +23,7 @@ const TransactionCard = ({
   accountName,
   categoryName,
   categoryColor,
+  onDelete,
 }: Props) => {
   const formatDate = (dateToFormat: string) => {
     const day = dateToFormat!.slice(8, 10);
@@ -37,11 +39,9 @@ const TransactionCard = ({
     <View style={styles.container}>
       <View style={styles.infoContainer}>
         <Text style={styles.transactionName}>{name}</Text>
-        <Icon
-          name={expense ? 'trending-down' : 'trending-up'}
-          size={30}
-          color={expense ? '#BB4E4E' : '#40923F'}
-        />
+        <TouchableOpacity onPress={onDelete}>
+          <Icon name="delete" size={24} color="#39393A" />
+        </TouchableOpacity>
       </View>
 
       <View style={styles.line} />
