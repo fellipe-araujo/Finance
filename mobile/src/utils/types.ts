@@ -26,12 +26,12 @@ export interface UserObjective {
 export interface UserTransaction {
   _id?: string;
   name?: string;
-  expense?: boolean
+  expense?: boolean;
   price?: number;
   date?: Date;
   user?: string;
-  account?: string;
-  category?: string;
+  account?: UserAccount;
+  category?: UserCategory;
 }
 
 export interface UserCategory {
