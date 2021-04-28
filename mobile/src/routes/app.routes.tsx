@@ -12,8 +12,11 @@ import Category from '../pages/Category';
 import NewCategory from '../pages/NewCategory';
 import CategoryDetail from '../pages/CategoryDetail';
 import Transaction from '../pages/Transaction';
+import NewTransaction from '../pages/NewTransaction';
 import Home from '../pages/Home';
 import Objective from '../pages/Objective';
+import NewObjective from '../pages/NewObjective';
+import ObjectiveDetail from '../pages/ObjectiveDetail';
 
 const AccountStack = createStackNavigator();
 
@@ -40,6 +43,7 @@ const TransactionStack = createStackNavigator();
 const TransactionScreen: React.FC = () => (
   <TransactionStack.Navigator headerMode={'none'}>
     <TransactionStack.Screen name="Transaction" component={Transaction} />
+    <TransactionStack.Screen name="NewTransaction" component={NewTransaction} />
   </TransactionStack.Navigator>
 );
 
@@ -56,6 +60,8 @@ const ObjectiveStack = createStackNavigator();
 const ObjectiveScreen: React.FC = () => (
   <ObjectiveStack.Navigator headerMode={'none'}>
     <ObjectiveStack.Screen name="Objective" component={Objective} />
+    <ObjectiveStack.Screen name="NewObjective" component={NewObjective} />
+    <ObjectiveStack.Screen name="ObjectiveDetail" component={ObjectiveDetail} />
   </ObjectiveStack.Navigator>
 );
 
@@ -99,7 +105,7 @@ const Routes: React.FC = () => {
         labelStyle: {
           fontFamily: 'Nunito_400Regular',
         },
-        style: { backgroundColor: '#39393A'},
+        style: { backgroundColor: '#39393A' },
       }}
     >
       <Tab.Screen name="Home" component={HomeScreen} />

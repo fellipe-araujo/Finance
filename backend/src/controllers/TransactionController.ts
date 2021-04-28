@@ -38,10 +38,11 @@ export default {
 
   async store(request: Request, response: Response) {
     try {
-      const { expense, price, date, category } = request.body;
+      const { name, expense, price, date, category } = request.body;
       const { userId, accountId } = request.params;
 
       const transaction: any = await Transaction.create({
+        name,
         expense,
         price,
         date,
