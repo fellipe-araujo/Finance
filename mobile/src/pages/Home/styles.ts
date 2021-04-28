@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     color: '#39393A',
-    fontFamily: 'Nunito_700Bold',
+    fontFamily: 'Nunito_400Regular',
     marginVertical: 30,
   },
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { Image, Text, View, TouchableOpacity } from 'react-native';
 import Modal from 'react-native-modal';
 import styles from './styles';
+
 interface Props {
   isModalVisible: boolean;
   toggleModalConfirm(): void;
