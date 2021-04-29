@@ -81,7 +81,8 @@ const Home: React.FC = () => {
     >
       <View style={styles.headerWelcome}>
         <View style={styles.userInfoContainer}>
-          <Image source={require('../../../assets/profile.png')} />
+          {/* <Image source={require('../../../assets/profile.png')} /> */}
+          <Text style={styles.textWelcome}>Bem-vindo(a),</Text>
           <Text style={styles.textName}>{username}</Text>
         </View>
 

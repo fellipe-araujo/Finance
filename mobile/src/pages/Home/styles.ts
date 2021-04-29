@@ -16,12 +16,11 @@ const styles = StyleSheet.create({
   },
 
   userInfoContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: 'column',
   },
 
   textWelcome: {
-    fontSize: 14,
+    fontSize: 18,
     color: '#39393A',
     fontFamily: 'Nunito_400Regular',
   },
@@ -29,8 +28,7 @@ const styles = StyleSheet.create({
   textName: {
     fontSize: 24,
     color: '#39393A',
-    fontFamily: 'Nunito_400Regular',
-    marginLeft: 20,
+    fontFamily: 'Nunito_700Bold',
   },
 
   containerAccount: {
@@ -40,9 +38,8 @@ const styles = StyleSheet.create({
 
   value: {
     fontSize: 30,
-    fontWeight: 'bold',
     color: '#39393A',
-    fontFamily: 'Nunito_400Regular',
+    fontFamily: 'Nunito_700Bold',
     marginVertical: 30,
   },
 

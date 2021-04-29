@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   categoryContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 5,
+    paddingHorizontal: 5,
     borderRadius: 5
   },
 });
