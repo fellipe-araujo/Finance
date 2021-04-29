@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "mobile",
+    "name": "Finance",
     "slug": "mobile",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -17,16 +17,18 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.codemore.finance",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.codemore.finance",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/AppIcon.png",
+        "backgroundColor": "#FFFFFF"
+      }
     },
     "androidNavigationBar": {
       "backgroundColor": "#39393A"
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
