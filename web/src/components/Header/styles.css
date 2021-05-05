@@ -1,0 +1,22 @@
+.header-container {
+  width: 100%;
+  height: 10rem;
+  background-color: #39393A;
+  box-shadow: 0 0 1rem rgba(14, 9, 9, 0.8);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-image {
+  width: 5.5rem;
+
+  position: absolute;
+  left: 0;
+  margin-left: 1rem;
+}
+
+.header-user-name {
+  color: #FFF;
+}

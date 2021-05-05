@@ -1,0 +1,52 @@
+.artifact-resume-container {
+  width: 30rem;
+  height: 9rem;
+  border-radius: 0.8rem;
+  padding: 1rem 1.5rem;
+  margin: 2rem 0;
+  box-shadow: 0 0 3rem rgba(14, 9, 9, 0.2);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.artifact-resume-account {
+  background: linear-gradient(95.32deg, #a9def9 0%, #e4f2fa 100%);
+}
+
+.artifact-resume-objective {
+  background: linear-gradient(95.32deg, #e4c1f9 0%, #eee2f4 100%);
+}
+
+.artifact-resume-transaction {
+  background: linear-gradient(95.32deg, #aaf5c8 0%, #e5f9ed 100%);
+}
+
+.artifact-resume-category {
+  background: linear-gradient(95.32deg, #f5ec97 0%, #f5f2da 100%);
+}
+
+.artifact-resume-title {
+  font-size: 2.2rem;
+  color: #39393A;
+}
+
+.line {
+  width: 100%;
+  height: 0.1rem;
+  background-color: #505050;
+  align-self: center;
+  opacity: 0.3;
+}
+
+.artifact-resume-quantity {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.artifact-resume-total {
+  font-size: 1.8rem;
+  color: #505050;
+}

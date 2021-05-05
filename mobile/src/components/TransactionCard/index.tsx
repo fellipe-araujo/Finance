@@ -70,7 +70,7 @@ const TransactionCard = ({
         <View
           style={[styles.categoryContainer, { backgroundColor: categoryColor }]}
         >
-          <Text>{categoryName}</Text>
+          <Text style={styles.text}>{categoryName}</Text>
         </View>
       </View>
     </View>
