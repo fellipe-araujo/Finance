@@ -45,7 +45,7 @@ const NewTransaction = () => {
 
   const toggleModalCreate = async () => {
     try {
-      const priceFormat = parseInt(price);
+      const priceFormat = parseFloat(price);
       const newTransaction: UserTransaction = {
         name,
         price: priceFormat,
@@ -124,12 +124,13 @@ const NewTransaction = () => {
           keyboardType="default"
         />
 
-        <Text style={styles.title}>Valor (sem vírgula ou ponto):</Text>
+        <Text style={styles.title}>Valor (ponto somente para centavos):</Text>
         <Input
           value={price}
           onChangeText={setPrice}
           borderColor="#AAF5C8"
-          keyboardType="number-pad"
+          keyboardType="decimal-pad"
+          placeholder="2203.50"
         />
         <SelectOption
           optionAdd={optionAdd}
