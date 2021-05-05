@@ -1,9 +1,10 @@
 import './global.css';
+import Home from './pages/Home';
 
 const App = () => {
   return (
     <div className="App">
-      <h1>Finance</h1>
+      <Home />
     </div>
   );
 };
