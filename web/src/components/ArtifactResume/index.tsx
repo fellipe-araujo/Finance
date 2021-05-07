@@ -9,13 +9,13 @@ const ArtifactResume = ({ name, total }: ArtifactProps) => {
   let artifact = '';
 
   if (name === 'Contas') {
-    artifact = 'artifact-resume-account';
+    artifact = 'artifact-account';
   } else if (name === 'Objetivos') {
-    artifact = 'artifact-resume-objective';
+    artifact = 'artifact-objective';
   } else if (name === 'Transações') {
-    artifact = 'artifact-resume-transaction';
+    artifact = 'artifact-transaction';
   } else if (name === 'Categorias') {
-    artifact = 'artifact-resume-category';
+    artifact = 'artifact-category';
   }
   return (
     <div className={`artifact-resume-container ${artifact}`}>
