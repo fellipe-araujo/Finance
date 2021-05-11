@@ -1,0 +1,14 @@
+.accounts-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.accounts-list {
+  width: 90%;
+  margin-top: 15rem;
+}
+
+.accounts-link {
+  text-decoration: none;
+}

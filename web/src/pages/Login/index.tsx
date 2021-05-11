@@ -12,7 +12,7 @@ const Login = () => {
         <InputAuthenticate title="Email" type="email" />
         <InputAuthenticate title="Senha" type="password" />
 
-        <Button title="Entrar" />
+        <Button title="Entrar" type="Create" />
       </div>
     </div>
   );

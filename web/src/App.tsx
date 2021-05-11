@@ -1,10 +1,10 @@
 import './global.css';
-import Login from './pages/Login';
+import Routes from './routes';
 
 const App = () => {
   return (
     <div className="App">
-      <Login />
+      <Routes />
     </div>
   );
 };

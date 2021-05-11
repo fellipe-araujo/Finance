@@ -1,0 +1,36 @@
+.input-app-container {
+  width: 100%;
+  margin: 1rem 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.input-app-title {
+  font-size: 1.8rem;
+  color: #202020;
+  margin-bottom: 1.5rem;
+}
+
+.input-app-box {
+  height: 4rem;
+  color: #39393A;
+  border-radius: 0.8rem;
+  padding: 0 1rem;
+}
+
+.input-app-artifact-account {
+  border: 0.2rem solid #A9DEF9;
+}
+
+.input-app-artifact-transaction {
+  border: 0.2rem solid #AAF5C8;
+}
+
+.input-app-artifact-objective {
+  border: 0.2rem solid #E4C1F9;
+}
+
+.input-app-artifact-category {
+  border: 0.2rem solid #F5EC97;
+}

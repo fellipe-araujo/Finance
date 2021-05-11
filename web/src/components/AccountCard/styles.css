@@ -1,0 +1,44 @@
+.account-card-container {
+  width: 100%;
+  height: 10rem;
+  background-color: #FFF;
+  border-radius: 0.8rem;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.account-card-title-box {
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(119.36deg, #A9DEF9 0%, #E4F2FA 100%);
+  padding: 0 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.account-card-title {
+  font-size: 2.4rem;
+  color: #202020;
+  text-align: center;
+}
+
+.account-card-value-box {
+  width: 60%;
+  height: 100%;
+  padding: 0 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.account-card-value {
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #39393A;
+}
