@@ -7,7 +7,7 @@ import AccountCard from '../../components/AccountCard';
 const Accounts = () => {
   return (
     <div className="accounts-container">
-      <PrimaryHeader title="Minhas Contas" goTo="accounts/create" goBack="/" />
+      <PrimaryHeader title="Minhas Contas" goTo="accounts/create" />
       <ArtifactData
         title="Total"
         subTitle="Acumulado"
