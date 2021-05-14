@@ -1,21 +1,26 @@
-import './styles.css';
+import {
+  HomeContainer,
+  HomeBalance,
+  HomeContent,
+  HomeResumeTitle,
+} from './styles';
 import Header from '../../components/Header';
 import ArtifactResume from '../../components/ArtifactResume';
 
 const Home = () => {
   return (
-    <div className="home-container">
+    <HomeContainer>
       <Header />
-      <h1 className="home-balance">R$ 14.567,32</h1>
+      <HomeBalance>R$ 14.567,32</HomeBalance>
 
-      <main className="home-content">
-        <h1 className="home-content-title">Resumo</h1>
+      <HomeContent>
+        <HomeResumeTitle>Resumo</HomeResumeTitle>
         <ArtifactResume name="Contas" total={10} />
         <ArtifactResume name="Objetivos" total={10} />
         <ArtifactResume name="Transações" total={10} />
         <ArtifactResume name="Categorias" total={10} />
-      </main>
-    </div>
+      </HomeContent>
+    </HomeContainer>
   );
 };
 
