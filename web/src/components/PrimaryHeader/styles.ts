@@ -1,4 +1,6 @@
-.primary-header-container {
+import styled from 'styled-components';
+
+const Container = styled.div`
   width: 100%;
   height: 15rem;
   background-color: #39393a;
@@ -8,15 +10,9 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-}
+`;
 
-.primary-header-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.primary-header-content {
+const Content = styled.div`
   width: 90%;
   margin-top: 2rem;
 
@@ -24,9 +20,17 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-}
 
-.primary-header-title {
-  color: #fff;
-  font-size: 2.6rem;
-}
+  .primary-header-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .primary-header-title {
+    color: #fff;
+    font-size: 2.6rem;
+  }
+`;
+
+export { Container, Content };
