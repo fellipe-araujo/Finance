@@ -1,20 +1,20 @@
-import './styles.css';
+import { Container } from './styles';
 import LogoFinance from '../../assets/LogoFinance.svg';
 import InputAuthenticate from '../../components/InputAuthenticate';
 import Button from '../../components/Button';
 
 const Login = () => {
   return (
-    <div className="login-container">
+    <Container>
       <img className="login-logo" src={LogoFinance} alt="Logo Finance" />
-      
-      <div className="login-inputs-group">
+
+      <div>
         <InputAuthenticate title="Email" type="email" />
         <InputAuthenticate title="Senha" type="password" />
 
-        <Button title="Entrar" type="Create" />
+        <Button title="Entrar" isCreate />
       </div>
-    </div>
+    </Container>
   );
 };
 
