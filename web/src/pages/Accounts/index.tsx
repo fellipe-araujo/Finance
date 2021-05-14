@@ -1,4 +1,4 @@
-import './styles.css';
+import { Container, List } from './styles';
 import { Link } from 'react-router-dom';
 import PrimaryHeader from '../../components/PrimaryHeader';
 import ArtifactData from '../../components/ArtifactData';
@@ -6,7 +6,7 @@ import AccountCard from '../../components/AccountCard';
 
 const Accounts = () => {
   return (
-    <div className="accounts-container">
+    <Container>
       <PrimaryHeader title="Minhas Contas" goTo="accounts/create" />
       <ArtifactData
         title="Total"
@@ -15,12 +15,12 @@ const Accounts = () => {
         artifactType="Contas"
       />
 
-      <div className="accounts-list">
+      <List>
         <Link className="accounts-link" to={`/accounts/${1}`}>
           <AccountCard title="Conta Principal" value="R$ 14.567,32" />
         </Link>
-      </div>
-    </div>
+      </List>
+    </Container>
   );
 };
 
