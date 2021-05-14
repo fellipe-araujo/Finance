@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './styles.css';
+import { HeaderContainer, Menu } from './styles';
 import { FiMenu } from 'react-icons/fi';
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
@@ -17,7 +17,7 @@ const Header = () => {
   };
 
   return (
-    <header className="header-container">
+    <HeaderContainer>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -45,27 +45,27 @@ const Header = () => {
         contentLabel="Escolha um opção"
         ariaHideApp={false}
       >
-        <div className="header-menu-container">
-          <Link className="header-menu-link" to="/accounts">
-            <h1 className="header-menu-option">Contas</h1>
+        <Menu>
+          <Link to="/accounts">
+            <h1>Contas</h1>
           </Link>
-          <Link className="header-menu-link" to="/accounts">
-            <h1 className="header-menu-option">Transações</h1>
+          <Link to="/accounts">
+            <h1>Transações</h1>
           </Link>
-          <Link className="header-menu-link" to="/objectives">
-            <h1 className="header-menu-option">Objetivos</h1>
+          <Link to="/objectives">
+            <h1>Objetivos</h1>
           </Link>
-          <Link className="header-menu-link" to="/accounts">
-            <h1 className="header-menu-option">Categorias</h1>
+          <Link to="/accounts">
+            <h1>Categorias</h1>
           </Link>
-        </div>
+        </Menu>
       </Modal>
-      <img className="header-image" src={Logo} alt="Finance Logo" />
-      <h1 className="header-user-name">Fellipe</h1>
-      <button className="header-menu" onClick={() => openModal()}>
+      <img src={Logo} alt="Finance Logo" />
+      <h1>Fellipe</h1>
+      <button onClick={() => openModal()}>
         <FiMenu size={30} color="#FFF" />
       </button>
-    </header>
+    </HeaderContainer>
   );
 };
 
