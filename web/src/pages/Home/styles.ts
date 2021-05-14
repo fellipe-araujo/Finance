@@ -6,12 +6,12 @@ const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
 
-const HomeBalance = styled.h1`
-  color: #39393a;
-  margin-top: 2rem;
-  font-weight: 700;
+  .home-balance {
+    color: #39393a;
+    margin-top: 2rem;
+    font-weight: 700;
+  }
 `;
 
 const HomeContent = styled.div`
@@ -25,11 +25,11 @@ const HomeContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .home-resume {
+    color: #39393a;
+    margin-top: 2rem;
+  }
 `;
 
-const HomeResumeTitle = styled.h1`
-  color: #39393a;
-  margin-top: 2rem;
-`;
-
-export { HomeContainer, HomeBalance, HomeContent, HomeResumeTitle };
+export { HomeContainer, HomeContent };
