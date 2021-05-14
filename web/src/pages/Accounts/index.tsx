@@ -12,7 +12,7 @@ const Accounts = () => {
         title="Total"
         subTitle="Acumulado"
         value="R$ 22.765,21"
-        artifactType="Accounts"
+        artifactType="Contas"
       />
 
       <div className="accounts-list">

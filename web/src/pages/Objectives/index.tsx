@@ -11,7 +11,7 @@ const Objectives = () => {
         title="Objetivos"
         subTitle="em Processo"
         value="4"
-        artifactType="Objectives"
+        artifactType="Objetivos"
       />
 
       <ObjectivesList>
