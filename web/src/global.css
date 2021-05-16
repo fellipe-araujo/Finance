@@ -12,7 +12,7 @@ html {
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   font-family: 'Nunito', sans-serif;
   font-size: 1.6rem;
   background: linear-gradient(167.96deg, #B8C0FF 0%, #42A1DC 100%);

@@ -55,7 +55,7 @@ const Header = () => {
           <Link to="/objectives">
             <h1>Objetivos</h1>
           </Link>
-          <Link to="/accounts">
+          <Link to="/categories">
             <h1>Categorias</h1>
           </Link>
         </Menu>
