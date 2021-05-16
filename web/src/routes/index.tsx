@@ -6,6 +6,8 @@ import AccountDetail from '../pages/AccountDetail';
 import Objectives from '../pages/Objectives';
 import NewObjective from '../pages/NewObjective';
 import ObjectiveDetail from '../pages/ObjectiveDetail';
+import Categories from '../pages/Categories';
+import NewCategory from '../pages/NewCategory';
 
 const Routes = () => {
   return (
@@ -21,6 +23,8 @@ const Routes = () => {
         <Route path="/objectives/create" component={NewObjective} />
         <Route path="/objectives/:id" component={ObjectiveDetail} />
 
+        <Route path="/categories" exact component={Categories} />
+        <Route path="/categories/create" component={NewCategory} />
       </Switch>
     </BrowserRouter>
   );
