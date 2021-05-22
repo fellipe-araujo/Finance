@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   width: 100%;
+  margin: 3rem 0;
 
   display: flex;
   flex-direction: column;
@@ -16,6 +17,7 @@ const Container = styled.div`
 
   .generate-category-input-group {
     width: 80%;
+    height: 5rem;
     margin-top: 10;
 
     display: flex;
@@ -25,7 +27,7 @@ const Container = styled.div`
 
 const Input = styled.input`
   width: 80%;
-  height: 5rem;
+  height: 100%;
   background-color: #FFF;
   border-top-left-radius: 0.8rem;
   border-bottom-left-radius: 0.8rem;
