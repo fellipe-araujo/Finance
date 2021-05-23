@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.6rem;
+  background: linear-gradient(167.96deg, #B8C0FF 0%, #42A1DC 100%);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+p {
+  font-weight: 500;
+  font-family: 'Nunito', sans-serif;
+}
