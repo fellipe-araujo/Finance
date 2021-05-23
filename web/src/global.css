@@ -12,7 +12,7 @@ html {
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   font-family: 'Nunito', sans-serif;
   font-size: 1.6rem;
   background: linear-gradient(167.96deg, #B8C0FF 0%, #42A1DC 100%);
@@ -25,20 +25,4 @@ h2,
 p {
   font-weight: 500;
   font-family: 'Nunito', sans-serif;
-}
-
-.artifact-account {
-  background: linear-gradient(95.32deg, #a9def9 0%, #e4f2fa 100%);
-}
-
-.artifact-objective {
-  background: linear-gradient(95.32deg, #e4c1f9 0%, #eee2f4 100%);
-}
-
-.artifact-transaction {
-  background: linear-gradient(95.32deg, #aaf5c8 0%, #e5f9ed 100%);
-}
-
-.artifact-category {
-  background: linear-gradient(95.32deg, #f5ec97 0%, #f5f2da 100%);
 }

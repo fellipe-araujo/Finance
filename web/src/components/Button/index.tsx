@@ -1,22 +1,15 @@
-import './styles.css';
+import { ButtonContainer } from './styles';
 
 interface ButtonProps {
   title: string;
-  type: string;
+  isCreate: boolean;
 }
 
-const Button = ({ title, type }: ButtonProps) => {
-  let color = '';
-
-  if (type === 'Create') {
-    color = 'button-color-create';
-  } else if (type === 'Delete') {
-    color = 'button-color-delete';
-  }
+const Button = ({ title, isCreate }: ButtonProps) => {
   return (
-    <button className={`button-container ${color}`}>
+    <ButtonContainer create={isCreate}>
       <h1 className="button-title">{title}</h1>
-    </button>
+    </ButtonContainer>
   );
 };
 

@@ -1,13 +1,15 @@
-.new-account-container {
+import styled from 'styled-components';
+
+const Container = styled.div`
   width: 100%;
   height: 100vh;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+`;
 
-.new-account-content {
+const Content = styled.div`
   width: 100%;
   height: 100%;
   margin: 5rem 0;
@@ -16,16 +18,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-}
+`;
 
-.new-account-image {
-  width: 30rem;
-}
-
-.new-account-data {
+const Options = styled.div`
   width: 80%;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+`;
+
+export { Container, Content, Options };

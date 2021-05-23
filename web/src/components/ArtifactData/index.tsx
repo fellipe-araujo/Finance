@@ -1,4 +1,5 @@
-import './styles.css';
+import { Container } from './styles';
+import { setBackground } from '../../utils/setBackground';
 
 interface ArtifactDataProps {
   title: string;
@@ -13,23 +14,13 @@ const ArtifactData = ({
   value,
   artifactType,
 }: ArtifactDataProps) => {
-  let artifact = '';
 
-  if (artifactType === 'Accounts') {
-    artifact = 'artifact-account';
-  } else if (artifactType === 'Objectives') {
-    artifact = 'artifact-objective';
-  } else if (artifactType === 'Transactions') {
-    artifact = 'artifact-transaction';
-  } else if (artifactType === 'Categories') {
-    artifact = 'artifact-category';
-  }
   return (
-    <div className={`artifact-data-container ${artifact}`}>
+    <Container artifact={setBackground(artifactType).artifact}>
       <h2 className="artifact-data-title">{title}</h2>
-      <h2 className="artifact-data-subtitle">{subTitle}</h2>
+      <h2 className="artifact-data-title">{subTitle}</h2>
       <h2 className="artifact-data-value">{value}</h2>
-    </div>
+    </Container>
   );
 };
 

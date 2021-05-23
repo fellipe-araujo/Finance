@@ -1,4 +1,4 @@
-import './styles.css';
+import { Container, Input } from './styles';
 
 interface InputProps {
   title: string;
@@ -7,10 +7,10 @@ interface InputProps {
 
 const InputAuthenticate = ({ title, type }: InputProps) => {
   return (
-    <div className="input-authenticate-container">
+    <Container>
       <h2 className="input-authenticate-title">{title}</h2>
-      <input className="input-authenticate-box" required type={type} />
-    </div>
+      <Input required type={type} />
+    </Container>
   );
 };
 

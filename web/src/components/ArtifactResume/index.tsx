@@ -1,4 +1,5 @@
-import './styles.css';
+import { Container } from './styles';
+import { setBackground } from '../../utils/setBackground';
 
 interface ArtifactProps {
   name?: string;
@@ -6,28 +7,20 @@ interface ArtifactProps {
 }
 
 const ArtifactResume = ({ name, total }: ArtifactProps) => {
-  let artifact = '';
-
-  if (name === 'Contas') {
-    artifact = 'artifact-account';
-  } else if (name === 'Objetivos') {
-    artifact = 'artifact-objective';
-  } else if (name === 'Transações') {
-    artifact = 'artifact-transaction';
-  } else if (name === 'Categorias') {
-    artifact = 'artifact-category';
-  }
   return (
-    <div className={`artifact-resume-container ${artifact}`}>
-      <h1 className="artifact-resume-title">{name}</h1>
+    <Container
+      artifact={setBackground(name!).artifact}
+      title={setBackground(name!).title}
+    >
+      <h1 className="artifact-title">{name}</h1>
 
-      <div className="line" />
+      <div className="artifact-resume-line" />
 
       <div className="artifact-resume-quantity">
         <h2 className="artifact-resume-total">Total:</h2>
         <h2 className="artifact-resume-total">{total}</h2>
       </div>
-    </div>
+    </Container>
   );
 };
 
