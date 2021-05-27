@@ -49,7 +49,7 @@ const Header = () => {
           <Link to="/accounts">
             <h1>Contas</h1>
           </Link>
-          <Link to="/accounts">
+          <Link to="/transactions">
             <h1>Transações</h1>
           </Link>
           <Link to="/objectives">
