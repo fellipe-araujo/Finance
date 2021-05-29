@@ -1,6 +1,6 @@
-import { HomeContainer, HomeContent } from './styles';
-import Header from '../../components/Header';
-import ArtifactResume from '../../components/ArtifactResume';
+import { HomeContainer, HomeContent } from "./styles";
+import Header from "../../components/Header";
+import ArtifactResume from "../../components/ArtifactResume";
 
 const Home = () => {
   return (
