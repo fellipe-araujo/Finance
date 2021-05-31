@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import api from "../services/api";
 import userService from "../services/userService";
 import { User } from "../utils/types";
@@ -17,6 +18,8 @@ export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
+  const history = useHistory();
+
   useEffect(() => {
     function loadStoragedData() {
       const storagedUser = localStorage.getItem("@RNAuth:user");
@@ -25,24 +28,37 @@ export const AuthProvider: React.FC = ({ children }) => {
       if (storagedUser && storagedToken) {
         api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
         setUser(JSON.parse(storagedUser));
+      } else {
+        setUser(null);
+        history.push("/login");
       }
       setLoading(false);
     }
 
     loadStoragedData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function signIn(email: string, password: string) {
     setLoading(true);
-    const response = await userService.login(email, password);
 
-    setUser(response.user);
+    try {
+      const response = await userService.login(email, password);
 
-    api.defaults.headers.Authorization = `Bearer ${response.token}`;
+      setUser(response.user);
 
-    localStorage.setItem("@RNAuth:user", JSON.stringify(response.user));
-    localStorage.setItem("@RNAuth:token", response.token);
-    setLoading(false);
+      api.defaults.headers.Authorization = `Bearer ${response.token}`;
+
+      localStorage.setItem("@RNAuth:user", JSON.stringify(response.user));
+      localStorage.setItem("@RNAuth:token", response.token);
+
+      history.push("/");
+
+      setLoading(false);
+    } catch (error) {
+      alert("Email ou senha incorretos");
+      console.log(error);
+    }
   }
 
   function signOut() {
