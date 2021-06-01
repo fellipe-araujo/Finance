@@ -26,8 +26,6 @@ exports.generateToken = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const authConfig = __importStar(require("../config/auth"));
 const generateToken = (params = {}) => {
-    return jsonwebtoken_1.default.sign(params, authConfig.secret, {
-        expiresIn: 86400,
-    });
+    return jsonwebtoken_1.default.sign(params, authConfig.secret);
 };
 exports.generateToken = generateToken;
