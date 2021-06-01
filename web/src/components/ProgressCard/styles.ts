@@ -9,6 +9,7 @@ const ProgressContainer = styled.div`
   border-radius: 0.8rem;
   background-color: #fff;
   box-shadow: 0 0 1rem rgba(14, 9, 9, 0.2);
+  margin: 1.5rem 0;
   overflow: hidden;
 
   position: relative;

@@ -1,13 +1,14 @@
-import { ButtonContainer } from './styles';
+import { ButtonContainer } from "./styles";
 
 interface ButtonProps {
   title: string;
   isCreate: boolean;
+  onClick(): void;
 }
 
-const Button = ({ title, isCreate }: ButtonProps) => {
+const Button = ({ title, isCreate, onClick }: ButtonProps) => {
   return (
-    <ButtonContainer create={isCreate}>
+    <ButtonContainer create={isCreate} onClick={onClick}>
       <h1 className="button-title">{title}</h1>
     </ButtonContainer>
   );

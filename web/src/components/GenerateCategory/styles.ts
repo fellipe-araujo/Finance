@@ -15,6 +15,10 @@ const Container = styled.div`
     font-size: 1.8rem;
   }
 
+  .category-card-container {
+    width: 70%;
+  }
+
   .generate-category-input-group {
     width: 80%;
     height: 5rem;

@@ -39,7 +39,7 @@ const ObjectiveDetailCard = ({
       <div className="objective-card-line" />
 
       <Title>Descrição:</Title>
-      <h1>{description}</h1>
+      <h1 className="objetive-description">{description}</h1>
     </Container>
   );
 };

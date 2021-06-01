@@ -1,11 +1,15 @@
-import './global.css';
-import Routes from './routes';
+import "./global.css";
+import { BrowserRouter } from "react-router-dom";
+import { AuthProvider } from "./context/auth";
+import Routes from "./routes";
 
 const App = () => {
   return (
-    <div className="App">
-      <Routes />
-    </div>
+    <BrowserRouter>
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
+    </BrowserRouter>
   );
 };
 

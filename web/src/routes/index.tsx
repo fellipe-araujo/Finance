@@ -1,40 +1,11 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Home from '../pages/Home';
-import Accounts from '../pages/Accounts';
-import NewAccount from '../pages/NewAccount';
-import AccountDetail from '../pages/AccountDetail';
-import Objectives from '../pages/Objectives';
-import NewObjective from '../pages/NewObjective';
-import ObjectiveDetail from '../pages/ObjectiveDetail';
-import Categories from '../pages/Categories';
-import NewCategory from '../pages/NewCategory';
-import CategoryDetail from '../pages/CategoryDetail';
-import Transactions from '../pages/Transactions';
-import NewTransaction from '../pages/NewTransaction';
+import { useAuth } from "../context/auth";
+import AppRoutes from "./app.routes";
+import AuthRoutes from "./auth.routes";
 
 const Routes = () => {
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" exact component={Home} />
+  const { signed } = useAuth();
 
-        <Route path="/accounts" exact component={Accounts} />
-        <Route path="/accounts/create" component={NewAccount} />
-        <Route path="/accounts/:id" component={AccountDetail} />
-
-        <Route path="/objectives" exact component={Objectives} />
-        <Route path="/objectives/create" component={NewObjective} />
-        <Route path="/objectives/:id" component={ObjectiveDetail} />
-
-        <Route path="/categories" exact component={Categories} />
-        <Route path="/categories/create" component={NewCategory} />
-        <Route path="/categories/:id" component={CategoryDetail} />
-
-        <Route path="/transactions" exact component={Transactions} />
-        <Route path="/transactions/create" component={NewTransaction} />
-      </Switch>
-    </BrowserRouter>
-  );
+  return signed ? <AppRoutes /> : <AuthRoutes />;
 };
 
 export default Routes;

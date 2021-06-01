@@ -6,6 +6,7 @@ const Container = styled.div`
   background-color: #fff;
   border-radius: 0.8rem;
   overflow: hidden;
+  margin: 1.5rem 0;
 
   display: flex;
   flex-direction: row;

@@ -1,9 +1,28 @@
-import { Container, List } from './styles';
-import PrimaryHeader from '../../components/PrimaryHeader';
-import ArtifactData from '../../components/ArtifactData';
-import CategoryCard from '../../components/CategoryCard';
+import { useEffect, useState } from "react";
+import { Container, List } from "./styles";
+import { Link } from "react-router-dom";
+import PrimaryHeader from "../../components/PrimaryHeader";
+import ArtifactData from "../../components/ArtifactData";
+import CategoryCard from "../../components/CategoryCard";
+import { useAuth } from "../../context/auth";
+import { UserCategory } from "../../utils/types";
+import categoryService from "../../services/categoryService";
 
 const Categories = () => {
+  const [categories, setCategories] = useState<UserCategory[]>([]);
+
+  const { user } = useAuth();
+
+  useEffect(() => {
+    const fetchAllCategories = async () => {
+      const response = await categoryService.categoryAll(user?._id!);
+
+      setCategories(response);
+    };
+
+    fetchAllCategories();
+  }, [user?._id]);
+
   return (
     <Container>
       <PrimaryHeader title="Categorias" goTo="/categories/create" />
@@ -11,12 +30,20 @@ const Categories = () => {
       <ArtifactData
         title="Categorias"
         subTitle="Totais"
-        value="5"
+        value={categories.length.toString()}
         artifactType="Categorias"
       />
 
       <List>
-        <CategoryCard name="Salário" color="#FFF" />
+        {categories.map((category) => (
+          <Link
+            key={category._id}
+            className="categories-link"
+            to={`categories/${category._id}`}
+          >
+            <CategoryCard name={category.name!} color={category.color!} />
+          </Link>
+        ))}
       </List>
     </Container>
   );

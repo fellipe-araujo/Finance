@@ -57,6 +57,31 @@ const Options = styled.div`
     margin-top: 1rem;
   }
 
+  .new-transaction-select-artifacts {
+    width: 27rem;
+    height: 4.8rem;
+    margin: 1rem 0 2rem;
+    border: 0;
+    border-radius: .5rem;
+    background-color: #FFF;
+    padding: 0 2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .new-transaction-select-artifacts select {
+    background-color: #FFF;
+    width: 25rem;
+    height: 4.8rem;
+    font-size: 1.8rem;
+    
+    color: #39393A;
+    border: 0;
+    border-radius: .5rem;
+  }
+
   .new-transaction-calendar-container {
     width: 100%;
     margin: 1rem 0 2rem;
@@ -76,7 +101,7 @@ const Options = styled.div`
   .new-transaction-calendar-date {
     font-size: 1.8rem;
     margin-left: 1.5rem;
-    color: #39393A;
+    color: #39393a;
   }
 `;
 

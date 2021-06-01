@@ -4,8 +4,8 @@ import { FiTrash2 } from "react-icons/fi";
 interface TransacionCardProps {
   name: string;
   expense: boolean;
-  price: number;
-  date: string;
+  price: string;
+  date: string | Date;
   accountName: string;
   categoryName: string;
   categoryColor: string;
@@ -38,7 +38,7 @@ const TransactionCard = ({
 
       <div className="transaction-card-info">
         <h1 className="transaction-card-subtitle">Valor:</h1>
-        <h1 className="transaction-card-value">R${price}</h1>
+        <h1 className="transaction-card-value">{price}</h1>
       </div>
       <div className="transaction-card-info">
         <h1 className="transaction-card-subtitle">Data:</h1>
