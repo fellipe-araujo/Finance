@@ -1,33 +1,104 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Container, Content, Options, Type } from "./styles";
+import { useHistory } from "react-router-dom";
 import { FiCalendar } from "react-icons/fi";
 import Modal from "react-modal";
 import Calendar from "react-calendar";
 import SecondaryHeader from "../../components/SecondaryHeader";
 import InputApp from "../../components/InputApp";
 import Button from "../../components/Button";
+import ModalConfirm from "../../components/ModalConfirm";
 import TransactionLogo from "../../assets/transaction-logo.svg";
+import { useAuth } from "../../context/auth";
 import "react-calendar/dist/Calendar.css";
+import {
+  UserAccount,
+  UserCategory,
+  UserTransactionCreate,
+} from "../../utils/types";
+import transactionService from "../../services/transactionService";
+import accountService from "../../services/accountService";
+import categoryService from "../../services/categoryService";
 
 const NewTrasaction = () => {
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
   const [optionAdd, setOptionAdd] = useState(true);
   const [date, setDate] = useState(new Date());
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [categories, setCategories] = useState<UserCategory[]>([]);
+  const [accounts, setAccounts] = useState<UserAccount[]>([]);
+  const [categorySelected, setCategorySelected] = useState("");
+  const [accountSelected, setAccountSelected] = useState("");
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalCalendarVisible, setIsModalCalendarVisible] = useState(false);
 
   const openModal = () => {
-    setModalIsOpen(true);
+    setIsModalCalendarVisible(true);
   };
 
   const closeModal = () => {
-    setModalIsOpen(false);
+    setIsModalCalendarVisible(false);
   };
+
+  const { user } = useAuth();
+
+  const history = useHistory();
+
+  const modalCreateDescription = `Você deseja criar a transação ${name}?`;
+
+  const toggleModalCreate = async () => {
+    try {
+      const priceFormat = parseFloat(price);
+      const newTransaction: UserTransactionCreate = {
+        name,
+        price: priceFormat,
+        expense: !optionAdd,
+        date,
+        category: categorySelected,
+      };
+      await transactionService.transactionCreate(
+        user?._id!,
+        accountSelected,
+        newTransaction
+      );
+      setIsModalVisible(!isModalVisible);
+      history.push("/transactions");
+    } catch (error) {
+      setIsModalVisible(!isModalVisible);
+      history.push("/transactions");
+      alert("Erro ao criar transação.");
+    }
+  };
+
+  useEffect(() => {
+    const fetchAllCategories = async () => {
+      const response = await categoryService.categoryAll(user?._id!);
+      setCategories(response);
+    };
+
+    const fetchAllAccounts = async () => {
+      const response = await accountService.accountAll(user?._id!);
+      setAccounts(response);
+    };
+
+    fetchAllCategories();
+    fetchAllAccounts();
+  }, [user?._id]);
 
   return (
     <Container>
       <SecondaryHeader title="Nova Transação" goBack="/transactions" />
 
+      <ModalConfirm
+        modalIsOpen={isModalVisible}
+        description={modalCreateDescription}
+        toggleModalConfirm={toggleModalCreate}
+        toggleModalCancel={() => setIsModalVisible(false)}
+        closeModal={() => setIsModalVisible(false)}
+      />
+
       <Modal
-        isOpen={modalIsOpen}
+        isOpen={isModalCalendarVisible}
         onRequestClose={closeModal}
         style={{
           overlay: {
@@ -64,10 +135,17 @@ const NewTrasaction = () => {
         />
 
         <Options>
-          <InputApp title="Nome:" name="Transações" />
+          <InputApp
+            title="Nome:"
+            name="Transações"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
           <InputApp
             title="Valor (ponto somente para centavos):"
             name="Transações"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
           />
 
           <div className="transaction-option-container">
@@ -103,9 +181,45 @@ const NewTrasaction = () => {
 
           <h1 className="new-transaction-data-title">Conta:</h1>
 
+          <div className="new-transaction-select-artifacts">
+            <select
+              value={accountSelected}
+              onChange={(e) => setAccountSelected(e.target.value)}
+            >
+              <>
+                <option>Selecione uma conta</option>
+                {accounts.map((account) => (
+                  <option key={account._id} value={account._id}>
+                    {account.name}
+                  </option>
+                ))}
+              </>
+            </select>
+          </div>
+
           <h1 className="new-transaction-data-title">Categoria:</h1>
 
-          <Button title="Criar transação" isCreate />
+          <div className="new-transaction-select-artifacts">
+            <select
+              value={categorySelected}
+              onChange={(e) => setCategorySelected(e.target.value)}
+            >
+              <>
+                <option>Selecione uma categoria</option>
+                {categories.map((category) => (
+                  <option key={category._id} value={category._id}>
+                    {category.name}
+                  </option>
+                ))}
+              </>
+            </select>
+          </div>
+
+          <Button
+            title="Criar transação"
+            isCreate
+            onClick={() => setIsModalVisible(true)}
+          />
         </Options>
       </Content>
     </Container>
