@@ -1,33 +1,33 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import {
   ProgressContainer,
   Progress,
   ProgressTextGroup,
   ProgressTitle,
   ProgressValue,
-} from './styles';
+} from "./styles";
 
 interface ProgressCardProps {
-  title: string;
-  value: string;
+  name: string;
+  goal: string;
   progress: number;
 }
 
-const ProgressCard = ({ title, value, progress }: ProgressCardProps) => {
-  const [progressColor, setProgressColor] = useState('#FFF');
-  const [titleColor, setTitleColor] = useState('#39393A');
+const ProgressCard = ({ name, goal, progress }: ProgressCardProps) => {
+  const [progressColor, setProgressColor] = useState("#FFF");
+  const [titleColor, setTitleColor] = useState("#39393A");
 
   useEffect(() => {
     const setObjectiveColor = () => {
       if (progress < 50) {
-        setProgressColor('#FF8888');
-        setTitleColor('#BB4E4E');
+        setProgressColor("#FF8888");
+        setTitleColor("#BB4E4E");
       } else if (progress >= 50 && progress < 70) {
-        setProgressColor('#FFF973');
-        setTitleColor('#BCAF35');
+        setProgressColor("#FFF973");
+        setTitleColor("#BCAF35");
       } else if (progress >= 70 && progress <= 100) {
-        setProgressColor('#89FF87');
-        setTitleColor('#40923F');
+        setProgressColor("#89FF87");
+        setTitleColor("#40923F");
       }
     };
 
@@ -37,8 +37,8 @@ const ProgressCard = ({ title, value, progress }: ProgressCardProps) => {
   return (
     <ProgressContainer>
       <ProgressTextGroup>
-        <ProgressTitle color={titleColor}>{title}</ProgressTitle>
-        <ProgressValue color={titleColor}>{value}</ProgressValue>
+        <ProgressTitle color={titleColor}>{name}</ProgressTitle>
+        <ProgressValue color={titleColor}>{goal}</ProgressValue>
       </ProgressTextGroup>
       <Progress width={`${progress}%`} color={progressColor} />
     </ProgressContainer>
