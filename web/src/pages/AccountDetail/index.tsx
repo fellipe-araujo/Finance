@@ -84,13 +84,15 @@ const AccountDetail = () => {
       />
 
       <Content>
-        <Card>
+        <Card color={account?.balance! > 0 ? "#40923F" : "#BB4E4E"}>
           <h1 className="account-detail-title">Valor total:</h1>
 
           <div className="account-detail-line" />
 
           <div className="account-detail-value-container">
-            <h1>{formatPrice(account?.balance!)}</h1>
+            <h1 className="account-detail-value-title">
+              {formatPrice(account?.balance!)}
+            </h1>
           </div>
         </Card>
 

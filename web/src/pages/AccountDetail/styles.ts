@@ -53,6 +53,10 @@ const Card = styled.div`
     align-items: center;
     justify-content: center;
   }
+
+  .account-detail-value-title {
+    color: ${props => props.color}
+  }
 `;
 
 const Options = styled.div`
