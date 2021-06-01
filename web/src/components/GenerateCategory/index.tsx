@@ -26,7 +26,9 @@ const GenerateCategory = ({
   return (
     <Container>
       <h1 className="generate-category-title">Pré-visualização:</h1>
-      <CategoryCard name={oldName} color={newColor} />
+      <div className="category-card-container">
+        <CategoryCard name={oldName} color={newColor} />
+      </div>
 
       <div className="generate-category-input-group">
         <Input value={newName} onChange={(e) => newNameSet(e.target.value)} />

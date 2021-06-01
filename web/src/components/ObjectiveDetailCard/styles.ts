@@ -11,7 +11,8 @@ const Container = styled.div`
   flex-direction: column;
 
   .objective-title {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
+    font-weight: 700;
     color: #39393A;
   }
 
@@ -32,15 +33,21 @@ const Container = styled.div`
     align-items: center;
     justify-content: space-between;
   }
+
+  .objetive-description {
+    margin-left: 2rem;
+    font-size: 1.8rem;
+    color: #39393A;
+  }
 `;
 
 const Title = styled.h1`
-  font-size: 2rem;
-  color: #39393A;
+  font-size: 1.6rem;
+  color: #202020;
 `;
 
 const Value = styled(Title)`
-  font-size: 2rem;
+  font-size: 1.6rem;
   color: ${props => props.color};
 `;
 

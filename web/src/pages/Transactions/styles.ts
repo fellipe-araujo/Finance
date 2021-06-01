@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Container = styled.div`
   height: 100vh;
@@ -13,10 +13,6 @@ const List = styled.div`
   height: 65%;
   margin-top: 15rem;
   overflow-y: scroll;
-
-  .accounts-link {
-    text-decoration: none;
-  }
 `;
 
 export { Container, List };
