@@ -1,11 +1,11 @@
 import api from "./api";
-import { UserTransaction } from "../utils/types";
+import { UserTransactionCreate } from "../utils/types";
 
 class TransactionService {
   async transactionCreate(
     userId: string,
     accountId: string,
-    data: UserTransaction
+    data: UserTransactionCreate
   ) {
     await api.post(`/users/${userId}/accounts/${accountId}/transactions`, data);
   }
