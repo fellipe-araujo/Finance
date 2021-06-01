@@ -34,6 +34,17 @@ export interface UserTransaction {
   category?: UserCategory;
 }
 
+export interface UserTransactionCreate {
+  _id?: string;
+  name?: string;
+  expense?: boolean;
+  price?: number;
+  date?: Date;
+  user?: string;
+  account?: UserAccount;
+  category?: string;
+}
+
 export interface UserCategory {
   _id?: string;
   name?: string;
