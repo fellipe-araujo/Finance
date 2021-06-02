@@ -146,10 +146,12 @@ const NewTrasaction = () => {
           <h1 className="new-transaction-value-title">Valor:</h1>
           <CurrencyInput
             className="new-transaction-input-currency"
-            placeholder="R$ 1.000,00"
+            placeholder="$ 1,000.00"
             onValueChange={(value) => setPrice(value!)}
             prefix="R$"
-            intlConfig={{ locale: "pt-BR", currency: "BRL" }}
+            decimalSeparator="."
+            groupSeparator=","
+            // intlConfig={{ locale: "pt-BR", currency: "BRL" }}
           />
 
           <div className="transaction-option-container">
