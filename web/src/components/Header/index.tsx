@@ -4,6 +4,7 @@ import { FiMenu } from "react-icons/fi";
 import Modal from "react-modal";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/Logo.svg";
+import { useAuth } from "../../context/auth";
 
 interface HeaderProps {
   name: string;
@@ -19,6 +20,8 @@ const Header = ({ name }: HeaderProps) => {
   const closeModal = () => {
     setModalIsOpen(false);
   };
+
+  const { signOut } = useAuth();
 
   return (
     <HeaderContainer>
@@ -62,6 +65,9 @@ const Header = ({ name }: HeaderProps) => {
           <Link to="/categories">
             <h1>Categorias</h1>
           </Link>
+          <button className="logout" onClick={signOut}>
+            <h1 className="logout-title">Sair</h1>
+          </button>
         </Menu>
       </Modal>
       <img src={Logo} alt="Finance Logo" />

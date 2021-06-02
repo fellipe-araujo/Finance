@@ -30,6 +30,15 @@ const Menu = styled.div`
   flex-direction: column;
   align-items: center;
 
+  .logout {
+    background: transparent;
+    border: 0;
+  }
+
+  .logout-title {
+    font-size: 3rem;
+  }
+
   a {
     text-decoration: none;
     border-bottom: 1px solid #a3a3a3;

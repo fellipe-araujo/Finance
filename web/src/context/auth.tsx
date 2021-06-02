@@ -64,6 +64,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   function signOut() {
     localStorage.clear();
     setUser(null);
+    history.push("/login");
   }
 
   return (
