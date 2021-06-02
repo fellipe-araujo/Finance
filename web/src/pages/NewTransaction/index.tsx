@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { FiCalendar } from "react-icons/fi";
 import Modal from "react-modal";
 import Calendar from "react-calendar";
+import CurrencyInput from "react-currency-input-field";
 import SecondaryHeader from "../../components/SecondaryHeader";
 import InputApp from "../../components/InputApp";
 import Button from "../../components/Button";
@@ -48,7 +49,7 @@ const NewTrasaction = () => {
 
   const toggleModalCreate = async () => {
     try {
-      const priceFormat = parseFloat(price);
+      const priceFormat = parseFloat(price.replace(",", "."));
       const newTransaction: UserTransactionCreate = {
         name,
         price: priceFormat,
@@ -141,11 +142,14 @@ const NewTrasaction = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <InputApp
-            title="Valor (ponto somente para centavos):"
-            name="Transações"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
+
+          <h1 className="new-transaction-value-title">Valor:</h1>
+          <CurrencyInput
+            className="new-transaction-input-currency"
+            placeholder="R$ 1.000,00"
+            onValueChange={(value) => setPrice(value!)}
+            prefix="R$"
+            intlConfig={{ locale: "pt-BR", currency: "BRL" }}
           />
 
           <div className="transaction-option-container">
@@ -218,7 +222,7 @@ const NewTrasaction = () => {
           <Button
             title="Criar transação"
             isCreate
-            onClick={() => setIsModalVisible(true)}
+            onClick={() => {setIsModalVisible(true); console.log(price)}}
           />
         </Options>
       </Content>

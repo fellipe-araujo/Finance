@@ -50,6 +50,23 @@ const Options = styled.div`
   flex-direction: column;
   align-items: center;
 
+  .new-transaction-value-title {
+    font-size: 1.8rem;
+    color: #202020;
+    margin: 1.5rem 0;
+
+    align-self: flex-start;
+  }
+
+  .new-transaction-input-currency {
+    width: 100%;
+    height: 4rem;
+    color: #39393a;
+    border-radius: 0.8rem;
+    padding: 0 1rem;
+    border: 0.2rem solid #AAF5C8;
+  }
+
   .new-transaction-data-title {
     align-self: flex-start;
     font-size: 1.8rem;
@@ -62,8 +79,8 @@ const Options = styled.div`
     height: 4.8rem;
     margin: 1rem 0 2rem;
     border: 0;
-    border-radius: .5rem;
-    background-color: #FFF;
+    border-radius: 0.5rem;
+    background-color: #fff;
     padding: 0 2rem;
 
     display: flex;
@@ -72,14 +89,14 @@ const Options = styled.div`
   }
 
   .new-transaction-select-artifacts select {
-    background-color: #FFF;
+    background-color: #fff;
     width: 25rem;
     height: 4.8rem;
     font-size: 1.8rem;
-    
-    color: #39393A;
+
+    color: #39393a;
     border: 0;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
   }
 
   .new-transaction-calendar-container {
