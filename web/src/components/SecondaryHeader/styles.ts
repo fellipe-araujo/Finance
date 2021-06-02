@@ -21,7 +21,7 @@ const Container = styled.div`
 
   .secondary-header-title {
     color: #fff;
-    font-weight: 700;
+    font-size: 2.6rem;
   }
 
   .secondary-header-invisible {

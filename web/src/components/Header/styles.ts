@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+
+interface TitleProps {
+  isLogout?: boolean;
+}
 
 const HeaderContainer = styled.div`
   width: 100%;
@@ -28,27 +32,30 @@ const HeaderContainer = styled.div`
 const Menu = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
 
-  .logout {
-    background: transparent;
-    border: 0;
-  }
-
-  .logout-title {
-    font-size: 3rem;
-  }
-
-  a {
-    text-decoration: none;
+  .menu-line {
+    width: 90%;
     border-bottom: 1px solid #a3a3a3;
+
+    align-self: center;
   }
 
-  h1 {
-    font-size: 3rem;
-    margin: 2rem 0;
-    color: #39393a;
+  .logout,
+  .menu-option {
+    background: transparent;
+    text-decoration: none;
+    border: 0;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
 `;
 
-export { HeaderContainer, Menu };
+const Title = styled.h1<TitleProps>`
+  font-size: 2.4rem;
+  margin: 2rem ;
+  color: ${props => props.isLogout ? "#BB4E4E" : "#39393a"};
+`;
+
+export { HeaderContainer, Menu, Title };
