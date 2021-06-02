@@ -17,7 +17,7 @@ const Categories = () => {
     const fetchAllCategories = async () => {
       const response = await categoryService.categoryAll(user?._id!);
 
-      setCategories(response);
+      setCategories(response.reverse());
     };
 
     fetchAllCategories();

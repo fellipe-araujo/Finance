@@ -39,7 +39,7 @@ const Transactions = () => {
     const fetchAllTransactions = async () => {
       const response = await transactionService.transactionAll(user?._id!);
 
-      setTransactions(response);
+      setTransactions(response.reverse());
     };
 
     fetchAllTransactions();

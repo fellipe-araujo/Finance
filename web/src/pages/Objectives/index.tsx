@@ -18,7 +18,7 @@ const Objectives = () => {
   useEffect(() => {
     const fetchAllObjectives = async () => {
       const response = await objectiveService.objectiveAll(user?._id!);
-      setObjectives(response);
+      setObjectives(response.reverse());
 
       setObjectivesAmount(Object.keys(response).length);
     };

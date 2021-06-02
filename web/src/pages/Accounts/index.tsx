@@ -18,7 +18,7 @@ const Accounts = () => {
   useEffect(() => {
     const fetchAllAccounts = async () => {
       const response = await accountService.accountAll(user!._id);
-      setAccounts(response);
+      setAccounts(response.reverse());
 
       var values = 0;
 
