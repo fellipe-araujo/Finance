@@ -6,13 +6,25 @@ interface InputAppProps {
   name: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  required?: boolean;
 }
 
-const InputApp = ({ title, name, value, onChange }: InputAppProps) => {
+const InputApp = ({
+  title,
+  name,
+  value,
+  onChange,
+  required,
+}: InputAppProps) => {
   return (
     <Container>
       <h1 className="input-app-title">{title}</h1>
-      <Input border={setBorder(name)} value={value} onChange={onChange} />
+      <Input
+        border={setBorder(name)}
+        value={value}
+        onChange={onChange}
+        required={required}
+      />
     </Container>
   );
 };

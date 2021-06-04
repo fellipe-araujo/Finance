@@ -146,12 +146,11 @@ const NewTrasaction = () => {
           <h1 className="new-transaction-value-title">Valor:</h1>
           <CurrencyInput
             className="new-transaction-input-currency"
-            placeholder="$ 1,000.00"
+            placeholder="R$ 1.000,00"
             onValueChange={(value) => setPrice(value!)}
             prefix="R$"
-            decimalSeparator="."
-            groupSeparator=","
-            // intlConfig={{ locale: "pt-BR", currency: "BRL" }}
+            type="text"
+            intlConfig={{ locale: "pt-BR", currency: "BRL" }}
           />
 
           <div className="transaction-option-container">
@@ -224,7 +223,10 @@ const NewTrasaction = () => {
           <Button
             title="Criar transação"
             isCreate
-            onClick={() => {setIsModalVisible(true); console.log(price)}}
+            onClick={() => {
+              setIsModalVisible(true);
+              console.log(price);
+            }}
           />
         </Options>
       </Content>
