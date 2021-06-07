@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-import { Container, List } from "./styles";
+import { Container, List, ButtonOption } from "./styles";
+import { FiList, FiBarChart2 } from "react-icons/fi";
 import PrimaryHeader from "../../components/PrimaryHeader";
 import ArtifactData from "../../components/ArtifactData";
 import TransactionCard from "../../components/TransactionCard";
 import ModalConfirm from "../../components/ModalConfirm";
 import { useAuth } from "../../context/auth";
 import { UserTransaction } from "../../utils/types";
-import { formatPrice } from '../../utils/formatPrice';
+import { formatPrice } from "../../utils/formatPrice";
 import transactionService from "../../services/transactionService";
 
 const Transactions = () => {
@@ -63,6 +64,24 @@ const Transactions = () => {
         value={transactions.length.toString()}
         artifactType="Transações"
       />
+
+      <div className="buttons-container">
+        <ButtonOption>
+          <div className="button-icon-container">
+            <FiBarChart2 size={20} color="#39393A" />
+          </div>
+          <h1 className="button-title">Relatório</h1>
+        </ButtonOption>
+        <ButtonOption>
+          <div className="button-icon-container">
+            <FiList size={20} color="#39393A" />
+          </div>
+
+          <div className="button-title-container">
+            <h1 className="button-title">Ordenar</h1>
+          </div>
+        </ButtonOption>
+      </div>
 
       <List>
         {transactions.map((transaction) => (
