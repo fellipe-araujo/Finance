@@ -18,6 +18,14 @@ const Container = styled.div<ArtifactDataProps>`
   justify-content: center;
   align-items: center;
 
+  .artifact-data-line {
+    width: 70%;
+    height: .1rem;
+    background-color: #39393A;
+    opacity: 0.2;
+    margin: .7rem 0;
+  }
+
   .artifact-data-title,
   .artifact-data-value {
     color: #39393a;

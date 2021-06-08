@@ -18,6 +18,9 @@ const ArtifactData = ({
   return (
     <Container artifact={setBackground(artifactType).artifact}>
       <h2 className="artifact-data-title">{title}</h2>
+
+      <div className="artifact-data-line" />
+
       <h2 className="artifact-data-title">{subTitle}</h2>
       <h2 className="artifact-data-value">{value}</h2>
     </Container>
