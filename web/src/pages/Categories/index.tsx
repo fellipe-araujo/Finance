@@ -29,7 +29,7 @@ const Categories = () => {
 
       <ArtifactData
         title="Categorias"
-        subTitle="Totais"
+        subTitle="totais"
         value={categories.length.toString()}
         artifactType="Categorias"
       />

@@ -1,19 +1,34 @@
 import { useState, useEffect } from "react";
-import { Container, List } from "./styles";
+import { Container, List, ButtonOption } from "./styles";
+import { FiList, FiBarChart2 } from "react-icons/fi";
 import PrimaryHeader from "../../components/PrimaryHeader";
 import ArtifactData from "../../components/ArtifactData";
 import TransactionCard from "../../components/TransactionCard";
 import ModalConfirm from "../../components/ModalConfirm";
+import ModalTransactionFilter from "../../components/ModalTransactionFilter";
 import { useAuth } from "../../context/auth";
 import { UserTransaction } from "../../utils/types";
-import { formatPrice } from '../../utils/formatPrice';
+import { formatPrice } from "../../utils/formatPrice";
+import {
+  fetchAllTransactions,
+  fetchCurrentMonthTransactions,
+  fetchAllEntriesTransactions,
+  fetchAllExpensesTransactions,
+} from "../../utils/transactionsFilter";
 import transactionService from "../../services/transactionService";
 
 const Transactions = () => {
-  const [transactions, setTransactions] = useState<UserTransaction[]>([]);
+  const [transactionsFiltered, setTransactionsFiltered] = useState<
+    UserTransaction[]
+  >([]);
   const [selectedTransaction, setSelectedTransaction] =
     useState<UserTransaction>();
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalConfirmVisible, setIsModalConfirmVisible] = useState(false);
+  const [isModalTransacionFilterVisible, setIsModalTransacionFilterVisible] =
+    useState(false);
+  const [typeFilter, setTypeFilter] = useState("este mês");
+
+  const { user } = useAuth();
 
   const formatDate = (date: string) => {
     const day = date.slice(8, 10);
@@ -23,49 +38,98 @@ const Transactions = () => {
     return `${day}/${month}/${year}`;
   };
 
-  const { user } = useAuth();
-
   const toggleModalDelete = async (transactionId: string) => {
     try {
       await transactionService.transactionDelete(user?._id!, transactionId);
-      setIsModalVisible(!isModalVisible);
+      setIsModalConfirmVisible(!isModalConfirmVisible);
     } catch (error) {
-      setIsModalVisible(!isModalVisible);
+      setIsModalConfirmVisible(!isModalConfirmVisible);
       alert("Error ao deletar transação.");
     }
   };
 
   useEffect(() => {
-    const fetchAllTransactions = async () => {
-      const response = await transactionService.transactionAll(user?._id!);
-
-      setTransactions(response.reverse());
+    const fetchCurrentTransactions = async () => {
+      const currentMonthTransactions = await fetchCurrentMonthTransactions(
+        user!
+      );
+      setTransactionsFiltered(currentMonthTransactions.transactions);
     };
 
-    fetchAllTransactions();
-  }, [user?._id]);
+    fetchCurrentTransactions();
+  }, [user]);
 
   return (
     <Container>
       <PrimaryHeader title="Transações" goTo="/transactions/create" />
 
       <ModalConfirm
-        modalIsOpen={isModalVisible}
+        modalIsOpen={isModalConfirmVisible}
         description={`Deseja excluir a transação ${selectedTransaction?.name}?`}
         toggleModalConfirm={() => toggleModalDelete(selectedTransaction?._id!)}
-        toggleModalCancel={() => setIsModalVisible(false)}
-        closeModal={() => setIsModalVisible(false)}
+        toggleModalCancel={() => setIsModalConfirmVisible(false)}
+        closeModal={() => setIsModalConfirmVisible(false)}
+      />
+
+      <ModalTransactionFilter
+        modalIsOpen={isModalTransacionFilterVisible}
+        toggleModalAll={async () => {
+          const response = await fetchAllTransactions(user!);
+          setTransactionsFiltered(response.transactions);
+          setTypeFilter(response.type);
+          setIsModalTransacionFilterVisible(false);
+        }}
+        toggleModalCurrentMonth={async () => {
+          const response = await fetchCurrentMonthTransactions(user!);
+          setTransactionsFiltered(response.transactions);
+          setTypeFilter(response.type);
+          setIsModalTransacionFilterVisible(false);
+        }}
+        toggleModalEntries={async () => {
+          const response = await fetchAllEntriesTransactions(user!);
+          setTransactionsFiltered(response.transactions);
+          setTypeFilter(response.type);
+          setIsModalTransacionFilterVisible(false);
+        }}
+        toggleModalExpenses={async () => {
+          const response = await fetchAllExpensesTransactions(user!);
+          setTransactionsFiltered(response.transactions);
+          setTypeFilter(response.type);
+          setIsModalTransacionFilterVisible(false);
+        }}
+        closeModal={() => setIsModalTransacionFilterVisible(false)}
       />
 
       <ArtifactData
         title="Transações"
-        subTitle="este mês"
-        value={transactions.length.toString()}
+        subTitle={typeFilter}
+        value={transactionsFiltered.length.toString()}
         artifactType="Transações"
       />
 
+      <div className="buttons-container">
+        <ButtonOption>
+          <div className="button-icon-container">
+            <FiBarChart2 size={20} color="#202020" />
+          </div>
+
+          <div className="button-title-container">
+            <h1 className="button-title">Relatório</h1>
+          </div>
+        </ButtonOption>
+        <ButtonOption onClick={() => setIsModalTransacionFilterVisible(true)}>
+          <div className="button-icon-container">
+            <FiList size={20} color="#202020" />
+          </div>
+
+          <div className="button-title-container">
+            <h1 className="button-title">Ordenar</h1>
+          </div>
+        </ButtonOption>
+      </div>
+
       <List>
-        {transactions.map((transaction) => (
+        {transactionsFiltered.map((transaction) => (
           <TransactionCard
             key={transaction._id}
             name={transaction.name!}
@@ -77,7 +141,7 @@ const Transactions = () => {
             categoryColor={transaction.category?.color!}
             onDelete={() => {
               setSelectedTransaction(transaction);
-              setIsModalVisible(true);
+              setIsModalConfirmVisible(true);
             }}
           />
         ))}
