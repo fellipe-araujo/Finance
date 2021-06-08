@@ -31,7 +31,7 @@ const Objectives = () => {
       <PrimaryHeader title="Meus Objetivos" goTo="/objectives/create" />
       <ArtifactData
         title="Objetivos"
-        subTitle="em Processo"
+        subTitle="em processo"
         value={objectivesAmount.toString()}
         artifactType="Objetivos"
       />

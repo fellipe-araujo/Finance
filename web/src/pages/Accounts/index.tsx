@@ -37,7 +37,7 @@ const Accounts = () => {
       <PrimaryHeader title="Minhas Contas" goTo="accounts/create" />
       <ArtifactData
         title="Total"
-        subTitle="Acumulado"
+        subTitle="acumulado"
         value={formatPrice(accountsAmount)}
         artifactType="Contas"
       />
