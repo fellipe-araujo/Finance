@@ -9,7 +9,7 @@ const Container = styled.div`
 
   .buttons-container {
     width: 90%;
-    margin-top: 16rem;
+    margin: 16rem 0 1rem;
 
     display: flex;
     flex-direction: row;
@@ -35,6 +35,7 @@ const Container = styled.div`
 
   .button-title {
     font-size: 1.6rem;
+    color: #39393A;
   }
 `;
 
