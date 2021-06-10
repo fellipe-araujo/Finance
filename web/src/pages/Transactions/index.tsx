@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Container, List, ButtonOption } from "./styles";
+import { useHistory } from "react-router-dom";
 import { FiList, FiBarChart2 } from "react-icons/fi";
 import PrimaryHeader from "../../components/PrimaryHeader";
 import ArtifactData from "../../components/ArtifactData";
@@ -29,6 +30,8 @@ const Transactions = () => {
   const [typeFilter, setTypeFilter] = useState("este mês");
 
   const { user } = useAuth();
+
+  const history = useHistory();
 
   const formatDate = (date: string) => {
     const day = date.slice(8, 10);
@@ -108,7 +111,7 @@ const Transactions = () => {
       />
 
       <div className="buttons-container">
-        <ButtonOption>
+        <ButtonOption onClick={() => history.push("/transactions/report")}>
           <div className="button-icon-container">
             <FiBarChart2 size={20} color="#202020" />
           </div>

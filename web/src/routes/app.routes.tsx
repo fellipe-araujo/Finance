@@ -12,6 +12,7 @@ import NewCategory from "../pages/NewCategory";
 import CategoryDetail from "../pages/CategoryDetail";
 import Transactions from "../pages/Transactions";
 import NewTransaction from "../pages/NewTransaction";
+import TransactionsReport from "../pages/TransactionsReport";
 
 const AppRoutes = () => {
   return (
@@ -31,7 +32,8 @@ const AppRoutes = () => {
       <PrivateRoute path="/categories/:id" component={CategoryDetail} />
 
       <PrivateRoute path="/transactions" exact component={Transactions} />
-      <PrivateRoute path="/transactions/create" component={NewTransaction} />
+      <PrivateRoute path="/transactions/create" exact component={NewTransaction} />
+      <PrivateRoute path="/transactions/report" component={TransactionsReport} />
     </Switch>
   );
 };
