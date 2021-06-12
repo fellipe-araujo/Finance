@@ -15,14 +15,19 @@ const Container = styled.div`
     margin: 2rem 0;
     color: #202020;
   }
+
+  .report-logo {
+    width: 25rem;
+    margin-bottom: 3rem;
+  }
 `;
 
 const ReportCardCategory = styled.div<Props>`
   width: 90%;
   height: 4rem;
-  background-color: #FFF;
+  background-color: #fff;
   margin: 1rem 0;
-  border-radius: .8rem;
+  border-radius: 0.8rem;
   overflow: hidden;
 
   display: flex;
@@ -39,7 +44,7 @@ const ReportCardCategory = styled.div<Props>`
   }
 
   .report-category-card-color {
-    width: .7rem;
+    width: 0.7rem;
     height: 100%;
     background-color: ${(props) => props.backgroundColor};
     margin-right: 1rem;
@@ -52,7 +57,7 @@ const ReportCardCategory = styled.div<Props>`
 
   .report-category-card-amount {
     font-size: 2rem;
-    color: #39393A;
+    color: #39393a;
     margin-right: 2rem;
   }
 `;

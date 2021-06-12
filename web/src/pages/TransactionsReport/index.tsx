@@ -7,6 +7,7 @@ import { UserCategory } from "../../utils/types";
 import { formatPrice } from "../../utils/formatPrice";
 import { fetchCurrentMonthTransactions } from "../../utils/transactionsFilter";
 import { useAuth } from "../../context/auth";
+import ReportLogo from "../../assets/report-logo.svg";
 
 interface CategoryChart {
   _id: string;
@@ -85,31 +86,33 @@ const TransactionsReport = () => {
       <SecondaryHeader title="Relatório" goBack="/transactions" />
 
       <h1 className="report-title">Despesas este mês</h1>
-
       <Charts
-        series={series!.valuesByCategory}
-        options={{
-          ...chartConfig.options,
-          colors: series.colors,
-          labels: series.labels,
-        }}
+        series={series?.valuesByCategory}
+        options={
+          chartConfig(series.colors, series.labels, series.colors).options
+        }
         type="donut"
+        height={300}
       />
-      {series?.categories.map((category) => (
-        <ReportCardCategory
-          key={category._id}
-          backgroundColor={category.color!}
-        >
-          <div className="report-category-card-container">
-            <div className="report-category-card-color" />
-            <h1 className="report-category-card-name">{category.name}</h1>
-          </div>
+      {series?.categories.length > 0 ? (
+        series?.categories.map((category) => (
+          <ReportCardCategory
+            key={category._id}
+            backgroundColor={category.color!}
+          >
+            <div className="report-category-card-container">
+              <div className="report-category-card-color" />
+              <h1 className="report-category-card-name">{category.name}</h1>
+            </div>
 
-          <h1 className="report-category-card-amount">
-            {formatPrice(category.amount)}
-          </h1>
-        </ReportCardCategory>
-      ))}
+            <h1 className="report-category-card-amount">
+              {formatPrice(category.amount)}
+            </h1>
+          </ReportCardCategory>
+        ))
+      ) : (
+        <img className="report-logo" src={ReportLogo} alt="Report" />
+      )}
     </Container>
   );
 };
