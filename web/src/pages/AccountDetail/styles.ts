@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import { colors } from "../../styles/colors";
 
 const Container = styled.div`
   width: 100%;
@@ -23,7 +24,7 @@ const Content = styled.div`
 const Card = styled.div`
   width: 85%;
   height: 20rem;
-  background: #fff;
+  background: ${colors.white};
   border-radius: 0.8rem;
   box-shadow: 0 0 3rem rgba(14, 9, 9, 0.2);
   padding: 1.5rem;
@@ -35,13 +36,13 @@ const Card = styled.div`
   .account-detail-title {
     font-size: 2.4rem;
     align-self: flex-start;
-    color: #202020;
+    color: ${colors.grayDark};
   }
 
   .account-detail-line {
     width: 90%;
     height: 0.1rem;
-    background: #d7d7d7;
+    background: ${colors.line};
     margin: 1.5rem 0;
   }
 
@@ -55,7 +56,7 @@ const Card = styled.div`
   }
 
   .account-detail-value-title {
-    color: ${props => props.color}
+    color: ${(props) => props.color};
   }
 `;
 

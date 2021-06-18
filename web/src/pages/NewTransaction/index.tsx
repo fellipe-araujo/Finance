@@ -20,6 +20,7 @@ import {
 import transactionService from "../../services/transactionService";
 import accountService from "../../services/accountService";
 import categoryService from "../../services/categoryService";
+import { colors } from "../../styles/colors";
 
 const NewTrasaction = () => {
   const [name, setName] = useState("");
@@ -113,8 +114,7 @@ const NewTrasaction = () => {
             bottom: "auto",
             marginRight: "-50%",
             transform: "translate(-50%, -50%)",
-            border: "0.1rem solid #ccc",
-            background: "#fff",
+            background: colors.white,
             overflow: "auto",
             WebkitOverflowScrolling: "touch",
             borderRadius: "4px",
@@ -176,7 +176,7 @@ const NewTrasaction = () => {
               className="new-transaction-calendar-button"
               onClick={() => openModal()}
             >
-              <FiCalendar size={20} color="#202020" />
+              <FiCalendar size={20} color={colors.grayLight} />
             </button>
 
             <h1 className="new-transaction-calendar-date">

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "../../styles/colors";
 
 const Container = styled.div`
   height: 100vh;
@@ -35,13 +36,13 @@ const Container = styled.div`
 
   .button-title {
     font-size: 1.6rem;
-    color: #39393A;
+    color: ${colors.grayMedium};
   }
 `;
 
 const ButtonOption = styled.button`
   width: 13rem;
-  background-color: #fff;
+  background-color: ${colors.white};
   border: 0;
   text-decoration: none;
   border-radius: 0.5rem;

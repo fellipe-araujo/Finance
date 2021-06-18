@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "../../styles/colors";
 
 interface Props {
   backgroundColor: string;
@@ -13,7 +14,7 @@ const Container = styled.div`
 
   .report-title {
     margin: 2rem 0;
-    color: #202020;
+    color: ${colors.grayMedium};
   }
 
   .report-logo {
@@ -25,7 +26,7 @@ const Container = styled.div`
 const ReportCardCategory = styled.div<Props>`
   width: 90%;
   height: 4rem;
-  background-color: #fff;
+  background-color: ${colors.white};
   margin: 1rem 0;
   border-radius: 0.8rem;
   overflow: hidden;
@@ -52,12 +53,12 @@ const ReportCardCategory = styled.div<Props>`
 
   .report-category-card-name {
     font-size: 2rem;
-    color: #202020;
+    color: ${colors.grayMedium};
   }
 
   .report-category-card-amount {
     font-size: 2rem;
-    color: #39393a;
+    color: ${colors.grayLight};
     margin-right: 2rem;
   }
 `;

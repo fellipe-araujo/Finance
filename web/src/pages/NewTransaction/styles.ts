@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { colors } from "../../styles/colors";
 
 interface TypeProps {
   add?: boolean;
@@ -32,7 +33,7 @@ const Content = styled.div`
   .transaction-option-container {
     width: 100%;
     height: 4rem;
-    background-color: #fff;
+    background-color: ${colors.white};
     margin: 1rem 0;
     border-radius: 0.8rem;
     overflow: hidden;
@@ -52,7 +53,7 @@ const Options = styled.div`
 
   .new-transaction-value-title {
     font-size: 1.8rem;
-    color: #202020;
+    color: ${colors.grayDark};
     margin: 1.5rem 0;
 
     align-self: flex-start;
@@ -61,16 +62,16 @@ const Options = styled.div`
   .new-transaction-input-currency {
     width: 100%;
     height: 4rem;
-    color: #39393a;
+    color: ${colors.grayMedium};
     border-radius: 0.8rem;
     padding: 0 1rem;
-    border: 0.2rem solid #AAF5C8;
+    border: 0.2rem solid ${colors.transactionDark};
   }
 
   .new-transaction-data-title {
     align-self: flex-start;
     font-size: 1.8rem;
-    color: #202020;
+    color: ${colors.grayMedium};
     margin-top: 1rem;
   }
 
@@ -80,7 +81,7 @@ const Options = styled.div`
     margin: 1rem 0 2rem;
     border: 0;
     border-radius: 0.5rem;
-    background-color: #fff;
+    background-color: ${colors.white};
     padding: 0 2rem;
 
     display: flex;
@@ -89,12 +90,12 @@ const Options = styled.div`
   }
 
   .new-transaction-select-artifacts select {
-    background-color: #fff;
+    background-color: ${colors.white};
     width: 25rem;
     height: 4.8rem;
     font-size: 1.8rem;
 
-    color: #39393a;
+    color: ${colors.grayLight};
     border: 0;
     border-radius: 0.5rem;
   }
@@ -106,7 +107,7 @@ const Options = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
   }
 
   .new-transaction-calendar-button {
@@ -118,7 +119,7 @@ const Options = styled.div`
   .new-transaction-calendar-date {
     font-size: 1.8rem;
     margin-left: 1.5rem;
-    color: #39393a;
+    color: ${colors.grayLight};
   }
 `;
 
@@ -126,13 +127,13 @@ const Type = styled.button<TypeProps>`
   width: 50%;
   height: 100%;
   text-decoration: none;
-  background-color: #fff;
-  border: 0.3rem solid #fff;
+  background-color: ${colors.white};
+  border: 0.3rem solid ${colors.white};
   transition: 0.1s;
 
   .option-title {
     font-size: 2rem;
-    color: #39393a;
+    color: ${colors.grayMedium};
   }
 
   ${(props) =>
@@ -140,10 +141,10 @@ const Type = styled.button<TypeProps>`
     css`
       border-bottom-left-radius: 0.8rem;
       border-top-left-radius: 0.8rem;
-      border-color: #40923f;
+      border-color: ${colors.greenDark};
 
       .option-title {
-        color: #40923f;
+        color: ${colors.greenDark};
         font-weight: 700;
       }
     `};
@@ -153,10 +154,10 @@ const Type = styled.button<TypeProps>`
     css`
       border-bottom-right-radius: 0.8rem;
       border-top-right-radius: 0.8rem;
-      border-color: #bb4e4e;
+      border-color: ${colors.redDark};
 
       .option-title {
-        color: #bb4e4e;
+        color: ${colors.redDark};
         font-weight: 700;
       }
     `};

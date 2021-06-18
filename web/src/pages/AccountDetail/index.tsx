@@ -9,6 +9,7 @@ import { UserAccount } from "../../utils/types";
 import { formatPrice } from "../../utils/formatPrice";
 import accountService from "../../services/accountService";
 import { useAuth } from "../../context/auth";
+import { colors } from "../../styles/colors";
 
 interface AccountParams {
   id: string;
@@ -84,7 +85,7 @@ const AccountDetail = () => {
       />
 
       <Content>
-        <Card color={account?.balance! > 0 ? "#40923F" : "#BB4E4E"}>
+        <Card color={account?.balance! > 0 ? colors.greenDark : colors.redDark}>
           <h1 className="account-detail-title">Valor total:</h1>
 
           <div className="account-detail-line" />
