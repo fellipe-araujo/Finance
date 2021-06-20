@@ -1,9 +1,10 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import { colors } from "../../styles/colors";
 
 const Container = styled.div`
   width: 100%;
   height: 10rem;
-  background-color: #fff;
+  background-color: ${colors.white};
   border-radius: 0.8rem;
   overflow: hidden;
   margin: 1.5rem 0;
@@ -25,7 +26,7 @@ const TitleBox = styled.div`
 
   .account-card-title {
     font-size: 2.4rem;
-    color: #202020;
+    color: ${colors.grayMedium};
     text-align: center;
   }
 `;
@@ -41,8 +42,7 @@ const ValueBox = styled.div`
 
   .account-card-value {
     font-size: 2.6rem;
-    font-weight: 700;
-    color: #39393a;
+    color: ${colors.grayLight};
   }
 `;
 

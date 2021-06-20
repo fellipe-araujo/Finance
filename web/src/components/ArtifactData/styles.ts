@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import { colors } from "../../styles/colors";
 
 interface ArtifactDataProps {
   artifact: string;
@@ -20,20 +21,20 @@ const Container = styled.div<ArtifactDataProps>`
 
   .artifact-data-line {
     width: 70%;
-    height: .1rem;
-    background-color: #39393A;
+    height: 0.1rem;
+    background-color: ${colors.accountTitle};
     opacity: 0.2;
-    margin: .7rem 0;
+    margin: 0.7rem 0;
   }
 
-  .artifact-data-title,
-  .artifact-data-value {
-    color: #39393a;
+  .artifact-data-title {
+    color: ${colors.grayMedium};
   }
 
   .artifact-data-value {
     margin-top: 2rem;
     font-weight: 700;
+    color: ${colors.grayLight};
   }
 `;
 

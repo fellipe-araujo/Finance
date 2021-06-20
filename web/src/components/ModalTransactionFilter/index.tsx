@@ -1,6 +1,7 @@
 import { Container } from "./styles";
 import Modal from "react-modal";
 import Logo from "../../assets/Logo.svg";
+import { colors } from "../../styles/colors";
 
 interface ModalConfirmProps {
   modalIsOpen: boolean;
@@ -35,7 +36,7 @@ const ModalConfirm = ({
           bottom: "auto",
           marginRight: "-50%",
           transform: "translate(-50%, -50%)",
-          background: "#fff",
+          background: colors.white,
           overflow: "auto",
           WebkitOverflowScrolling: "touch",
           borderRadius: "4px",

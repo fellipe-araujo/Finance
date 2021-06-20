@@ -1,4 +1,4 @@
-import { Container, TitleBox, ValueBox } from './styles';
+import { Container, TitleBox, ValueBox } from "./styles";
 
 interface AccountCardProps {
   title: string;

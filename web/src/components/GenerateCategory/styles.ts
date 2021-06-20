@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import { colors } from "../../styles/colors";
 
 const Container = styled.div`
   width: 100%;
@@ -32,13 +33,13 @@ const Container = styled.div`
 const Input = styled.input`
   width: 80%;
   height: 100%;
-  background-color: #FFF;
+  background-color: ${colors.white};
   border-top-left-radius: 0.8rem;
   border-bottom-left-radius: 0.8rem;
-  border: 0.2rem solid #F5EC97;
+  border: 0.2rem solid ${colors.categoryDark};
   border-right-width: 0;
   padding: 0.8rem;
-  color: #39393A;
+  color: ${colors.grayMedium};
 `;
 
 const ButtonGenerate = styled.button`
@@ -46,7 +47,7 @@ const ButtonGenerate = styled.button`
   height: 100%;
   align-items: center;
   justify-content: center;
-  background-color: #F5EC97;
+  background-color: ${colors.categoryDark};
   border: 0;
   border-top-right-radius: 0.8rem;
   border-bottom-right-radius: 0.8rem;

@@ -1,5 +1,5 @@
-import { Container } from './styles';
-import { setBackground } from '../../utils/setBackground';
+import { Container } from "./styles";
+import { setBackground } from "../../utils/setBackground";
 
 interface ArtifactProps {
   name?: string;

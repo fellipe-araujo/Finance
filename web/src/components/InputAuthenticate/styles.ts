@@ -1,11 +1,12 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import { colors } from "../../styles/colors";
 
 const Container = styled.div`
   width: 30rem;
   margin: 4rem 0;
 
   .input-authenticate-title {
-    color: #39393a;
+    color: ${colors.grayMedium};
     font-size: 1.8rem;
   }
 `;
@@ -15,7 +16,7 @@ const Input = styled.input`
   height: 5rem;
   background: transparent;
   border: none;
-  border-bottom: 0.1rem solid #a9def9;
+  border-bottom: 0.1rem solid ${colors.accountDark};
   color: #39393a;
 `;
 

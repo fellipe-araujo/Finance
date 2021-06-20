@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "../../styles/colors";
 
 const Container = styled.div`
   width: 100%;
@@ -13,7 +14,7 @@ const Container = styled.div`
 
   .category-card-title {
     font-size: 2.4rem;
-    color: #39393a;
+    color: ${colors.grayMedium};
     font-weight: 700;
   }
 `;

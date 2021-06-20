@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "../../styles/colors";
 
 const Container = styled.div`
   display: flex;
@@ -13,7 +14,7 @@ const Container = styled.div`
     width: 100%;
     background: transparent;
     border: 0;
-    color: #39393A;
+    color: ${colors.grayMedium};
     margin: 1rem 0;
 
     display: flex;
@@ -33,8 +34,8 @@ const Container = styled.div`
 
   .modal-filter-line {
     width: 80%;
-    height: .1rem;
-    background-color: #39393A;
+    height: 0.1rem;
+    background-color: ${colors.grayMedium};
     opacity: 0.2;
   }
 `;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "../../styles/colors";
 
 const Container = styled.div`
   display: flex;
@@ -27,7 +28,7 @@ const Container = styled.div`
     width: 50%;
     background: transparent;
     border: 0;
-    color: #FF8888;
+    color: ${colors.redLight};
 
     display: flex;
     align-items: center;
@@ -38,7 +39,7 @@ const Container = styled.div`
     width: 50%;
     background: transparent;
     border: 0;
-    color: #39393A;
+    color: ${colors.grayMedium};
 
     display: flex;
     align-items: center;

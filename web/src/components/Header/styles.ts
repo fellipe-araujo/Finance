@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "../../styles/colors";
 
 interface TitleProps {
   isLogout?: boolean;
@@ -7,7 +8,7 @@ interface TitleProps {
 const HeaderContainer = styled.div`
   width: 100%;
   height: 10rem;
-  background-color: #39393a;
+  background-color: ${colors.grayMedium};
   box-shadow: 0 0 1rem rgba(14, 9, 9, 0.8);
   padding: 0 1.5rem;
 
@@ -20,7 +21,7 @@ const HeaderContainer = styled.div`
   }
 
   h1 {
-    color: #fff;
+    color: ${colors.white};
   }
 
   button {
@@ -35,7 +36,7 @@ const Menu = styled.div`
 
   .menu-line {
     width: 90%;
-    border-bottom: 1px solid #a3a3a3;
+    border-bottom: 1px solid ${colors.line};
 
     align-self: center;
   }
@@ -54,8 +55,8 @@ const Menu = styled.div`
 
 const Title = styled.h1<TitleProps>`
   font-size: 2.4rem;
-  margin: 2rem ;
-  color: ${props => props.isLogout ? "#BB4E4E" : "#39393a"};
+  margin: 2rem;
+  color: ${(props) => (props.isLogout ? colors.redDark : colors.grayMedium)};
 `;
 
 export { HeaderContainer, Menu, Title };

@@ -1,5 +1,5 @@
-import { Container } from './styles';
-import { setBackground } from '../../utils/setBackground';
+import { Container } from "./styles";
+import { setBackground } from "../../utils/setBackground";
 
 interface ArtifactDataProps {
   title: string;
@@ -14,7 +14,6 @@ const ArtifactData = ({
   value,
   artifactType,
 }: ArtifactDataProps) => {
-
   return (
     <Container artifact={setBackground(artifactType).artifact}>
       <h2 className="artifact-data-title">{title}</h2>

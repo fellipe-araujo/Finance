@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import { colors } from "../../styles/colors";
 
 interface ButtonProps {
   create: boolean;
@@ -14,7 +15,7 @@ const ButtonContainer = styled.button<ButtonProps>`
   text-decoration: none;
   margin: 1rem 0;
 
-  background: ${(props) => (props.create ? '#505050' : '#FF8888')};
+  background: ${(props) => (props.create ? colors.grayLight : colors.redLight)};
 
   display: flex;
   justify-content: center;
@@ -23,7 +24,7 @@ const ButtonContainer = styled.button<ButtonProps>`
   transition: background-color 0.2s;
 
   .button-title {
-    color: #fff;
+    color: ${colors.white};
   }
 `;
 

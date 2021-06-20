@@ -1,7 +1,8 @@
-import { Container, Input, ButtonGenerate } from './styles';
-import { FiRefreshCw } from 'react-icons/fi';
-import CategoryCard from '../../components/CategoryCard';
-import { randomColor } from '../../utils/generateColor';
+import { Container, Input, ButtonGenerate } from "./styles";
+import { FiRefreshCw } from "react-icons/fi";
+import CategoryCard from "../../components/CategoryCard";
+import { randomColor } from "../../utils/generateColor";
+import { colors } from "../../styles/colors";
 
 interface GenerateCategoryProps {
   newName: string;
@@ -33,7 +34,7 @@ const GenerateCategory = ({
       <div className="generate-category-input-group">
         <Input value={newName} onChange={(e) => newNameSet(e.target.value)} />
         <ButtonGenerate onClick={handleGenerateColor}>
-          <FiRefreshCw size={16} color="#39393A" />
+          <FiRefreshCw size={16} color={colors.grayLight} />
         </ButtonGenerate>
       </div>
     </Container>
