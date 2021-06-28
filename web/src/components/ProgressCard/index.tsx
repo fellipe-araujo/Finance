@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { colors } from "../../styles/colors";
 import {
   ProgressContainer,
   Progress,
@@ -14,20 +15,20 @@ interface ProgressCardProps {
 }
 
 const ProgressCard = ({ name, goal, progress }: ProgressCardProps) => {
-  const [progressColor, setProgressColor] = useState("#FFF");
-  const [titleColor, setTitleColor] = useState("#39393A");
+  const [progressColor, setProgressColor] = useState(colors.white);
+  const [titleColor, setTitleColor] = useState(colors.grayMedium);
 
   useEffect(() => {
     const setObjectiveColor = () => {
       if (progress < 50) {
-        setProgressColor("#FF8888");
-        setTitleColor("#BB4E4E");
+        setProgressColor(colors.redLight);
+        setTitleColor(colors.redDark);
       } else if (progress >= 50 && progress < 70) {
-        setProgressColor("#FFF973");
-        setTitleColor("#BCAF35");
+        setProgressColor(colors.yellowLight);
+        setTitleColor(colors.yellowDark);
       } else if (progress >= 70 && progress <= 100) {
-        setProgressColor("#89FF87");
-        setTitleColor("#40923F");
+        setProgressColor(colors.greenLight);
+        setTitleColor(colors.greenDark);
       }
     };
 

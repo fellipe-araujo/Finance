@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import { colors } from '../../styles/colors';
 
 const Container = styled.div`
   width: 90%;
-  background-color: #fff;
+  background-color: ${colors.white};
   border-radius: 0.8rem;
   margin-top: 2rem;
   padding: 1rem;
@@ -12,14 +13,13 @@ const Container = styled.div`
 
   .objective-title {
     font-size: 2.2rem;
-    font-weight: 700;
-    color: #39393A;
+    color: ${colors.grayDark};
   }
 
   .objective-card-line {
-    width: 90%;
+    width: 95%;
     height: 0.1rem;
-    background-color: #D7D7D7;
+    background-color: ${colors.line};
     margin: 1rem 0;
 
     align-self: center;
@@ -36,14 +36,14 @@ const Container = styled.div`
 
   .objetive-description {
     margin-left: 2rem;
-    font-size: 1.8rem;
-    color: #39393A;
+    font-size: 1.6rem;
+    color: ${colors.grayLight};
   }
 `;
 
 const Title = styled.h1`
   font-size: 1.6rem;
-  color: #202020;
+  color: ${colors.grayMedium};
 `;
 
 const Value = styled(Title)`

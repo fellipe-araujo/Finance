@@ -1,11 +1,12 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import { colors } from "../../styles/colors";
 
 const Container = styled.div`
   width: 100%;
   height: 10rem;
   border-bottom-left-radius: 3rem;
   border-bottom-right-radius: 3rem;
-  background-color: #39393a;
+  background-color: ${colors.grayMedium};
   padding: 0 2rem;
 
   display: flex;
@@ -20,7 +21,7 @@ const Container = styled.div`
   }
 
   .secondary-header-title {
-    color: #fff;
+    color: ${colors.white};
     font-size: 2.6rem;
   }
 

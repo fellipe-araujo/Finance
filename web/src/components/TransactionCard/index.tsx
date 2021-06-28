@@ -1,5 +1,6 @@
 import { Container } from "./styles";
 import { FiTrash2 } from "react-icons/fi";
+import { colors } from "../../styles/colors";
 
 interface TransacionCardProps {
   name: string;
@@ -24,13 +25,13 @@ const TransactionCard = ({
 }: TransacionCardProps) => {
   return (
     <Container
-      color={expense ? "#BB4E4E" : "#40923F"}
+      color={expense ? colors.redDark : colors.greenDark}
       backgroundColor={categoryColor}
     >
       <div className="transaction-card-info">
         <h1 className="transaction-card-title">{name}</h1>
         <button className="transaction-card-button" onClick={onDelete}>
-          <FiTrash2 size={20} color="#39393A" />
+          <FiTrash2 size={20} color={colors.grayMedium} />
         </button>
       </div>
 

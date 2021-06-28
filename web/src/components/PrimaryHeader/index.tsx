@@ -1,6 +1,7 @@
-import { Container, Content } from './styles';
-import { Link } from 'react-router-dom';
-import { FiPlus, FiArrowLeft } from 'react-icons/fi';
+import { Container, Content } from "./styles";
+import { Link } from "react-router-dom";
+import { FiPlus, FiArrowLeft } from "react-icons/fi";
+import { colors } from "../../styles/colors";
 
 interface PrimaryHeaderProps {
   title: string;
@@ -12,11 +13,11 @@ const PrimaryHeader = ({ title, goTo }: PrimaryHeaderProps) => {
     <Container>
       <Content>
         <Link className="primary-header-link" to="/">
-          <FiArrowLeft size={30} color="#FFF" />
+          <FiArrowLeft size={30} color={colors.white} />
         </Link>
         <h1 className="primary-header-title">{title}</h1>
         <Link className="primary-header-link" to={`${goTo}`}>
-          <FiPlus size={30} color="#FFF" />
+          <FiPlus size={30} color={colors.white} />
         </Link>
       </Content>
     </Container>

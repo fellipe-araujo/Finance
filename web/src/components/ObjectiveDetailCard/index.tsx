@@ -1,4 +1,5 @@
-import { Container, Title, Value } from './styles';
+import { colors } from "../../styles/colors";
+import { Container, Title, Value } from "./styles";
 
 interface ObjectiveDetailCardProps {
   name: string;
@@ -23,17 +24,17 @@ const ObjectiveDetailCard = ({
 
       <div className="objective-value-group">
         <Title>Valor a ser alcançado:</Title>
-        <Value color="#40923F">{goal}</Value>
+        <Value color={colors.greenDark}>{goal}</Value>
       </div>
 
       <div className="objective-value-group">
         <Title>Valor atual:</Title>
-        <Value color="#BCAF35">{actual}</Value>
+        <Value color={colors.yellowDark}>{actual}</Value>
       </div>
 
       <div className="objective-value-group">
         <Title>Valor restante:</Title>
-        <Value color="#BB4E4E">{remaining}</Value>
+        <Value color={colors.redDark}>{remaining}</Value>
       </div>
 
       <div className="objective-card-line" />

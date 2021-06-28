@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "../../styles/colors";
 
 interface ContainerProps {
   backgroundColor: string;
@@ -6,7 +7,7 @@ interface ContainerProps {
 
 const Container = styled.div<ContainerProps>`
   width: 100%;
-  background-color: #FFF;
+  background-color: ${colors.white};
   box-shadow: 0 0 3rem rgb(0, 0, 0, 0.1);
   padding: 1.5rem;
   margin: 2rem 0;
@@ -24,7 +25,7 @@ const Container = styled.div<ContainerProps>`
   .transaction-card-line {
     width: 95%;
     height: 0.1rem;
-    background-color: #D7D7D7;
+    background-color: ${colors.line};
     margin: 0.7rem 0;
     align-self: center;
   }
@@ -40,13 +41,17 @@ const Container = styled.div<ContainerProps>`
   .transaction-card-title {
     font-size: 2rem;
     font-weight: 700;
-    color: #39393A;
+    color: ${colors.grayDark};
   }
 
-  .transaction-card-subtitle,
+  .transaction-card-subtitle {
+    font-size: 1.6rem;
+    color: ${colors.grayMedium};
+  }
+
   .transaction-card-text {
     font-size: 1.6rem;
-    color: #39393A;
+    color: ${colors.grayLight};
   }
 
   .transaction-card-value {

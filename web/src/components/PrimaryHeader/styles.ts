@@ -1,9 +1,10 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import { colors } from "../../styles/colors";
 
 const Container = styled.div`
   width: 100%;
   height: 15rem;
-  background-color: #39393a;
+  background-color: ${colors.grayMedium};
   border-bottom-left-radius: 8rem;
   border-bottom-right-radius: 8rem;
 
@@ -28,7 +29,7 @@ const Content = styled.div`
   }
 
   .primary-header-title {
-    color: #fff;
+    color: ${colors.white};
     font-size: 2.6rem;
   }
 `;

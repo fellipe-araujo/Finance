@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import { colors } from "../../styles/colors";
 
 interface ProgressProps {
   width: string;
@@ -7,7 +8,7 @@ interface ProgressProps {
 const ProgressContainer = styled.div`
   height: 10rem;
   border-radius: 0.8rem;
-  background-color: #fff;
+  background-color: ${colors.white};
   box-shadow: 0 0 1rem rgba(14, 9, 9, 0.2);
   margin: 1.5rem 0;
   overflow: hidden;
@@ -21,9 +22,9 @@ const ProgressContainer = styled.div`
 `;
 
 const Progress = styled.div<ProgressProps>`
-  width: ${(props) => props.width || 'auto'};
+  width: ${(props) => props.width || "auto"};
   height: 100%;
-  background-color: ${(props) => props.color || '#FFF'};
+  background-color: ${(props) => props.color || colors.white};
 
   align-self: flex-start;
 `;
@@ -39,13 +40,13 @@ const ProgressTextGroup = styled.div`
 
 const ProgressTitle = styled.h1`
   font-size: 2.2rem;
-  color: ${(props) => props.color || '#39393A'};
+  color: ${(props) => props.color || colors.grayMedium};
 `;
 
 const ProgressValue = styled.h1`
   font-size: 3rem;
   font-weight: 700;
-  color: ${(props) => props.color || '#39393A'};
+  color: ${(props) => props.color || colors.grayMedium};
 `;
 
 export {
