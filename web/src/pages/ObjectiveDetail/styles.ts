@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { colors } from "../../styles/colors";
+import styled, { css } from 'styled-components';
+import { colors } from '../../styles/colors';
 
 interface OptionProps {
   add?: boolean;
@@ -7,6 +7,9 @@ interface OptionProps {
 }
 
 const Container = styled.div`
+  width: 100%;
+  height: 100vh;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,6 +34,34 @@ const Container = styled.div`
 
   .objective-button-container {
     margin-top: 3rem;
+  }
+`;
+
+const Content = styled.div`
+  width: 100%;
+  height: 100%;
+  margin: 5rem 0;
+  overflow-y: scroll;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .objective-detail-value-title {
+    font-size: 1.8rem;
+    color: ${colors.grayMedium};
+    margin: 1.5rem 0;
+
+    align-self: flex-start;
+  }
+
+  .objective-detail-input-currency {
+    width: 100%;
+    height: 4rem;
+    color: ${colors.grayMedium};
+    border-radius: 0.8rem;
+    padding: 0 1rem;
+    border: 0.2rem solid ${colors.objectiveDark};
   }
 `;
 
@@ -74,4 +105,4 @@ const Option = styled.button<OptionProps>`
     `};
 `;
 
-export { Container, Option };
+export { Container, Content, Option };
