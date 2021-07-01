@@ -5,7 +5,6 @@ const Container = styled.div`
   width: 90%;
   background-color: ${colors.white};
   border-radius: 0.8rem;
-  margin-top: 2rem;
   padding: 1rem;
 
   display: flex;

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Container, Content, Options } from "./styles";
 import { useHistory } from "react-router-dom";
+import CurrencyInput from "react-currency-input-field";
 import SecondaryHeader from "../../components/SecondaryHeader";
 import InputApp from "../../components/InputApp";
 import Button from "../../components/Button";
@@ -23,7 +24,7 @@ const NewObjective = () => {
 
   const toggleModalCreate = async () => {
     try {
-      const goalFormat = parseInt(goal);
+      const goalFormat = parseFloat(goal.replace(",", "."));
       await objectiveService.objectiveCreate(user?._id!, {
         name,
         goal: goalFormat,
@@ -64,12 +65,17 @@ const NewObjective = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <InputApp
-            title="Meta:"
-            name="Objetivos"
-            value={goal}
-            onChange={(e) => setGoal(e.target.value)}
+
+          <h1 className="new-objective-value-title">Valor:</h1>
+          <CurrencyInput
+            className="new-objective-input-currency"
+            placeholder="R$ 1.000,00"
+            onValueChange={(value) => setGoal(value!)}
+            prefix="R$"
+            type="text"
+            intlConfig={{ locale: "pt-BR", currency: "BRL" }}
           />
+
           <InputApp
             title="Descrição:"
             name="Objetivos"
