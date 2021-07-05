@@ -1,18 +1,18 @@
-import { Switch } from "react-router-dom";
-import PrivateRoute from "../components/PrivateRoute";
-import Home from "../pages/Home";
-import Accounts from "../pages/Accounts";
-import NewAccount from "../pages/NewAccount";
-import AccountDetail from "../pages/AccountDetail";
-import Objectives from "../pages/Objectives";
-import NewObjective from "../pages/NewObjective";
-import ObjectiveDetail from "../pages/ObjectiveDetail";
-import Categories from "../pages/Categories";
-import NewCategory from "../pages/NewCategory";
-import CategoryDetail from "../pages/CategoryDetail";
-import Transactions from "../pages/Transactions";
-import NewTransaction from "../pages/NewTransaction";
-import TransactionsReport from "../pages/TransactionsReport";
+import { Switch } from 'react-router-dom';
+import PrivateRoute from '../components/PrivateRoute';
+import Home from '../pages/Home';
+import Accounts from '../pages/Accounts';
+import NewAccount from '../pages/NewAccount';
+import AccountDetail from '../pages/AccountDetail';
+import Objectives from '../pages/Objectives';
+import NewObjective from '../pages/NewObjective';
+import ObjectiveDetail from '../pages/ObjectiveDetail';
+import Categories from '../pages/Categories';
+import NewCategory from '../pages/NewCategory';
+import CategoryDetail from '../pages/CategoryDetail';
+import Transactions from '../pages/Transactions';
+import NewTransaction from '../pages/NewTransaction';
+import TransactionsReport from '../pages/TransactionsReport';
 
 const AppRoutes = () => {
   return (
@@ -32,8 +32,15 @@ const AppRoutes = () => {
       <PrivateRoute path="/categories/:id" component={CategoryDetail} />
 
       <PrivateRoute path="/transactions" exact component={Transactions} />
-      <PrivateRoute path="/transactions/create" exact component={NewTransaction} />
-      <PrivateRoute path="/transactions/report" component={TransactionsReport} />
+      <PrivateRoute
+        path="/transactions/create"
+        exact
+        component={NewTransaction}
+      />
+      <PrivateRoute
+        path="/transactions/report/:yearId/:monthId"
+        component={TransactionsReport}
+      />
     </Switch>
   );
 };
