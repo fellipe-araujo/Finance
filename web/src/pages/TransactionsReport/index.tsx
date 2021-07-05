@@ -1,13 +1,15 @@
-import { useState, useEffect } from "react";
-import { Container, ReportCardCategory } from "./styles";
-import Charts from "react-apexcharts";
-import SecondaryHeader from "../../components/SecondaryHeader";
-import { chartConfig } from "../../utils/chartConfig";
-import { UserCategory } from "../../utils/types";
-import { formatPrice } from "../../utils/formatPrice";
-import { fetchCurrentMonthTransactions } from "../../utils/transactionsFilter";
-import { useAuth } from "../../context/auth";
-import ReportLogo from "../../assets/report-logo.svg";
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { Container, ReportCardCategory } from './styles';
+import Charts from 'react-apexcharts';
+import SecondaryHeader from '../../components/SecondaryHeader';
+import { chartConfig } from '../../utils/chartConfig';
+import { UserCategory } from '../../utils/types';
+import { formatPrice } from '../../utils/formatPrice';
+import { fetchMonthAndYearTransactions } from '../../utils/transactionsFilter';
+import { useAuth } from '../../context/auth';
+import ReportLogo from '../../assets/report-logo.svg';
+import { period } from '../../utils/period';
 
 interface CategoryChart {
   _id: string;
@@ -23,6 +25,11 @@ interface ChartTransactions {
   labels: string[];
 }
 
+interface ParamsProps {
+  yearId: string;
+  monthId: string;
+}
+
 const TransactionsReport = () => {
   const [series, setSeries] = useState<ChartTransactions>({
     categories: [],
@@ -31,11 +38,17 @@ const TransactionsReport = () => {
     labels: [],
   });
 
+  const params: ParamsProps = useParams();
+
   const { user } = useAuth();
 
   useEffect(() => {
     const fecthTransactions = async () => {
-      const response = await fetchCurrentMonthTransactions(user!);
+      const response = await fetchMonthAndYearTransactions(
+        user!,
+        params.monthId,
+        params.yearId
+      );
       const transactionsEntries = response.transactions.filter(
         (transaction) => transaction.expense
       );
@@ -79,13 +92,18 @@ const TransactionsReport = () => {
     };
 
     fecthTransactions();
-  }, [user]);
+  }, [params.monthId, params.yearId, user]);
 
   return (
     <Container>
-      <SecondaryHeader title="Relatório" goBack="/transactions" />
+      <SecondaryHeader
+        title={`Relatório - ${
+          period.months.find((month) => month.id === params.monthId)?.value
+        }`}
+        goBack="/transactions"
+      />
 
-      <h1 className="report-title">Despesas este mês</h1>
+      <h1 className="report-title">Despesas neste mês</h1>
       <Charts
         series={series?.valuesByCategory}
         options={
