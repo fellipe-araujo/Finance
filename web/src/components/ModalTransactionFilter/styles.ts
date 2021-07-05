@@ -24,7 +24,7 @@ const Container = styled.div`
 
   .modal-filter-title {
     margin: 2rem 0 1rem;
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     text-align: center;
   }
 

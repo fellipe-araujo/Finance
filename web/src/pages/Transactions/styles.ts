@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { colors } from "../../styles/colors";
+import styled from 'styled-components';
+import { colors } from '../../styles/colors';
 
 const Container = styled.div`
   height: 100vh;
@@ -15,48 +15,78 @@ const Container = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
   }
-  .button-icon-container {
-    width: 20%;
-    margin-right: 1rem;
+`;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+const ModalAppContainer = styled.div`
+  width: 100%;
 
-  .button-title-container {
-    width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .modal-app-logo {
+    width: 5rem;
   }
 
-  .button-title {
-    font-size: 1.6rem;
+  .modal-app-title {
+    font-size: 2.2rem;
+    margin: 2rem 0;
     color: ${colors.grayMedium};
+  }
+
+  .modal-app-select-period {
+    height: 4.8rem;
+    margin: 1rem 0 2rem;
+    border: 0;
+    background-color: transparent;
+    padding: 0 2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-app-select-period select {
+    background-color: ${colors.white};
+    width: 25rem;
+    height: 4.8rem;
+    font-size: 1.8rem;
+
+    color: ${colors.grayLight};
+    border: 0;
+    border-radius: 0.5rem;
   }
 `;
 
 const ButtonOption = styled.button`
-  width: 13rem;
-  background-color: ${colors.white};
+  background-color: transparent;
   border: 0;
   text-decoration: none;
-  border-radius: 0.5rem;
+  border-bottom: 0.1rem solid ${colors.grayLight};
   padding: 0.7rem;
 
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  .button-title {
+    margin-left: 1rem;
+    font-size: 1.6rem;
+    color: ${colors.grayMedium};
+  }
 `;
 
 const List = styled.div`
   width: 90%;
   height: 65%;
   overflow-y: scroll;
+
+  .report-logo {
+    width: 25rem;
+    margin-bottom: 3rem;
+  }
 `;
 
-export { Container, List, ButtonOption };
+export { Container, ModalAppContainer, List, ButtonOption };
