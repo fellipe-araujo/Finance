@@ -1,17 +1,22 @@
-import { useState, useEffect } from "react";
-import { HomeContainer, HomeContent } from "./styles";
-import Header from "../../components/Header";
-import ArtifactResume from "../../components/ArtifactResume";
-import { useAuth } from "../../context/auth";
-import accountService from "../../services/accountService";
-import categoryService from "../../services/categoryService";
-import objectiveService from "../../services/objectiveService";
-import transactionService from "../../services/transactionService";
-import userService from "../../services/userService";
-import { formatPrice } from "../../utils/formatPrice";
+import { useState, useEffect } from 'react';
+import { HomeContainer, BalancesRow, HomeContent } from './styles';
+import Header from '../../components/Header';
+import ArtifactResume from '../../components/ArtifactResume';
+import Balance from '../../components/Balance';
+import { useAuth } from '../../context/auth';
+import accountService from '../../services/accountService';
+import categoryService from '../../services/categoryService';
+import objectiveService from '../../services/objectiveService';
+import transactionService from '../../services/transactionService';
+import userService from '../../services/userService';
+import { formatPrice } from '../../utils/formatPrice';
+import { fetchMonthAndYearTransactions } from '../../utils/transactionsFilter';
 
 const Home = () => {
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState('');
+  const [currentMonth, setCurrentMonth] = useState('');
+  const [allEntries, setAllEntries] = useState(0);
+  const [allExpenses, setAllExpenses] = useState(0);
   const [accountTotalValue, setAccountTotalValue] = useState(0);
   const [accountsTotal, setAccountsTotal] = useState(0);
   const [objectivesTotal, setObjectivesTotal] = useState(0);
@@ -24,6 +29,18 @@ const Home = () => {
     const fetchName = async () => {
       const response = await userService.userData(user!._id);
       setUsername(response.name);
+    };
+
+    const fetchPositiveBalance = async () => {
+      const response = await fetchMonthAndYearTransactions(
+        user!,
+        new Date().toLocaleString('pt-BR').slice(3, 5),
+        new Date().toLocaleString('pt-BR').slice(6, 10)
+      );
+
+      setAllEntries(response.sumEntries);
+      setAllExpenses(response.sumExpenses);
+      setCurrentMonth(response.type!);
     };
 
     const fetchAccounts = async () => {
@@ -56,6 +73,7 @@ const Home = () => {
     };
 
     fetchName();
+    fetchPositiveBalance();
     fetchAccounts();
     fetchObjectives();
     fetchTransactions();
@@ -64,15 +82,40 @@ const Home = () => {
 
   return (
     <HomeContainer>
-      <Header name={username} />
-      <h1 className="home-balance">{formatPrice(accountTotalValue)}</h1>
+      <Header name="Minhas Finanças" />
+      {/* <h1 className="home-balance">{formatPrice(accountTotalValue)}</h1> */}
+      <h1 className="home-welcome">
+        Bem-vindo(a), <br /> {username}
+      </h1>
+
+      <BalancesRow>
+        <Balance title="Saldo" value={formatPrice(accountTotalValue)} balance />
+        <Balance
+          title={`Entradas - ${currentMonth}`}
+          value={formatPrice(allEntries)}
+          entry
+        />
+        <Balance
+          title={`Saídas - ${currentMonth}`}
+          value={formatPrice(allExpenses)}
+          expense
+        />
+      </BalancesRow>
 
       <HomeContent>
         <h1 className="home-resume">Resumo</h1>
-        <ArtifactResume name="Contas" total={accountsTotal} />
-        <ArtifactResume name="Objetivos" total={objectivesTotal} />
-        <ArtifactResume name="Transações" total={transactionsTotal} />
-        <ArtifactResume name="Categorias" total={categoriesTotal} />
+
+        <div className="home-resume-artifact-content">
+          <div className="home-resume-artifact-row">
+            <ArtifactResume name="Contas" total={accountsTotal} />
+            <ArtifactResume name="Objetivos" total={objectivesTotal} />
+          </div>
+
+          <div className="home-resume-artifact-row">
+            <ArtifactResume name="Transações" total={transactionsTotal} />
+            <ArtifactResume name="Categorias" total={categoriesTotal} />
+          </div>
+        </div>
       </HomeContent>
     </HomeContainer>
   );
