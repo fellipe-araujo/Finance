@@ -6,8 +6,7 @@ interface ArtifactProps {
 }
 
 const Container = styled.div<ArtifactProps>`
-  width: 30rem;
-  height: 9rem;
+  width: 14rem;
   border-radius: 0.8rem;
   padding: 1rem 1.5rem;
   margin: 2rem 0;
@@ -26,6 +25,7 @@ const Container = styled.div<ArtifactProps>`
   .artifact-resume-line {
     width: 100%;
     height: 0.1rem;
+    margin: 1rem 0;
     background-color: ${(props) => props.title || colors.line};
     align-self: center;
     opacity: 0.3;

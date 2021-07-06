@@ -21,6 +21,7 @@ const HeaderContainer = styled.div`
   }
 
   h1 {
+    font-size: 2.2rem;
     color: ${colors.white};
   }
 
