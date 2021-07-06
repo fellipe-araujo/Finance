@@ -111,12 +111,6 @@ const Transactions = () => {
           setTypeFilter(response.type);
           setIsModalTransacionFilterVisible(false);
         }}
-        toggleModalCurrentMonth={async () => {
-          const response = await fetchCurrentMonthTransactions(user!);
-          setTransactionsFiltered(response.transactions);
-          setTypeFilter(response.type);
-          setIsModalTransacionFilterVisible(false);
-        }}
         toggleModalEntries={async () => {
           const response = await fetchAllEntriesTransactions(user!);
           setTransactionsFiltered(response.transactions);
