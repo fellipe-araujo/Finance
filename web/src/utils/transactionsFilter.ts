@@ -30,14 +30,28 @@ export const fetchMonthAndYearTransactions = async (
         `${year}-${month}`
     );
 
+  let sumEntries = 0.0;
+  let sumExpenses = 0.0;
+
+  selectedMonthAndYearTransactions.forEach((transaction: UserTransaction) => {
+    if (transaction.expense === false) {
+      sumEntries += transaction.price!;
+    } else {
+      sumExpenses += transaction.price!;
+    }
+  });
+
   return {
     transactions: selectedMonthAndYearTransactions.reverse(),
+    sumEntries,
+    sumExpenses,
     type: period.months.find((item: MonthProps) => item.id === month)?.value,
   };
 };
 
 export const fetchAllEntriesTransactions = async (user: User) => {
-  const allTransactions = await transactionService.transactionAll(user?._id!);
+  const allTransactions: UserTransaction[] =
+    await transactionService.transactionAll(user?._id!);
 
   return {
     transactions: allTransactions
