@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { HomeContainer, BalancesRow, HomeContent } from './styles';
+import Loading from '../Loading';
 import Header from '../../components/Header';
 import ArtifactResume from '../../components/ArtifactResume';
 import Balance from '../../components/Balance';
@@ -80,10 +81,13 @@ const Home = () => {
     fetchCategories();
   }, [user]);
 
+  if (!username) {
+    return <Loading />;
+  }
+
   return (
     <HomeContainer>
       <Header name="Minhas Finanças" />
-      {/* <h1 className="home-balance">{formatPrice(accountTotalValue)}</h1> */}
       <h1 className="home-welcome">
         Bem-vindo(a), <br /> {username}
       </h1>
@@ -106,15 +110,10 @@ const Home = () => {
         <h1 className="home-resume">Resumo</h1>
 
         <div className="home-resume-artifact-content">
-          <div className="home-resume-artifact-row">
-            <ArtifactResume name="Contas" total={accountsTotal} />
-            <ArtifactResume name="Objetivos" total={objectivesTotal} />
-          </div>
-
-          <div className="home-resume-artifact-row">
-            <ArtifactResume name="Transações" total={transactionsTotal} />
-            <ArtifactResume name="Categorias" total={categoriesTotal} />
-          </div>
+          <ArtifactResume name="Contas" total={accountsTotal} />
+          <ArtifactResume name="Objetivos" total={objectivesTotal} />
+          <ArtifactResume name="Transações" total={transactionsTotal} />
+          <ArtifactResume name="Categorias" total={categoriesTotal} />
         </div>
       </HomeContent>
     </HomeContainer>

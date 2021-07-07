@@ -23,25 +23,26 @@ const BalancesRow = styled.div`
   min-height: 10rem;
   margin: 2rem 0;
   overflow: scroll;
-  
+
   display: flex;
   flex-direction: row;
 `;
 
 const HomeContent = styled.div`
+  flex: 1;
+
   width: 100%;
-  /* height: 100%; */
+  height: 40rem;
   background-color: ${colors.white};
   margin-top: 2rem;
   padding: 0 2rem;
   border-radius: 2rem 2rem 0 0;
   box-shadow: 0 0 3rem rgba(14, 9, 9, 0.1);
+  overflow-y: scroll;
 
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: space-evenly; */
 
   .home-resume {
     margin-top: 2rem;
@@ -50,19 +51,11 @@ const HomeContent = styled.div`
 
   .home-resume-artifact-content {
     width: 100%;
-    height: 100%;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
-  }
-
-  .home-resume-artifact-row {
-    width: 100%;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    align-items: center;
   }
 `;
 

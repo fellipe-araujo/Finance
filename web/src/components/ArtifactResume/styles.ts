@@ -6,7 +6,7 @@ interface ArtifactProps {
 }
 
 const Container = styled.div<ArtifactProps>`
-  width: 14rem;
+  width: 30rem;
   border-radius: 0.8rem;
   padding: 1rem 1.5rem;
   margin: 2rem 0;
