@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { ObjectivesContainer, ObjectivesList } from "./styles";
+import { Link } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
 import PrimaryHeader from "../../components/PrimaryHeader";
 import ArtifactData from "../../components/ArtifactData";
 import ProgressCard from "../../components/ProgressCard";
@@ -29,6 +30,9 @@ const Objectives = () => {
   return (
     <ObjectivesContainer>
       <PrimaryHeader title="Meus Objetivos" goTo="/objectives/create" />
+
+      <ToastContainer />
+
       <ArtifactData
         title="Objetivos"
         subTitle="em processo"

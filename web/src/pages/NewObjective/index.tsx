@@ -1,19 +1,21 @@
-import { useState } from "react";
-import { Container, Content, Options } from "./styles";
-import { useHistory } from "react-router-dom";
-import CurrencyInput from "react-currency-input-field";
-import SecondaryHeader from "../../components/SecondaryHeader";
-import InputApp from "../../components/InputApp";
-import Button from "../../components/Button";
-import ModalConfirm from "../../components/ModalConfirm";
-import ObjectiveLogo from "../../assets/objective-logo.svg";
-import { useAuth } from "../../context/auth";
-import objectiveService from "../../services/objectiveService";
+import { useState } from 'react';
+import { Container, Content, Options } from './styles';
+import { useHistory } from 'react-router-dom';
+import CurrencyInput from 'react-currency-input-field';
+import { toast } from 'react-toastify';
+import SecondaryHeader from '../../components/SecondaryHeader';
+import InputApp from '../../components/InputApp';
+import Button from '../../components/Button';
+import ModalConfirm from '../../components/ModalConfirm';
+import ObjectiveLogo from '../../assets/objective-logo.svg';
+import { useAuth } from '../../context/auth';
+import objectiveService from '../../services/objectiveService';
+import { toastConfig } from '../../utils/toastConfig';
 
 const NewObjective = () => {
-  const [name, setName] = useState("");
-  const [goal, setGoal] = useState("");
-  const [description, setDescription] = useState("");
+  const [name, setName] = useState('');
+  const [goal, setGoal] = useState('');
+  const [description, setDescription] = useState('');
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const history = useHistory();
@@ -24,24 +26,31 @@ const NewObjective = () => {
 
   const toggleModalCreate = async () => {
     try {
-      const goalFormat = parseFloat(goal.replace(",", "."));
+      const goalFormat = parseFloat(goal.replace(',', '.'));
       await objectiveService.objectiveCreate(user?._id!, {
         name,
         goal: goalFormat,
         description,
       });
       setIsModalVisible(!isModalVisible);
-      history.push("/objectives");
+
+      toast.success(`Objetivo ${name} criado!`, toastConfig);
+
+      history.push('/objectives');
     } catch (error) {
       setIsModalVisible(!isModalVisible);
-      history.push("/objectives");
-      alert("Erro ao criar objetivo.");
+
+      toast.error('Não foi possível criar o objetivo desejado!', toastConfig);
+
+      history.push('/objectives');
     }
   };
 
   return (
     <Container>
       <SecondaryHeader title="Novo Objetivo" goBack="/objectives" />
+
+      {/* <ToastContainer /> */}
 
       <ModalConfirm
         modalIsOpen={isModalVisible}
@@ -73,7 +82,7 @@ const NewObjective = () => {
             onValueChange={(value) => setGoal(value!)}
             prefix="R$"
             type="text"
-            intlConfig={{ locale: "pt-BR", currency: "BRL" }}
+            intlConfig={{ locale: 'pt-BR', currency: 'BRL' }}
           />
 
           <InputApp

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Container, Content, Option } from './styles';
 import { useHistory, useParams } from 'react-router-dom';
 import CurrencyInput from 'react-currency-input-field';
+import { toast } from 'react-toastify';
 import SecondaryHeader from '../../components/SecondaryHeader';
 import ObjectiveDetailCard from '../../components/ObjectiveDetailCard';
 import InputApp from '../../components/InputApp';
@@ -10,6 +11,7 @@ import ModalConfirm from '../../components/ModalConfirm';
 import { UserObjective } from '../../utils/types';
 import { useAuth } from '../../context/auth';
 import { formatPrice } from '../../utils/formatPrice';
+import { toastConfig } from '../../utils/toastConfig';
 import objectiveService from '../../services/objectiveService';
 
 interface ObjetiveProps {
@@ -36,12 +38,14 @@ const ObjectiveDetail = () => {
   const toggleModalUpdate = async () => {
     try {
       var value = 0;
-      if (optionAdd) {
+      if (optionAdd && newObjectiveValue) {
         value =
           objective?.amount! + parseFloat(newObjectiveValue.replace(',', '.'));
-      } else {
+      } else if (!optionAdd && newObjectiveValue) {
         value =
           objective?.amount! - parseFloat(newObjectiveValue.replace(',', '.'));
+      } else {
+        value = objective?.amount!;
       }
 
       const progress = (value / objective?.goal!) * 100;
@@ -63,11 +67,19 @@ const ObjectiveDetail = () => {
       );
 
       setIsModalVisible(!isModalVisible);
+
+      toast.info(`Objetivo ${objective?.name} atualizado!`, toastConfig);
+
       history.push('/objectives');
     } catch (error) {
       setIsModalVisible(!isModalVisible);
+
+      toast.error(
+        `Não foi possível atualizar o objetivo desejado!`,
+        toastConfig
+      );
+
       history.push('/objectives');
-      alert('Erro ao atualizar objetivo.');
     }
   };
 
@@ -75,11 +87,16 @@ const ObjectiveDetail = () => {
     try {
       await objectiveService.objectiveDelete(user?._id!, objective?._id!);
       setIsModalVisible(!isModalVisible);
+
+      toast.success(`Objetivo ${objective?.name} deletado!`, toastConfig);
+
       history.push('/objectives');
     } catch (error) {
       setIsModalVisible(!isModalVisible);
+      
+      toast.error(`Não foi possível excluir o objetivo desejado!`, toastConfig);
+      
       history.push('/objectives');
-      alert('Erro ao deletar objetivo.');
     }
   };
 
