@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
-import { Container, List } from "./styles";
-import { Link } from "react-router-dom";
-import PrimaryHeader from "../../components/PrimaryHeader";
-import ArtifactData from "../../components/ArtifactData";
-import CategoryCard from "../../components/CategoryCard";
-import { useAuth } from "../../context/auth";
-import { UserCategory } from "../../utils/types";
-import categoryService from "../../services/categoryService";
+import { useEffect, useState } from 'react';
+import { Container, List } from './styles';
+import { Link } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import PrimaryHeader from '../../components/PrimaryHeader';
+import ArtifactData from '../../components/ArtifactData';
+import CategoryCard from '../../components/CategoryCard';
+import { useAuth } from '../../context/auth';
+import { UserCategory } from '../../utils/types';
+import categoryService from '../../services/categoryService';
 
 const Categories = () => {
   const [categories, setCategories] = useState<UserCategory[]>([]);
@@ -26,6 +27,8 @@ const Categories = () => {
   return (
     <Container>
       <PrimaryHeader title="Categorias" goTo="/categories/create" />
+
+      <ToastContainer />
 
       <ArtifactData
         title="Categorias"

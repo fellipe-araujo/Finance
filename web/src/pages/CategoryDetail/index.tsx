@@ -1,13 +1,15 @@
-import { useState, useEffect } from "react";
-import { Container, Content, Options } from "./styles";
-import { useHistory, useParams } from "react-router-dom";
-import SecondaryHeader from "../../components/SecondaryHeader";
-import GenerateCategory from "../../components/GenerateCategory";
-import Button from "../../components/Button";
-import ModalConfirm from "../../components/ModalConfirm";
-import { useAuth } from "../../context/auth";
-import { UserCategory } from "../../utils/types";
-import categoryService from "../../services/categoryService";
+import { useState, useEffect } from 'react';
+import { Container, Content, Options } from './styles';
+import { useHistory, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import SecondaryHeader from '../../components/SecondaryHeader';
+import GenerateCategory from '../../components/GenerateCategory';
+import Button from '../../components/Button';
+import ModalConfirm from '../../components/ModalConfirm';
+import { useAuth } from '../../context/auth';
+import { UserCategory } from '../../utils/types';
+import { toastConfig } from '../../utils/toastConfig';
+import categoryService from '../../services/categoryService';
 
 interface CategoryParams {
   id: string;
@@ -15,10 +17,10 @@ interface CategoryParams {
 
 const CategoryDetail = () => {
   const [category, setCategory] = useState<UserCategory>();
-  const [newCategoryName, setNewCategoryName] = useState("");
-  const [newCategoryColor, setNewCategoryColor] = useState("");
+  const [newCategoryName, setNewCategoryName] = useState('');
+  const [newCategoryColor, setNewCategoryColor] = useState('');
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [modalAction, setModalAction] = useState("");
+  const [modalAction, setModalAction] = useState('');
 
   const { user } = useAuth();
 
@@ -41,11 +43,19 @@ const CategoryDetail = () => {
         newCategory
       );
       setIsModalVisible(!isModalVisible);
-      history.push("/categories");
+
+      toast.info(`Categoria ${category?.name} atualizada!`, toastConfig);
+
+      history.push('/categories');
     } catch (error) {
       setIsModalVisible(!isModalVisible);
-      history.push("/categories");
-      alert("Erro ao atualizar categoria.");
+
+      toast.error(
+        `Não foi possível atualizar a categoria desejada!`,
+        toastConfig
+      );
+
+      history.push('/categories');
     }
   };
 
@@ -53,11 +63,19 @@ const CategoryDetail = () => {
     try {
       await categoryService.categoryDelete(user?._id!, category?._id!);
       setIsModalVisible(!isModalVisible);
-      history.push("/categories");
+
+      toast.success(`Categoria ${category?.name} deletada!`, toastConfig);
+
+      history.push('/categories');
     } catch (error) {
       setIsModalVisible(!isModalVisible);
-      history.push("/categories");
-      alert("Erro ao deletar categoria.");
+
+      toast.error(
+        `Não foi possível excluir a categoria desejada!`,
+        toastConfig
+      );
+
+      history.push('/categories');
     }
   };
 
@@ -83,12 +101,12 @@ const CategoryDetail = () => {
       <ModalConfirm
         modalIsOpen={isModalVisible}
         description={
-          modalAction === "Update"
+          modalAction === 'Update'
             ? modalUpdateDescription
             : modalDeleteDescription
         }
         toggleModalConfirm={
-          modalAction === "Update" ? toggleModalUpdate : toggleModalDelete
+          modalAction === 'Update' ? toggleModalUpdate : toggleModalDelete
         }
         toggleModalCancel={() => setIsModalVisible(false)}
         closeModal={() => setIsModalVisible(false)}
@@ -108,7 +126,7 @@ const CategoryDetail = () => {
             title="Atualizar categoria"
             isCreate
             onClick={() => {
-              setModalAction("Update");
+              setModalAction('Update');
               setIsModalVisible(true);
             }}
           />
@@ -116,7 +134,7 @@ const CategoryDetail = () => {
             title="Excluir categoria"
             isCreate={false}
             onClick={() => {
-              setModalAction("Delete");
+              setModalAction('Delete');
               setIsModalVisible(true);
             }}
           />

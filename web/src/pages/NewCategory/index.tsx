@@ -1,17 +1,19 @@
-import { useState } from "react";
-import { Container, Content, Options } from "./styles";
-import { useHistory } from "react-router-dom";
-import SecondaryHeader from "../../components/SecondaryHeader";
-import GenerateCategory from "../../components/GenerateCategory";
-import Button from "../../components/Button";
-import ModalConfirm from "../../components/ModalConfirm";
-import CategoryLogo from "../../assets/category-logo.svg";
-import { useAuth } from "../../context/auth";
-import categoryService from "../../services/categoryService";
+import { useState } from 'react';
+import { Container, Content, Options } from './styles';
+import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import SecondaryHeader from '../../components/SecondaryHeader';
+import GenerateCategory from '../../components/GenerateCategory';
+import Button from '../../components/Button';
+import ModalConfirm from '../../components/ModalConfirm';
+import CategoryLogo from '../../assets/category-logo.svg';
+import { useAuth } from '../../context/auth';
+import categoryService from '../../services/categoryService';
+import { toastConfig } from '../../utils/toastConfig';
 
 const NewCategory = () => {
-  const [newCategoryName, setNewCategoryName] = useState("");
-  const [newCategoryColor, setNewCategoryColor] = useState("");
+  const [newCategoryName, setNewCategoryName] = useState('');
+  const [newCategoryColor, setNewCategoryColor] = useState('');
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const { user } = useAuth();
@@ -27,11 +29,16 @@ const NewCategory = () => {
         color: newCategoryColor,
       });
       setIsModalVisible(!isModalVisible);
-      history.push("/categories");
+
+      toast.success(`Categoria ${newCategoryName} criada!`, toastConfig);
+
+      history.push('/categories');
     } catch (error) {
       setIsModalVisible(!isModalVisible);
-      history.push("/categories");
-      alert("Erro ao criar categoria.");
+
+      toast.error(`Não foi possível criar a categoria desejada!`, toastConfig);
+
+      history.push('/categories');
     }
   };
 
@@ -56,7 +63,7 @@ const NewCategory = () => {
 
         <GenerateCategory
           newName={newCategoryName}
-          oldName={newCategoryName ? newCategoryName : ""}
+          oldName={newCategoryName ? newCategoryName : ''}
           newNameSet={setNewCategoryName}
           newColor={newCategoryColor}
           newColorSet={setNewCategoryColor}
