@@ -1,16 +1,18 @@
-import { useState } from "react";
-import { Container, Content, Options } from "./styles";
-import { useHistory } from "react-router-dom";
-import SecondaryHeader from "../../components/SecondaryHeader";
-import InputApp from "../../components/InputApp";
-import Button from "../../components/Button";
-import ModalConfirm from "../../components/ModalConfirm";
-import AccountLogo from "../../assets/account-logo.svg";
-import accountService from "../../services/accountService";
-import { useAuth } from "../../context/auth";
+import { useState } from 'react';
+import { Container, Content, Options } from './styles';
+import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import SecondaryHeader from '../../components/SecondaryHeader';
+import InputApp from '../../components/InputApp';
+import Button from '../../components/Button';
+import ModalConfirm from '../../components/ModalConfirm';
+import AccountLogo from '../../assets/account-logo.svg';
+import accountService from '../../services/accountService';
+import { useAuth } from '../../context/auth';
+import { toastConfig } from '../../utils/toastConfig';
 
 const NewAccount = () => {
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const modalCreateDescription = `Você deseja criar a conta ${name}?`;
@@ -31,11 +33,16 @@ const NewAccount = () => {
     try {
       await accountService.accountCreate(user?._id!, { name });
       setIsModalVisible(!isModalVisible);
-      history.push("/accounts");
+
+      toast.success(`Conta ${name} criada!`, toastConfig);
+
+      history.push('/accounts');
     } catch (error) {
       setIsModalVisible(!isModalVisible);
-      history.push("/accounts");
-      alert("Erro ao criar conta.");
+
+      toast.error(`Não foi possível criar a conta desejada!`, toastConfig);
+
+      history.push('/accounts');
     }
   };
 

@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
-import { Container, Content, Card, Options } from "./styles";
-import { useParams, useHistory } from "react-router-dom";
-import SecondaryHeader from "../../components/SecondaryHeader";
-import InputApp from "../../components/InputApp";
-import Button from "../../components/Button";
-import ModalConfirm from "../../components/ModalConfirm";
-import { UserAccount } from "../../utils/types";
-import { formatPrice } from "../../utils/formatPrice";
-import accountService from "../../services/accountService";
-import { useAuth } from "../../context/auth";
-import { colors } from "../../styles/colors";
+import { useEffect, useState } from 'react';
+import { Container, Content, Card, Options } from './styles';
+import { useParams, useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import SecondaryHeader from '../../components/SecondaryHeader';
+import InputApp from '../../components/InputApp';
+import Button from '../../components/Button';
+import ModalConfirm from '../../components/ModalConfirm';
+import { UserAccount } from '../../utils/types';
+import { formatPrice } from '../../utils/formatPrice';
+import { toastConfig } from '../../utils/toastConfig';
+import accountService from '../../services/accountService';
+import { useAuth } from '../../context/auth';
+import { colors } from '../../styles/colors';
 
 interface AccountParams {
   id: string;
@@ -17,9 +19,9 @@ interface AccountParams {
 
 const AccountDetail = () => {
   const [account, setAccount] = useState<UserAccount>();
-  const [newAccountName, setNewAccountName] = useState("");
+  const [newAccountName, setNewAccountName] = useState('');
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [modalAction, setModalAction] = useState("");
+  const [modalAction, setModalAction] = useState('');
 
   const { user } = useAuth();
 
@@ -37,11 +39,16 @@ const AccountDetail = () => {
         newAccountName
       );
       setIsModalVisible(!isModalVisible);
-      history.push("/accounts");
+
+      toast.info(`Conta ${account?.name} atualizada!`, toastConfig);
+
+      history.push('/accounts');
     } catch (error) {
       setIsModalVisible(!isModalVisible);
-      history.push("/accounts");
-      alert("Erro ao atualizar conta.");
+
+      toast.error(`Não foi possível atualizar a conta desejada!`, toastConfig);
+
+      history.push('/accounts');
     }
   };
 
@@ -49,11 +56,16 @@ const AccountDetail = () => {
     try {
       await accountService.accountDelete(user?._id!, account?._id!);
       setIsModalVisible(!isModalVisible);
-      history.push("/accounts");
+
+      toast.success(`Conta ${account?.name} deletada!`, toastConfig);
+
+      history.push('/accounts');
     } catch (error) {
       setIsModalVisible(!isModalVisible);
-      history.push("/accounts");
-      alert("Erro ao deletar conta.");
+
+      toast.error(`Não foi possível excluir a conta desejada!`, toastConfig);
+
+      history.push('/accounts');
     }
   };
 
@@ -73,12 +85,12 @@ const AccountDetail = () => {
       <ModalConfirm
         modalIsOpen={isModalVisible}
         description={
-          modalAction === "Update"
+          modalAction === 'Update'
             ? modalUpdateDescription
             : modalDeleteDescription
         }
         toggleModalConfirm={
-          modalAction === "Update" ? toggleModalUpdate : toggleModalDelete
+          modalAction === 'Update' ? toggleModalUpdate : toggleModalDelete
         }
         toggleModalCancel={() => setIsModalVisible(false)}
         closeModal={() => setIsModalVisible(false)}
@@ -108,7 +120,10 @@ const AccountDetail = () => {
             title="Atualizar conta"
             isCreate
             onClick={() => {
-              setModalAction("Update");
+              if (!newAccountName) {
+                setNewAccountName(account?.name!);
+              }
+              setModalAction('Update');
               setIsModalVisible(true);
             }}
           />
@@ -116,7 +131,7 @@ const AccountDetail = () => {
             title="Excluir conta"
             isCreate={false}
             onClick={() => {
-              setModalAction("Delete");
+              setModalAction('Delete');
               setIsModalVisible(true);
             }}
           />
