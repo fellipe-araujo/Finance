@@ -13,6 +13,7 @@ const Content = styled.div`
   width: 100%;
   height: 100%;
   margin: 5rem 0;
+  overflow-y: scroll;
 
   display: flex;
   flex-direction: column;
