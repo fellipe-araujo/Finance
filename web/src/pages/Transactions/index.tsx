@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Container, ModalAppContainer, List, ButtonOption } from './styles';
 import { useHistory } from 'react-router-dom';
 import { FiList, FiBarChart2, FiCalendar } from 'react-icons/fi';
+import { ToastContainer, toast } from 'react-toastify';
 import Logo from '../../assets/Logo.svg';
 import ReportLogo from '../../assets/report-logo.svg';
 import PrimaryHeader from '../../components/PrimaryHeader';
@@ -21,6 +22,7 @@ import {
   fetchAllExpensesTransactions,
   fetchMonthAndYearTransactions,
 } from '../../utils/transactionsFilter';
+import { toastConfig } from '../../utils/toastConfig';
 import transactionService from '../../services/transactionService';
 import { colors } from '../../styles/colors';
 
@@ -58,10 +60,21 @@ const Transactions = () => {
   const toggleModalDelete = async (transactionId: string) => {
     try {
       await transactionService.transactionDelete(user?._id!, transactionId);
+
       setIsModalConfirmVisible(!isModalConfirmVisible);
+
+      toast.success('Transação deletada!', toastConfig);
+
+      setTimeout(function () {
+        window.location.reload();
+      }, 5000);
     } catch (error) {
       setIsModalConfirmVisible(!isModalConfirmVisible);
-      alert('Error ao deletar transação.');
+
+      toast.error(
+        `Não foi possível excluir a transação desejada!`,
+        toastConfig
+      );
     }
   };
 
@@ -94,6 +107,8 @@ const Transactions = () => {
   return (
     <Container>
       <PrimaryHeader title="Transações" goTo="/transactions/create" />
+
+      <ToastContainer />
 
       <ModalConfirm
         modalIsOpen={isModalConfirmVisible}
