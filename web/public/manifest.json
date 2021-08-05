@@ -1,6 +1,6 @@
 {
-  "short_name": "finance-app",
-  "name": "finance-app",
+  "short_name": "Finance App",
+  "name": "Finance",
   "icons": [
     {
       "src": "/images/icons-512.png",
@@ -15,6 +15,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#39393A",
+  "background_color": "#31C6E8"
 }
