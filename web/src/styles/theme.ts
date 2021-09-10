@@ -1,4 +1,5 @@
-export const theme = {
+/* eslint-disable import/no-anonymous-default-export */
+export default {
   colors: {
     purpleLight: '#7F13D4',
     purpleMedium: '#6514A4',
@@ -19,4 +20,4 @@ export const theme = {
     white: '#FFFFFF',
     black: '#000000',
   },
-}
+};
