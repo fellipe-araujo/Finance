@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { Container, List } from "./styles";
+
 import { Link } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
+
 import PrimaryHeader from "../../components/PrimaryHeader";
 import ArtifactData from "../../components/ArtifactData";
 import AccountCard from "../../components/AccountCard";
+
 import { UserAccount } from "../../utils/types";
 import { useAuth } from "../../context/auth";
 import accountService from "../../services/accountService";
