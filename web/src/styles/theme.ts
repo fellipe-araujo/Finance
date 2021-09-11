@@ -20,4 +20,15 @@ export default {
     white: '#FFFFFF',
     black: '#000000',
   },
+  fonts: {
+    weight: {
+      light: 300,
+      regular: 400,
+      bold: 700,
+    },
+    size: {
+      title: '1.8rem',
+      subTitle: '1.2rem',
+    },
+  },
 };
