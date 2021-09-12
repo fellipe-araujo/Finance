@@ -15,7 +15,7 @@ body {
   min-height: 100vh;
   font-family: 'Poppins', sans-serif;
   font-size: 1.6rem;
-  background: linear-gradient(167.96deg, #B8C0FF 0%, #42A1DC 100%);
+  background-color: #39393A;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
