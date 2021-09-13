@@ -72,21 +72,43 @@ export const fetchAllExpensesTransactions = async (user: User) => {
   };
 };
 
-export const fetchCurrentMonthTransactions = async (user: User) => {
+export const fetchCurrentPeriodTransactions = async (user: User) => {
   const currentDate = new Date();
   const currentMonth = currentDate.toLocaleString('pt-BR').slice(3, 5);
   const currentYear = currentDate.toLocaleString('pt-BR').slice(6, 10);
 
   const allTransactions = await transactionService.transactionAll(user?._id!);
 
-  const currentMonthTransactions: UserTransaction[] = allTransactions.filter(
-    (transaction: UserTransaction) =>
-      transaction.date?.toLocaleString('pt-BR').slice(0, 7) ===
-      `${currentYear}-${currentMonth}`
-  );
+  const currentPeriodTransactions: UserTransaction[] = allTransactions
+    .filter(
+      (transaction: UserTransaction) =>
+        transaction.date?.toLocaleString('pt-BR').slice(0, 7) ===
+        `${currentYear}-${currentMonth}`
+    )
+    .reverse();
+
+  const currentPeriodEntriesTransactions: UserTransaction[] =
+    currentPeriodTransactions
+      ?.filter((transaction: UserTransaction) => transaction.expense === false)
+      .reverse();
+
+  const currentPeriodExpensesTransactions: UserTransaction[] =
+    currentPeriodTransactions
+      ?.filter((transaction: UserTransaction) => transaction.expense === true)
+      .reverse();
+
+  const lastDayEntries = currentPeriodEntriesTransactions[0]?.date
+    ?.toLocaleString('pt-BR')
+    .slice(8, 10);
+
+  const lastDayExpenses = currentPeriodExpensesTransactions[0]?.date
+    ?.toLocaleString('pt-BR')
+    .slice(8, 10);
 
   return {
-    transactions: currentMonthTransactions.reverse(),
+    transactions: currentPeriodTransactions,
+    lastDayEntries,
+    lastDayExpenses,
     type: 'este mês',
   };
 };
