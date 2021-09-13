@@ -19,6 +19,14 @@ const Welcome = styled.h2`
   text-align: start;
 `;
 
+const ButtonLogOut = styled.button`
+  height: 3rem;
+  margin-top: 2rem;
+  background: transparent;
+  text-decoration: none;
+  border: 0;
+`;
+
 const MoneySvg = styled.img``;
 
 const BalancesRow = styled.div`
@@ -54,4 +62,12 @@ const Title = styled.h2`
   font-weight: ${({ theme }) => theme.fonts.weight.light};
 `;
 
-export { Header, Welcome, MoneySvg, BalancesRow, HomeContent, Title };
+export {
+  Header,
+  Welcome,
+  ButtonLogOut,
+  MoneySvg,
+  BalancesRow,
+  HomeContent,
+  Title,
+};

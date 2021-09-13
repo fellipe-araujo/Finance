@@ -1,6 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Header, Welcome, MoneySvg, BalancesRow, HomeContent, Title } from './styles';
-import { FiTrendingUp, FiTrendingDown } from 'react-icons/fi';
+import {
+  Header,
+  Welcome,
+  ButtonLogOut,
+  MoneySvg,
+  BalancesRow,
+  HomeContent,
+  Title,
+} from './styles';
+import { FiTrendingUp, FiTrendingDown, FiLogOut } from 'react-icons/fi';
 import Loading from '../Loading';
 import MoneyLogo from '../../assets/money.svg';
 // import Header from '../../components/Header';
@@ -12,32 +20,35 @@ import { useAuth } from '../../context/auth';
 import accountService from '../../services/accountService';
 import categoryService from '../../services/categoryService';
 import objectiveService from '../../services/objectiveService';
-import transactionService from '../../services/transactionService';
 import userService from '../../services/userService';
 
 import { formatPrice } from '../../utils/formatPrice';
-import { fetchMonthAndYearTransactions } from '../../utils/transactionsFilter';
+import {
+  fetchMonthAndYearTransactions,
+  fetchCurrentPeriodTransactions,
+} from '../../utils/transactionsFilter';
 import theme from '../../styles/theme';
 
 const Home = () => {
   const [username, setUsername] = useState('');
+  const [lastDayEntries, setLastDayEntries] = useState('');
+  const [lastDayExpenses, setLastDayExpenses] = useState('');
+  const [currentDay, setCurrentDay] = useState('');
   const [currentMonth, setCurrentMonth] = useState('');
   const [allEntries, setAllEntries] = useState(0);
   const [allExpenses, setAllExpenses] = useState(0);
   const [accountTotalValue, setAccountTotalValue] = useState(0);
   const [accountsTotal, setAccountsTotal] = useState(0);
   const [objectivesTotal, setObjectivesTotal] = useState(0);
-  const [transactionsTotal, setTransactionsTotal] = useState(0);
   const [categoriesTotal, setCategoriesTotal] = useState(0);
 
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
+
+  function handleSignOut() {
+    signOut();
+  }
 
   useEffect(() => {
-    const fetchName = async () => {
-      const response = await userService.userData(user!._id);
-      setUsername(response.name);
-    };
-
     const fetchPositiveBalance = async () => {
       const response = await fetchMonthAndYearTransactions(
         user!,
@@ -50,6 +61,32 @@ const Home = () => {
       setCurrentMonth(response.type!);
     };
 
+    const fetchCurrentTransactions = async () => {
+      const response = await fetchCurrentPeriodTransactions(user!);
+
+      setLastDayEntries(response.lastDayEntries!);
+      setLastDayExpenses(response.lastDayExpenses!);
+    };
+
+    const fetchCurrentDay = () => {
+      const day = new Date().toLocaleString('pt-BR').slice(0, 2);
+      setCurrentDay(day);
+    };
+
+    fetchCurrentTransactions();
+    fetchPositiveBalance();
+    fetchCurrentDay();
+  }, [
+    allEntries,
+    allExpenses,
+    currentMonth,
+    currentDay,
+    lastDayEntries,
+    lastDayExpenses,
+    user,
+  ]);
+
+  useEffect(() => {
     const fetchAccounts = async () => {
       const response = await accountService.accountAll(user!._id);
       var quantityAccount = 0;
@@ -69,22 +106,23 @@ const Home = () => {
       setObjectivesTotal(Object.keys(response).length);
     };
 
-    const fetchTransactions = async () => {
-      const response = await transactionService.transactionAll(user!._id);
-      setTransactionsTotal(Object.keys(response).length);
-    };
-
     const fetchCategories = async () => {
       const response = await categoryService.categoryAll(user!._id);
       setCategoriesTotal(Object.keys(response).length);
     };
 
-    fetchName();
-    fetchPositiveBalance();
     fetchAccounts();
     fetchObjectives();
-    fetchTransactions();
     fetchCategories();
+  }, [accountsTotal, objectivesTotal, categoriesTotal, user]);
+
+  useEffect(() => {
+    const fetchName = async () => {
+      const response = await userService.userData(user!._id);
+      setUsername(response.name);
+    };
+
+    fetchName();
   }, [user]);
 
   if (!username) {
@@ -97,7 +135,10 @@ const Home = () => {
         <Welcome>
           Bem-vindo(a), <br /> {username}
         </Welcome>
-        <div />
+
+        <ButtonLogOut onClick={handleSignOut}>
+          <FiLogOut size={30} color={theme.colors.financeBlue} />
+        </ButtonLogOut>
       </Header>
 
       <BalancesRow>
@@ -105,6 +146,11 @@ const Home = () => {
           title="Entradas"
           month={`${currentMonth}`}
           amount={formatPrice(allEntries)}
+          lastTransaction={
+            lastDayEntries
+              ? `Última entrada dia ${lastDayEntries}`
+              : 'Nenhuma entrada este mês'
+          }
         >
           <FiTrendingUp size={25} color={theme.colors.greenDark} />
         </HighlightCard>
@@ -113,6 +159,11 @@ const Home = () => {
           title="Saídas"
           month={`${currentMonth}`}
           amount={formatPrice(allExpenses)}
+          lastTransaction={
+            lastDayExpenses
+              ? `Última saída dia ${lastDayExpenses}`
+              : 'Nenhuma saída este mês'
+          }
         >
           <FiTrendingDown size={25} color={theme.colors.redDark} />
         </HighlightCard>
@@ -121,6 +172,7 @@ const Home = () => {
           title="Total"
           month={`${currentMonth}`}
           amount={formatPrice(accountTotalValue)}
+          lastTransaction={`Saldo até o dia ${currentDay}`}
         >
           <MoneySvg src={MoneyLogo} alt="Money" />
         </HighlightCard>
@@ -131,7 +183,6 @@ const Home = () => {
       <HomeContent>
         <ArtifactResume name="Contas" total={accountsTotal} />
         <ArtifactResume name="Objetivos" total={objectivesTotal} />
-        <ArtifactResume name="Transações" total={transactionsTotal} />
         <ArtifactResume name="Categorias" total={categoriesTotal} />
       </HomeContent>
     </PageContainer>
