@@ -1,17 +1,23 @@
 import { useState, useEffect } from 'react';
-import { HomeContainer, BalancesRow, HomeContent } from './styles';
+import { Header, Welcome, MoneySvg, BalancesRow, HomeContent, Title } from './styles';
+import { FiTrendingUp, FiTrendingDown } from 'react-icons/fi';
 import Loading from '../Loading';
-import Header from '../../components/Header';
+import MoneyLogo from '../../assets/money.svg';
+// import Header from '../../components/Header';
+import PageContainer from '../../components/PageContainer';
 import ArtifactResume from '../../components/ArtifactResume';
-import Balance from '../../components/Balance';
+import HighlightCard from '../../components/HighlightCard';
 import { useAuth } from '../../context/auth';
+
 import accountService from '../../services/accountService';
 import categoryService from '../../services/categoryService';
 import objectiveService from '../../services/objectiveService';
 import transactionService from '../../services/transactionService';
 import userService from '../../services/userService';
+
 import { formatPrice } from '../../utils/formatPrice';
 import { fetchMonthAndYearTransactions } from '../../utils/transactionsFilter';
+import theme from '../../styles/theme';
 
 const Home = () => {
   const [username, setUsername] = useState('');
@@ -86,37 +92,49 @@ const Home = () => {
   }
 
   return (
-    <HomeContainer>
-      <Header name="Minhas Finanças" />
-      <h1 className="home-welcome">
-        Bem-vindo(a), <br /> {username}
-      </h1>
+    <PageContainer>
+      <Header>
+        <Welcome>
+          Bem-vindo(a), <br /> {username}
+        </Welcome>
+        <div />
+      </Header>
 
       <BalancesRow>
-        <Balance title="Saldo" value={formatPrice(accountTotalValue)} balance />
-        <Balance
-          title={`Entradas - ${currentMonth}`}
-          value={formatPrice(allEntries)}
-          entry
-        />
-        <Balance
-          title={`Saídas - ${currentMonth}`}
-          value={formatPrice(allExpenses)}
-          expense
-        />
+        <HighlightCard
+          title="Entradas"
+          month={`${currentMonth}`}
+          amount={formatPrice(allEntries)}
+        >
+          <FiTrendingUp size={25} color={theme.colors.greenDark} />
+        </HighlightCard>
+
+        <HighlightCard
+          title="Saídas"
+          month={`${currentMonth}`}
+          amount={formatPrice(allExpenses)}
+        >
+          <FiTrendingDown size={25} color={theme.colors.redDark} />
+        </HighlightCard>
+
+        <HighlightCard
+          title="Total"
+          month={`${currentMonth}`}
+          amount={formatPrice(accountTotalValue)}
+        >
+          <MoneySvg src={MoneyLogo} alt="Money" />
+        </HighlightCard>
       </BalancesRow>
 
-      <HomeContent>
-        <h1 className="home-resume">Resumo</h1>
+      <Title>Resumo</Title>
 
-        <div className="home-resume-artifact-content">
-          <ArtifactResume name="Contas" total={accountsTotal} />
-          <ArtifactResume name="Objetivos" total={objectivesTotal} />
-          <ArtifactResume name="Transações" total={transactionsTotal} />
-          <ArtifactResume name="Categorias" total={categoriesTotal} />
-        </div>
+      <HomeContent>
+        <ArtifactResume name="Contas" total={accountsTotal} />
+        <ArtifactResume name="Objetivos" total={objectivesTotal} />
+        <ArtifactResume name="Transações" total={transactionsTotal} />
+        <ArtifactResume name="Categorias" total={categoriesTotal} />
       </HomeContent>
-    </HomeContainer>
+    </PageContainer>
   );
 };
 
