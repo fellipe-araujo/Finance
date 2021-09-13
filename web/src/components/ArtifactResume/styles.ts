@@ -1,46 +1,53 @@
-import styled from "styled-components";
-import { colors } from "../../styles/colors";
+import styled from 'styled-components';
 
-interface ArtifactProps {
-  artifact: string;
-}
-
-const Container = styled.div<ArtifactProps>`
+const Container = styled.div`
   width: 30rem;
   border-radius: 0.8rem;
   padding: 1rem 1.5rem;
   margin: 2rem 0;
   box-shadow: 0 0 3rem rgba(14, 9, 9, 0.2);
-  background: ${(props) => props.artifact || colors.white};
+  background: linear-gradient(
+    95.32deg,
+    ${({ theme }) => theme.colors.artifactDark} 0%,
+    ${({ theme }) => theme.colors.artifactLight} 100%
+  );
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  .artifact-title {
-    font-size: 2.2rem;
-    color: ${colors.grayMedium};
-  }
-
-  .artifact-resume-line {
-    width: 100%;
-    height: 0.1rem;
-    margin: 1rem 0;
-    background-color: ${(props) => props.title || colors.line};
-    align-self: center;
-    opacity: 0.3;
-  }
-
-  .artifact-resume-quantity {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .artifact-resume-total {
-    font-size: 1.8rem;
-    color: ${(props) => props.title || colors.grayMedium};
-  }
 `;
 
-export { Container };
+const Title = styled.h2`
+  font-size: ${({ theme }) => theme.fonts.size.title};
+  font-weight: ${({ theme }) => theme.fonts.weight.regular};
+  color: ${({ theme }) => theme.colors.white};
+`;
+
+const Separator = styled.div`
+  width: 100%;
+  height: 0.1rem;
+  margin: 1rem 0;
+  background-color: ${({ theme }) => theme.colors.artifactMedium};
+  align-self: center;
+  opacity: 0.3;
+`;
+
+const ResumeBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+const SubTitle = styled.h3`
+  font-size: ${({ theme }) => theme.fonts.size.title};
+  font-weight: ${({ theme }) => theme.fonts.weight.light};
+  color: ${({ theme }) => theme.colors.artifactMedium};
+`;
+
+const Quantity = styled.h3`
+  font-size: ${({ theme }) => theme.fonts.size.title};
+  font-weight: ${({ theme }) => theme.fonts.weight.regular};
+  color: ${({ theme }) => theme.colors.white};
+`;
+
+export { Container, Title, Separator, ResumeBox, SubTitle, Quantity };

@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-  width: 27rem;
+  min-width: 27rem;
   padding: 1.8rem;
+  margin-right: 2rem;
   border-radius: 0.5rem;
   background-color: ${({ theme }) => theme.colors.grayMedium};
   box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.1);

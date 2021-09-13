@@ -17,7 +17,7 @@ import { formatPrice } from '../../utils/formatPrice';
 import { period } from '../../utils/period';
 import {
   fetchAllTransactions,
-  fetchCurrentMonthTransactions,
+  fetchCurrentPeriodTransactions,
   fetchAllEntriesTransactions,
   fetchAllExpensesTransactions,
   fetchMonthAndYearTransactions,
@@ -80,7 +80,7 @@ const Transactions = () => {
 
   useEffect(() => {
     const fetchCurrentTransactions = async () => {
-      const currentMonthTransactions = await fetchCurrentMonthTransactions(
+      const currentMonthTransactions = await fetchCurrentPeriodTransactions(
         user!
       );
       setTransactionsFiltered(currentMonthTransactions.transactions);

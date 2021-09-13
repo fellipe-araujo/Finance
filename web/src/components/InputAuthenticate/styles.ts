@@ -1,14 +1,14 @@
 import styled from "styled-components";
-import { colors } from "../../styles/colors";
 
 const Container = styled.div`
   width: 30rem;
   margin: 4rem 0;
+`;
 
-  .input-authenticate-title {
-    color: ${colors.grayMedium};
-    font-size: 1.8rem;
-  }
+const Title = styled.h2`
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fonts.size.title};
+  font-weight: ${({ theme }) => theme.fonts.weight.regular};
 `;
 
 const Input = styled.input`
@@ -16,8 +16,8 @@ const Input = styled.input`
   height: 5rem;
   background: transparent;
   border: none;
-  border-bottom: 0.1rem solid ${colors.accountDark};
-  color: #39393a;
+  border-bottom: 0.1rem solid ${({ theme }) => theme.colors.purpleDark};
+  color: ${({ theme }) => theme.colors.grayLight};
 `;
 
-export { Container, Input };
+export { Container, Title, Input };

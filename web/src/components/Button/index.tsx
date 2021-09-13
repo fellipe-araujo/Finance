@@ -1,4 +1,4 @@
-import { ButtonContainer } from "./styles";
+import { ButtonContainer, Title } from "./styles";
 
 interface ButtonProps {
   title: string;
@@ -9,7 +9,7 @@ interface ButtonProps {
 const Button = ({ title, isCreate, onClick }: ButtonProps) => {
   return (
     <ButtonContainer create={isCreate} onClick={onClick}>
-      <h1 className="button-title">{title}</h1>
+      <Title>{title}</Title>
     </ButtonContainer>
   );
 };
