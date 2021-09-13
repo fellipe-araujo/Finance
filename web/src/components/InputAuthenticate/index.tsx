@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Input } from "./styles";
+import { Container, Title, Input } from "./styles";
 
 interface InputProps {
   title: string;
@@ -11,7 +11,7 @@ interface InputProps {
 const InputAuthenticate = ({ title, type, value, onChange }: InputProps) => {
   return (
     <Container>
-      <h2 className="input-authenticate-title">{title}</h2>
+      <Title>{title}</Title>
       <Input required type={type} value={value} onChange={onChange} />
     </Container>
   );
