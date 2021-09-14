@@ -1,17 +1,17 @@
-import { useState, useEffect } from "react";
-import { Container, List } from "./styles";
+import { useState, useEffect } from 'react';
+import { List, LinkAccountDetail } from './styles';
 
-import { Link } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 
-import PrimaryHeader from "../../components/PrimaryHeader";
-import ArtifactData from "../../components/ArtifactData";
-import AccountCard from "../../components/AccountCard";
+import PrimaryHeader from '../../components/PrimaryHeader';
+import ArtifactData from '../../components/ArtifactData';
+import AccountCard from '../../components/AccountCard';
+import PageContainer from '../../components/PageContainer';
 
-import { UserAccount } from "../../utils/types";
-import { useAuth } from "../../context/auth";
-import accountService from "../../services/accountService";
-import { formatPrice } from "../../utils/formatPrice";
+import { UserAccount } from '../../utils/types';
+import { useAuth } from '../../context/auth';
+import accountService from '../../services/accountService';
+import { formatPrice } from '../../utils/formatPrice';
 
 const Accounts = () => {
   const [accounts, setAccounts] = useState<UserAccount[]>([]);
@@ -37,7 +37,7 @@ const Accounts = () => {
   }, [user]);
 
   return (
-    <Container>
+    <PageContainer>
       <PrimaryHeader title="Minhas Contas" goTo="accounts/create" />
 
       <ToastContainer />
@@ -46,24 +46,19 @@ const Accounts = () => {
         title="Total"
         subTitle="acumulado"
         value={formatPrice(accountsAmount)}
-        artifactType="Contas"
       />
 
       <List>
         {accounts.map((account) => (
-          <Link
-            key={account._id}
-            className="accounts-link"
-            to={`/accounts/${account._id}`}
-          >
+          <LinkAccountDetail key={account._id} to={`/accounts/${account._id}`}>
             <AccountCard
               title={account.name}
               value={formatPrice(account.balance!)}
             />
-          </Link>
+          </LinkAccountDetail>
         ))}
       </List>
-    </Container>
+    </PageContainer>
   );
 };
 

@@ -1,10 +1,9 @@
 import styled from "styled-components";
-import { colors } from "../../styles/colors";
 
 const Container = styled.div`
-  width: 100%;
+  width: 30rem;
   height: 10rem;
-  background-color: ${colors.white};
+  background-color: ${({ theme }) => theme.colors.grayMedium};
   border-radius: 0.8rem;
   overflow: hidden;
   margin: 1.5rem 0;
@@ -17,18 +16,23 @@ const Container = styled.div`
 const TitleBox = styled.div`
   width: 40%;
   height: 100%;
-  background: linear-gradient(119.36deg, #a9def9 0%, #e4f2fa 100%);
+  background: linear-gradient(
+    119.36deg,
+    ${({ theme }) => theme.colors.artifactDark} 0%,
+    ${({ theme }) => theme.colors.artifactLight} 100%
+  );
   padding: 0 1rem;
 
   display: flex;
   align-items: center;
   justify-content: center;
+`;
 
-  .account-card-title {
-    font-size: 2.4rem;
-    color: ${colors.grayMedium};
-    text-align: center;
-  }
+const Title = styled.h2`
+  font-size: ${({ theme }) => theme.fonts.size.title};
+  font-weight: ${({ theme }) => theme.fonts.weight.light};
+  color: ${({ theme }) => theme.colors.white};
+  text-align: center;
 `;
 
 const ValueBox = styled.div`
@@ -39,11 +43,11 @@ const ValueBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  .account-card-value {
-    font-size: 2.6rem;
-    color: ${colors.grayLight};
-  }
 `;
 
-export { Container, TitleBox, ValueBox };
+const Value = styled.h2`
+  font-size: ${({ theme }) => theme.fonts.size.title};
+  color: ${({ theme }) => theme.colors.grayLight};
+`;
+
+export { Container, TitleBox, Title, ValueBox, Value };

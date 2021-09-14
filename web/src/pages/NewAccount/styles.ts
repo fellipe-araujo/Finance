@@ -12,7 +12,7 @@ const Container = styled.div`
 const Content = styled.div`
   width: 100%;
   height: 100%;
-  margin: 5rem 0;
+  padding-top: 15rem;
   overflow-y: scroll;
 
   display: flex;
@@ -20,7 +20,7 @@ const Content = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  .new-account-image {
+  > img {
     width: 30rem;
   }
 `;
