@@ -1,4 +1,4 @@
-import { Container, TitleBox, ValueBox } from "./styles";
+import { Container, TitleBox, Title, ValueBox, Value } from "./styles";
 
 interface AccountCardProps {
   title: string;
@@ -9,10 +9,10 @@ const AccountCard = ({ title, value }: AccountCardProps) => {
   return (
     <Container>
       <TitleBox>
-        <h1 className="account-card-title">{title}</h1>
+        <Title className="account-card-title">{title}</Title>
       </TitleBox>
       <ValueBox>
-        <h1 className="account-card-value">{value}</h1>
+        <Value className="account-card-value">{value}</Value>
       </ValueBox>
     </Container>
   );
