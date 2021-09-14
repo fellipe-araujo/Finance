@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
-import { ObjectivesContainer, ObjectivesList } from "./styles";
+import { ObjectivesList } from "./styles";
+
 import { Link } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
+
 import PrimaryHeader from "../../components/PrimaryHeader";
 import ArtifactData from "../../components/ArtifactData";
 import ProgressCard from "../../components/ProgressCard";
+import PageContainer from "../../components/PageContainer";
+
 import { UserObjective } from "../../utils/types";
 import { formatPrice } from "../../utils/formatPrice";
 import { useAuth } from "../../context/auth";
@@ -28,7 +32,7 @@ const Objectives = () => {
   }, [user?._id]);
 
   return (
-    <ObjectivesContainer>
+    <PageContainer>
       <PrimaryHeader title="Meus Objetivos" goTo="/objectives/create" />
 
       <ToastContainer />
@@ -54,7 +58,7 @@ const Objectives = () => {
           </Link>
         ))}
       </ObjectivesList>
-    </ObjectivesContainer>
+    </PageContainer>
   );
 };
 
