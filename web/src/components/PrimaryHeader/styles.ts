@@ -1,20 +1,24 @@
 import styled from "styled-components";
-import { colors } from "../../styles/colors";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
-  width: 100%;
+  width: 120%;
   height: 15rem;
-  background-color: ${colors.grayMedium};
-  border-bottom-left-radius: 8rem;
-  border-bottom-right-radius: 8rem;
+  /* margin-bottom: 10rem; */
+  background-color: ${({ theme }) => theme.colors.purpleMedium};
+  border-bottom-left-radius: 20rem;
+  border-bottom-right-radius: 20rem;
 
   display: flex;
   justify-content: center;
   align-items: flex-start;
+
+  position: fixed;
+  top: 0;
 `;
 
 const Content = styled.div`
-  width: 90%;
+  width: 75%;
   margin-top: 2rem;
 
   display: flex;
@@ -22,16 +26,20 @@ const Content = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  .primary-header-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .primary-header-title {
-    color: ${colors.white};
-    font-size: 2.6rem;
+  > div {
+    width: 3rem;
   }
 `;
 
-export { Container, Content };
+const LinkNewAccount = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Title = styled.h2`
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fonts.size.title};
+`;
+
+export { Container, Content, LinkNewAccount, Title };

@@ -26,7 +26,7 @@ const ButtonContainer = styled.button<ButtonProps>`
 
 const Title = styled.h2`
   color: ${({ theme }) => theme.colors.white};
-  font-size: 2.4rem;
+  font-size: 2rem;
 `;
 
 export { ButtonContainer, Title };
