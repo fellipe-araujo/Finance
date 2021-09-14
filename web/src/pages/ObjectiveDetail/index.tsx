@@ -1,15 +1,27 @@
 import { useState, useEffect } from 'react';
-import { Container, Content, Option } from './styles';
+import {
+  Content,
+  InputsBox,
+  Label,
+  OptionsBox,
+  Option,
+  Title,
+  ButtonsBox,
+} from './styles';
+
 import { useHistory, useParams } from 'react-router-dom';
 import CurrencyInput from 'react-currency-input-field';
 import { toast } from 'react-toastify';
+
 import SecondaryHeader from '../../components/SecondaryHeader';
 import ObjectiveDetailCard from '../../components/ObjectiveDetailCard';
 import InputApp from '../../components/InputApp';
 import Button from '../../components/Button';
 import ModalConfirm from '../../components/ModalConfirm';
-import { UserObjective } from '../../utils/types';
+import PageContainer from '../../components/PageContainer';
+
 import { useAuth } from '../../context/auth';
+import { UserObjective } from '../../utils/types';
 import { formatPrice } from '../../utils/formatPrice';
 import { toastConfig } from '../../utils/toastConfig';
 import objectiveService from '../../services/objectiveService';
@@ -93,9 +105,9 @@ const ObjectiveDetail = () => {
       history.push('/objectives');
     } catch (error) {
       setIsModalVisible(!isModalVisible);
-      
+
       toast.error(`Não foi possível excluir o objetivo desejado!`, toastConfig);
-      
+
       history.push('/objectives');
     }
   };
@@ -114,7 +126,7 @@ const ObjectiveDetail = () => {
   }, [params.id, user?._id]);
 
   return (
-    <Container>
+    <PageContainer>
       <SecondaryHeader title="Detalhe" goBack="/objectives" />
 
       <ModalConfirm
@@ -140,22 +152,20 @@ const ObjectiveDetail = () => {
           description={objective?.description!}
         />
 
-        <div className="objective-detail-inputs">
+        <InputsBox>
           <InputApp
             title="Nome:"
-            name="Objetivos"
             value={newObjectiveName}
             onChange={(e) => setNewObjectiveName(e.target.value)}
           />
 
           <InputApp
             title="Descrição:"
-            name="Objetivos"
             value={newObjectiveDescription}
             onChange={(e) => setNewObjectiveDescription(e.target.value)}
           />
 
-          <h1 className="objective-detail-value-title">Valor:</h1>
+          <Label>Valor:</Label>
           <CurrencyInput
             className="objective-detail-input-currency"
             placeholder="R$ 1.000,00"
@@ -165,23 +175,23 @@ const ObjectiveDetail = () => {
             intlConfig={{ locale: 'pt-BR', currency: 'BRL' }}
           />
 
-          <div className="option-container">
+          <OptionsBox>
             <Option
               add={optionAdd ? true : false}
               onClick={() => setOptionAdd(true)}
             >
-              <h1 className="option-title">Adicionar</h1>
+              <Title add={optionAdd ? true : false}>Adicionar</Title>
             </Option>
 
             <Option
               remove={optionAdd ? false : true}
               onClick={() => setOptionAdd(false)}
             >
-              <h1 className="option-title">Retirar</h1>
+              <Title remove={optionAdd ? false : true}>Retirar</Title>
             </Option>
-          </div>
+          </OptionsBox>
 
-          <div className="objective-button-container">
+          <ButtonsBox className="objective-button-container">
             <Button
               title="Atualizar Objetivo"
               isCreate
@@ -198,10 +208,10 @@ const ObjectiveDetail = () => {
                 setIsModalVisible(true);
               }}
             />
-          </div>
-        </div>
+          </ButtonsBox>
+        </InputsBox>
       </Content>
-    </Container>
+    </PageContainer>
   );
 };
 
