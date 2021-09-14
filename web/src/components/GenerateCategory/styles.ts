@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { colors } from "../../styles/colors";
 
 const Container = styled.div`
   width: 100%;
@@ -9,37 +8,38 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
 
-  .generate-category-title {
-    align-self: flex-start;
-    margin-left: 2rem;
-    font-size: 1.8rem;
-  }
+const Label = styled.h2`
+  align-self: flex-start;
+  margin-left: 2rem;
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fonts.size.subTitle};
+`;
 
-  .category-card-container {
-    width: 70%;
-  }
+const CategoryBox = styled.div`
+  width: 70%;
+`;
 
-  .generate-category-input-group {
-    width: 80%;
-    height: 5rem;
-    margin-top: 10;
+const GenerateCategoryBox = styled.div`
+  width: 80%;
+  height: 5rem;
+  margin-top: 10;
 
-    display: flex;
-    flex-direction: row;
-  }
+  display: flex;
+  flex-direction: row;
 `;
 
 const Input = styled.input`
   width: 80%;
   height: 100%;
-  background-color: ${colors.white};
+  background-color: ${({ theme }) => theme.colors.grayMedium};
   border-top-left-radius: 0.8rem;
   border-bottom-left-radius: 0.8rem;
-  border: 0.2rem solid ${colors.categoryDark};
+  border: 0.2rem solid ${({ theme }) => theme.colors.artifactDark};
   border-right-width: 0;
   padding: 0.8rem;
-  color: ${colors.grayMedium};
+  color: ${({ theme }) => theme.colors.grayLight};
 `;
 
 const ButtonGenerate = styled.button`
@@ -47,7 +47,7 @@ const ButtonGenerate = styled.button`
   height: 100%;
   align-items: center;
   justify-content: center;
-  background-color: ${colors.categoryDark};
+  background-color: ${({ theme }) => theme.colors.artifactDark};
   border: 0;
   border-top-right-radius: 0.8rem;
   border-bottom-right-radius: 0.8rem;
@@ -57,4 +57,4 @@ const ButtonGenerate = styled.button`
   align-items: center;
 `;
 
-export { Container, Input, ButtonGenerate };
+export { Container, Label, CategoryBox, GenerateCategoryBox, Input, ButtonGenerate };

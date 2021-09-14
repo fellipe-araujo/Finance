@@ -1,11 +1,15 @@
 import { useState } from 'react';
-import { Container, Content, Options } from './styles';
+import { Content, Options } from './styles';
+
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
 import SecondaryHeader from '../../components/SecondaryHeader';
 import GenerateCategory from '../../components/GenerateCategory';
 import Button from '../../components/Button';
 import ModalConfirm from '../../components/ModalConfirm';
+import PageContainer from '../../components/PageContainer';
+
 import CategoryLogo from '../../assets/category-logo.svg';
 import { useAuth } from '../../context/auth';
 import categoryService from '../../services/categoryService';
@@ -43,7 +47,7 @@ const NewCategory = () => {
   };
 
   return (
-    <Container>
+    <PageContainer>
       <SecondaryHeader title="Nova Categoria" goBack="/categories" />
 
       <ModalConfirm
@@ -56,7 +60,6 @@ const NewCategory = () => {
 
       <Content>
         <img
-          className="new-category-image"
           src={CategoryLogo}
           alt="Category Logo"
         />
@@ -77,7 +80,7 @@ const NewCategory = () => {
           />
         </Options>
       </Content>
-    </Container>
+    </PageContainer>
   );
 };
 

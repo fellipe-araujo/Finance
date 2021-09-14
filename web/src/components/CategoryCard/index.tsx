@@ -1,4 +1,4 @@
-import { Container } from "./styles";
+import { Container, BoxColor, Title } from './styles';
 
 interface CategoryCardProps {
   name: string;
@@ -7,8 +7,9 @@ interface CategoryCardProps {
 
 const CategoryCard = ({ name, color }: CategoryCardProps) => {
   return (
-    <Container color={color}>
-      <h1 className="category-card-title">{name}</h1>
+    <Container>
+      <BoxColor color={color} />
+      <Title>{name}</Title>
     </Container>
   );
 };

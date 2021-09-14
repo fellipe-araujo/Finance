@@ -1,18 +1,9 @@
 import styled from 'styled-components';
 
-const Container = styled.div`
-  width: 100%;
-  height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
 const Content = styled.div`
   width: 100%;
   height: 100%;
-  margin: 5rem 0;
+  padding-top: 13rem;
 
   display: flex;
   flex-direction: column;
@@ -28,4 +19,4 @@ const Options = styled.div`
   align-items: center;
 `;
 
-export { Container, Content, Options };
+export { Content, Options };
