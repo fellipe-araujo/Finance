@@ -6,6 +6,7 @@ const Container = styled.div`
   height: 12rem;
   background-color: ${({ theme }) => theme.colors.purpleMedium};
   padding: 0 2rem;
+  z-index: 10;
 
   display: flex;
   flex-direction: row;
