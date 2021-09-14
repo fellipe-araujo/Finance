@@ -34,7 +34,6 @@ const Categories = () => {
         title="Categorias"
         subTitle="totais"
         value={categories.length.toString()}
-        artifactType="Categorias"
       />
 
       <List>

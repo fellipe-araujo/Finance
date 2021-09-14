@@ -1,30 +1,15 @@
-import { Container, Input } from "./styles";
-import { setBorder } from "../../utils/setBorder";
+import { InputHTMLAttributes } from 'react';
+import { Container, Label, Input } from './styles';
 
-interface InputAppProps {
+interface InputAppProps extends InputHTMLAttributes<HTMLInputElement> {
   title: string;
-  name: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  required?: boolean;
 }
 
-const InputApp = ({
-  title,
-  name,
-  value,
-  onChange,
-  required,
-}: InputAppProps) => {
+const InputApp = ({ title, ...rest }: InputAppProps) => {
   return (
     <Container>
-      <h1 className="input-app-title">{title}</h1>
-      <Input
-        border={setBorder(name)}
-        value={value}
-        onChange={onChange}
-        required={required}
-      />
+      <Label>{title}</Label>
+      <Input {...rest} />
     </Container>
   );
 };

@@ -37,7 +37,6 @@ const Objectives = () => {
         title="Objetivos"
         subTitle="em processo"
         value={objectivesAmount.toString()}
-        artifactType="Objetivos"
       />
 
       <ObjectivesList>

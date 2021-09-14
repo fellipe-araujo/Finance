@@ -190,7 +190,6 @@ const Transactions = () => {
         title="Transações"
         subTitle={typeFilter}
         value={transactionsFiltered.length.toString()}
-        artifactType="Transações"
       />
 
       <div className="buttons-container">

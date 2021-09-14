@@ -46,7 +46,6 @@ const Accounts = () => {
         title="Total"
         subTitle="acumulado"
         value={formatPrice(accountsAmount)}
-        artifactType="Contas"
       />
 
       <List>
