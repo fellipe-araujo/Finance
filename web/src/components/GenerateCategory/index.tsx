@@ -1,8 +1,18 @@
-import { Container, Input, ButtonGenerate } from "./styles";
-import { FiRefreshCw } from "react-icons/fi";
-import CategoryCard from "../../components/CategoryCard";
-import { randomColor } from "../../utils/generateColor";
-import { colors } from "../../styles/colors";
+import {
+  Container,
+  Label,
+  CategoryBox,
+  GenerateCategoryBox,
+  Input,
+  ButtonGenerate,
+} from './styles';
+
+import { FiRefreshCw } from 'react-icons/fi';
+
+import CategoryCard from '../../components/CategoryCard';
+
+import { randomColor } from '../../utils/generateColor';
+import theme from '../../styles/theme';
 
 interface GenerateCategoryProps {
   newName: string;
@@ -26,17 +36,19 @@ const GenerateCategory = ({
 
   return (
     <Container>
-      <h1 className="generate-category-title">Pré-visualização:</h1>
-      <div className="category-card-container">
-        <CategoryCard name={oldName} color={newColor} />
-      </div>
+      <Label className="generate-category-title">Pré-visualização:</Label>
 
-      <div className="generate-category-input-group">
+      <CategoryBox className="category-card-container">
+        <CategoryCard name={oldName} color={newColor} />
+      </CategoryBox>
+
+      <GenerateCategoryBox className="generate-category-input-group">
         <Input value={newName} onChange={(e) => newNameSet(e.target.value)} />
+
         <ButtonGenerate onClick={handleGenerateColor}>
-          <FiRefreshCw size={16} color={colors.grayLight} />
+          <FiRefreshCw size={16} color={theme.colors.grayLight} />
         </ButtonGenerate>
-      </div>
+      </GenerateCategoryBox>
     </Container>
   );
 };
