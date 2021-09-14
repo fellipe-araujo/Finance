@@ -1,11 +1,15 @@
 import { useState } from 'react';
-import { Container, Content, Options } from './styles';
+import { Content, Options } from './styles';
+
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
 import SecondaryHeader from '../../components/SecondaryHeader';
 import InputApp from '../../components/InputApp';
 import Button from '../../components/Button';
 import ModalConfirm from '../../components/ModalConfirm';
+import PageContainer from '../../components/PageContainer';
+
 import AccountLogo from '../../assets/account-logo.svg';
 import accountService from '../../services/accountService';
 import { useAuth } from '../../context/auth';
@@ -47,7 +51,7 @@ const NewAccount = () => {
   };
 
   return (
-    <Container>
+    <PageContainer>
       <SecondaryHeader title="Nova Conta" goBack="/accounts" />
 
       <ModalConfirm
@@ -59,11 +63,7 @@ const NewAccount = () => {
       />
 
       <Content>
-        <img
-          className="new-account-image"
-          src={AccountLogo}
-          alt="Account Logo"
-        />
+        <img src={AccountLogo} alt="Account Logo" />
 
         <Options>
           <InputApp
@@ -75,7 +75,7 @@ const NewAccount = () => {
           <Button title="Criar conta" isCreate onClick={() => openModal()} />
         </Options>
       </Content>
-    </Container>
+    </PageContainer>
   );
 };
 
