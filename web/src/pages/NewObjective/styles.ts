@@ -1,26 +1,16 @@
 import styled from 'styled-components';
-import { colors } from '../../styles/colors';
-
-const Container = styled.div`
-  width: 100%;
-  height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
 
 const Content = styled.div`
   width: 100%;
   height: 100%;
-  margin: 5rem 0;
+  padding-top: 13rem;
   overflow-y: scroll;
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  .new-objective-image {
+  > img {
     width: 25rem;
   }
 `;
@@ -32,22 +22,23 @@ const Options = styled.div`
   flex-direction: column;
   align-items: center;
 
-  .new-objective-value-title {
-    font-size: 1.8rem;
-    color: ${colors.grayMedium};
-    margin: 1.5rem 0;
-
-    align-self: flex-start;
-  }
-
   .new-objective-input-currency {
     width: 100%;
     height: 4rem;
-    color: ${colors.grayMedium};
+    background-color: ${({ theme }) => theme.colors.grayMedium};
+    color: ${({ theme }) => theme.colors.grayLight};
     border-radius: 0.8rem;
     padding: 0 1rem;
-    border: 0.2rem solid ${colors.objectiveDark};
+    border: 0.1rem solid ${({ theme }) => theme.colors.artifactDark};
   }
 `;
 
-export { Container, Content, Options };
+const SubTitle = styled.h2`
+  font-size: ${({ theme }) => theme.fonts.size.subTitle};
+  color: ${({ theme }) => theme.colors.white};
+  margin-bottom: 1.5rem;
+
+  align-self: flex-start;
+`;
+
+export { Content, Options, SubTitle };
