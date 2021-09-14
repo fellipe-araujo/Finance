@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react';
-import { Container, Content, Options } from './styles';
+import { Content, Options } from './styles';
+
 import { useHistory, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
 import SecondaryHeader from '../../components/SecondaryHeader';
 import GenerateCategory from '../../components/GenerateCategory';
 import Button from '../../components/Button';
 import ModalConfirm from '../../components/ModalConfirm';
+import PageContainer from '../../components/PageContainer';
+
 import { useAuth } from '../../context/auth';
 import { UserCategory } from '../../utils/types';
 import { toastConfig } from '../../utils/toastConfig';
@@ -95,7 +99,7 @@ const CategoryDetail = () => {
   }, [category?.color, category?.name, params?.id, user?._id]);
 
   return (
-    <Container>
+    <PageContainer>
       <SecondaryHeader title="Detalhes" goBack="/categories" />
 
       <ModalConfirm
@@ -130,6 +134,7 @@ const CategoryDetail = () => {
               setIsModalVisible(true);
             }}
           />
+
           <Button
             title="Excluir categoria"
             isCreate={false}
@@ -140,7 +145,7 @@ const CategoryDetail = () => {
           />
         </Options>
       </Content>
-    </Container>
+    </PageContainer>
   );
 };
 
