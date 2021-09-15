@@ -4,7 +4,7 @@ const Header = styled.div`
   width: 100%;
   height: 24rem;
   padding: 3rem 2rem 0;
-  background-color: ${({ theme }) => theme.colors.purpleDark};
+  background-color: ${({ theme }) => theme.colors.purpleMedium};
 
   display: flex;
   flex-direction: row;
