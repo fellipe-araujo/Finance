@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 const List = styled.div`
   height: 65%;
+  margin-top: 30rem;
   overflow-y: scroll;
 `;
 
