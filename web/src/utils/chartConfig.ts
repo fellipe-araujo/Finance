@@ -1,4 +1,5 @@
-import { formatPrice } from "./formatPrice";
+import theme from '../styles/theme';
+import { formatPrice } from './formatPrice';
 
 export const chartConfig = (
   seriesColors: string[],
@@ -8,33 +9,33 @@ export const chartConfig = (
   const config = {
     options: {
       chart: {
-        background: "transparent",
+        background: 'transparent',
       },
       dataLabels: {
         enabled: true,
         style: {
           colors: dataLabelsColors,
-          fontWeight: 400,
-          fontFamily: "Nunito, sans-serif",
-          fontSize: "16px",
+          fontWeight: 300,
+          fontFamily: 'Poppins, sans-serif',
+          fontSize: '16px',
         },
       },
       colors: seriesColors,
       labels: seriesLabels,
       stroke: {
-        show: true,
+        show: false,
       },
       legend: {
         show: false,
       },
       noData: {
-        text: "Sem despesas este mês",
+        text: 'Sem despesas este mês',
         offsetX: 0,
         offsetY: 0,
         style: {
-          color: "#202020",
-          fontFamily: "Nunito, sans-serif",
-          fontSize: "16px",
+          color: theme.colors.white,
+          fontFamily: 'Poppins, sans-serif',
+          fontSize: '16px',
         },
       },
       plotOptions: {
@@ -44,19 +45,19 @@ export const chartConfig = (
               show: true,
               value: {
                 show: true,
-                fontSize: "16px",
-                fontFamily: "Nunito, sans-serif",
+                fontSize: '16px',
+                fontFamily: 'Poppins, sans-serif',
                 fontWeight: 400,
-                color: "#39393A",
+                color: theme.colors.grayLight,
               },
               total: {
                 showAlways: true,
                 show: true,
-                label: "Total",
-                fontWeight: 700,
-                color: "#202020",
-                fontFamily: "Nunito, sans-serif",
-                fontSize: "20px",
+                label: 'Total',
+                fontWeight: 400,
+                color: theme.colors.white,
+                fontFamily: 'Poppins, sans-serif',
+                fontSize: '20px',
                 formatter: function (w: any) {
                   return formatPrice(
                     w.globals.seriesTotals.reduce((a: any, b: any) => {
