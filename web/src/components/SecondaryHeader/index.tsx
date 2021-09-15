@@ -11,7 +11,7 @@ const SecondaryHeader = ({ goBack, title }: SecondaryHeaderProps) => {
   return (
     <Container>
       <LinkGoBack className="secondary-header-link" to={`${goBack}`}>
-        <FiArrowLeft size={30} color={theme.colors.white} />
+        <FiArrowLeft size={30} color={theme.colors.financeBlue} />
       </LinkGoBack>
 
       <Title className="secondary-header-title">{title}</Title>

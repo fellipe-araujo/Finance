@@ -14,12 +14,15 @@ import {
   FiDollarSign,
   FiLogOut,
 } from 'react-icons/fi';
+
+import WelcomeApp from '../WelcomeApp';
 import Loading from '../Loading';
 
 import PageContainer from '../../components/PageContainer';
 import ArtifactResume from '../../components/ArtifactResume';
 import HighlightCard from '../../components/HighlightCard';
 import { useAuth } from '../../context/auth';
+import { useActivePage } from '../../context/activePage';
 
 import accountService from '../../services/accountService';
 import categoryService from '../../services/categoryService';
@@ -47,6 +50,7 @@ const Home = () => {
   const [categoriesTotal, setCategoriesTotal] = useState(0);
 
   const { user, signOut } = useAuth();
+  const { firstTimeOpenApp } = useActivePage();
 
   function handleSignOut() {
     signOut();
@@ -129,7 +133,11 @@ const Home = () => {
     fetchName();
   }, [user]);
 
-  if (!username) {
+  if (firstTimeOpenApp) {
+    return <WelcomeApp status={firstTimeOpenApp} />;
+  }
+
+  if (!accountTotalValue) {
     return <Loading />;
   }
 
