@@ -1,12 +1,12 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 
-interface ActivePageProps {
-  active: 'home' | 'accounts' | 'transactions' | 'objectives' | 'categories';
-}
+// interface ActivePageProps {
+//   active: 'home' | 'accounts' | 'transactions' | 'objectives' | 'categories';
+// }
 
 interface ActivePageContextData {
-  setPage(page: ActivePageProps): void;
-  activePage: ActivePageProps;
+  setPage(page: string): void;
+  activePage: string;
 }
 
 const ActivePageContext = createContext<ActivePageContextData>(
@@ -14,23 +14,33 @@ const ActivePageContext = createContext<ActivePageContextData>(
 );
 
 export const ActivePageProvider: React.FC = ({ children }) => {
-  const [activePage, setActivePage] = useState<ActivePageProps>({
-    active: 'home',
-  });
+  const [activePage, setActivePage] = useState('home');
 
-  function setPage(page: ActivePageProps) {
-    if (page.active === 'home') {
-      setActivePage({ active: 'home' });
-    } else if (page.active === 'accounts') {
-      setActivePage({ active: 'accounts' });
-    } else if (page.active === 'transactions') {
-      setActivePage({ active: 'transactions' });
-    } else if (page.active === 'objectives') {
-      setActivePage({ active: 'objectives' });
-    } else if (page.active === 'categories') {
-      setActivePage({ active: 'categories' });
+  function setPage(page: string) {
+    if (page === 'home') {
+      setActivePage('home');
+    } else if (page === 'accounts') {
+      setActivePage('accounts');
+    } else if (page === 'transactions') {
+      setActivePage('transactions');
+    } else if (page === 'objectives') {
+      setActivePage('objectives');
+    } else if (page === 'categories') {
+      setActivePage('categories');
     }
   }
+
+  useEffect(() => {
+    function fetchPage() {
+      const response = sessionStorage.getItem('@Finance:current_page');
+  
+      if (response) {
+        setActivePage(response);
+      }
+    }
+
+    fetchPage();
+  }, []);
 
   return (
     <ActivePageContext.Provider value={{ setPage, activePage }}>
