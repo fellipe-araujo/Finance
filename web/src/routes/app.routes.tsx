@@ -1,5 +1,8 @@
 import { Switch } from 'react-router-dom';
+
 import PrivateRoute from '../components/PrivateRoute';
+import BottomBar from '../components/BottomBar';
+
 import Home from '../pages/Home';
 import Accounts from '../pages/Accounts';
 import NewAccount from '../pages/NewAccount';
@@ -13,7 +16,6 @@ import CategoryDetail from '../pages/CategoryDetail';
 import Transactions from '../pages/Transactions';
 import NewTransaction from '../pages/NewTransaction';
 import TransactionsReport from '../pages/TransactionsReport';
-import BottomBar from '../components/BottomBar';
 
 const AppRoutes = () => {
   return (
