@@ -1,53 +1,53 @@
 import styled from 'styled-components';
-import { colors } from '../../styles/colors';
 
 const Container = styled.div`
   width: 90%;
-  background-color: ${colors.white};
+  background-color: ${({ theme }) => theme.colors.grayMedium};
   border-radius: 0.8rem;
   padding: 1rem;
 
   display: flex;
   flex-direction: column;
-
-  .objective-title {
-    font-size: 2.2rem;
-    color: ${colors.grayDark};
-  }
-
-  .objective-card-line {
-    width: 95%;
-    height: 0.1rem;
-    background-color: ${colors.line};
-    margin: 1rem 0;
-
-    align-self: center;
-  }
-
-  .objective-value-group {
-    width: 100%;
-  
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .objetive-description {
-    margin-left: 2rem;
-    font-size: 1.6rem;
-    color: ${colors.grayLight};
-  }
 `;
 
 const Title = styled.h1`
-  font-size: 1.6rem;
-  color: ${colors.grayMedium};
+  font-size: 2rem;
+  color: ${({ theme }) => theme.colors.white};
 `;
 
-const Value = styled(Title)`
-  font-size: 1.6rem;
-  color: ${props => props.color};
+const Separator = styled.div`
+  width: 95%;
+  height: 0.1rem;
+  background-color: ${({ theme }) => theme.colors.grayLight};
+  margin: 1rem 0;
+
+  align-self: center;
 `;
 
-export { Container, Title, Value };
+const ValuesBox = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const SubTitle = styled.h2`
+  font-size: 1.6rem;
+  font-weight: ${({ theme }) => theme.fonts.weight.light};
+  color: ${({ theme }) => theme.colors.white};
+`;
+
+const Value = styled.h2`
+  font-size: 1.6rem;
+  color: ${(props) => props.color};
+`;
+
+const Description = styled.h2`
+  margin-left: 2rem;
+  font-size: ${({ theme }) => theme.fonts.size.subTitle};
+  color: ${({ theme }) => theme.colors.white};
+`;
+
+export { Container, Title, Separator, ValuesBox, SubTitle, Value, Description };

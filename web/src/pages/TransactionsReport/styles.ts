@@ -1,32 +1,45 @@
 import styled from "styled-components";
-import { colors } from "../../styles/colors";
 
 interface Props {
   backgroundColor: string;
 }
 
-const Container = styled.div`
-  height: 100vh;
+const Content = styled.div`
+  width: 100%;
+  height: 100%;
+  padding-top: 13rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Title = styled.h2`
+  margin: 2rem 0;
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fonts.size.title};
+  font-weight: ${({ theme }) => theme.fonts.weight.light};
+`;
+
+const List = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  .report-title {
-    margin: 2rem 0;
-    color: ${colors.grayMedium};
-  }
-
-  .report-logo {
+  > img {
     width: 25rem;
     margin-bottom: 3rem;
   }
 `;
 
-const ReportCardCategory = styled.div<Props>`
+const ReportCardCategory = styled.div`
   width: 90%;
-  height: 4rem;
-  background-color: ${colors.white};
+  min-height: 4rem;
+  background-color: ${({ theme }) => theme.colors.grayMedium};
   margin: 1rem 0;
   border-radius: 0.8rem;
   overflow: hidden;
@@ -36,31 +49,34 @@ const ReportCardCategory = styled.div<Props>`
   align-items: center;
   justify-content: space-between;
 
-  .report-category-card-container {
-    height: 100%;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  > h2 {
+    font-size: ${({ theme }) => theme.fonts.size.title};
+    font-weight: ${({ theme }) => theme.fonts.weight.light};
+    color: ${({ theme }) => theme.colors.grayLight};
+    margin-right: 2rem;
   }
+`;
 
-  .report-category-card-color {
+const CategoryBox = styled.div<Props>`
+  height: 100%;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  > div {
     width: 0.7rem;
     height: 100%;
     background-color: ${(props) => props.backgroundColor};
     margin-right: 1rem;
   }
 
-  .report-category-card-name {
+  > h2 {
     font-size: 2rem;
-    color: ${colors.grayMedium};
-  }
-
-  .report-category-card-amount {
-    font-size: 2rem;
-    color: ${colors.grayLight};
-    margin-right: 2rem;
+    color: ${({ theme }) => theme.colors.white};
+    font-size: ${({ theme }) => theme.fonts.size.title};
+    font-weight: ${({ theme }) => theme.fonts.weight.regular};
   }
 `;
 
-export { Container, ReportCardCategory };
+export { Content, Title, List, ReportCardCategory, CategoryBox };

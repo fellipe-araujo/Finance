@@ -1,12 +1,16 @@
 import { useState } from 'react';
-import { Container, Content, Options } from './styles';
+import { Content, Options, SubTitle } from './styles';
+
 import { useHistory } from 'react-router-dom';
 import CurrencyInput from 'react-currency-input-field';
 import { toast } from 'react-toastify';
+
 import SecondaryHeader from '../../components/SecondaryHeader';
 import InputApp from '../../components/InputApp';
 import Button from '../../components/Button';
 import ModalConfirm from '../../components/ModalConfirm';
+import PageContainer from '../../components/PageContainer';
+
 import ObjectiveLogo from '../../assets/objective-logo.svg';
 import { useAuth } from '../../context/auth';
 import objectiveService from '../../services/objectiveService';
@@ -47,10 +51,8 @@ const NewObjective = () => {
   };
 
   return (
-    <Container>
+    <PageContainer>
       <SecondaryHeader title="Novo Objetivo" goBack="/objectives" />
-
-      {/* <ToastContainer /> */}
 
       <ModalConfirm
         modalIsOpen={isModalVisible}
@@ -61,11 +63,7 @@ const NewObjective = () => {
       />
 
       <Content>
-        <img
-          className="new-objective-image"
-          src={ObjectiveLogo}
-          alt="Objective Logo"
-        />
+        <img src={ObjectiveLogo} alt="Objective Logo" />
 
         <Options>
           <InputApp
@@ -75,7 +73,7 @@ const NewObjective = () => {
             onChange={(e) => setName(e.target.value)}
           />
 
-          <h1 className="new-objective-value-title">Valor:</h1>
+          <SubTitle>Valor:</SubTitle>
           <CurrencyInput
             className="new-objective-input-currency"
             placeholder="R$ 1.000,00"
@@ -87,7 +85,6 @@ const NewObjective = () => {
 
           <InputApp
             title="Descrição:"
-            name="Objetivos"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
@@ -99,7 +96,7 @@ const NewObjective = () => {
           />
         </Options>
       </Content>
-    </Container>
+    </PageContainer>
   );
 };
 

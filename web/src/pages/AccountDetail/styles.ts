@@ -1,19 +1,10 @@
-import styled from "styled-components";
-import { colors } from "../../styles/colors";
-
-const Container = styled.div`
-  width: 100%;
-  height: 100%;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+import styled from 'styled-components';
 
 const Content = styled.div`
   width: 100%;
   height: 100%;
-  margin: 5rem 0;
+  padding-top: 13rem;
+  overflow-y: scroll;
 
   display: flex;
   flex-direction: column;
@@ -24,7 +15,7 @@ const Content = styled.div`
 const Card = styled.div`
   width: 85%;
   height: 20rem;
-  background: ${colors.white};
+  background: ${({ theme }) => theme.colors.grayMedium};
   border-radius: 0.8rem;
   box-shadow: 0 0 3rem rgba(14, 9, 9, 0.2);
   padding: 1.5rem;
@@ -32,32 +23,35 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
 
-  .account-detail-title {
-    font-size: 2.4rem;
-    align-self: flex-start;
-    color: ${colors.grayDark};
-  }
+const Title = styled.h2`
+  font-size: ${({ theme }) => theme.fonts.size.title};
+  font-weight: ${({ theme }) => theme.fonts.weight.light};
+  align-self: flex-start;
+  color: ${({ theme }) => theme.colors.white};
+`;
 
-  .account-detail-line {
-    width: 90%;
-    height: 0.1rem;
-    background: ${colors.line};
-    margin: 1.5rem 0;
-  }
+const Separator = styled.div`
+  width: 90%;
+  height: 0.1rem;
+  background-color: ${({ theme }) => theme.colors.grayLight};
+  margin: 1.5rem 0;
+`;
 
-  .account-detail-value-container {
-    width: 100%;
-    height: 100%;
+const ValueBox = styled.div`
+  width: 100%;
+  height: 100%;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
-  .account-detail-value-title {
-    color: ${(props) => props.color};
-  }
+const Value = styled.h2`
+  color: ${(props) => props.color};
+  font-size: 3.6rem;
+  font-weight: ${({ theme }) => theme.fonts.weight.regular};
 `;
 
 const Options = styled.div`
@@ -68,4 +62,4 @@ const Options = styled.div`
   align-items: center;
 `;
 
-export { Container, Content, Card, Options };
+export { Content, Card, Title, Separator, ValueBox, Value, Options };

@@ -1,30 +1,42 @@
 import { useState, useEffect } from 'react';
-import { Container, ModalAppContainer, List, ButtonOption } from './styles';
+import {
+  ModalAppContainer,
+  SelectBox,
+  ButtonsBox,
+  ButtonOption,
+  Title,
+  List,
+} from './styles';
+
 import { useHistory } from 'react-router-dom';
 import { FiList, FiBarChart2, FiCalendar } from 'react-icons/fi';
 import { ToastContainer, toast } from 'react-toastify';
-import Logo from '../../assets/Logo.svg';
+
+import Logo from '../../assets/Logo/Logo.svg';
 import ReportLogo from '../../assets/report-logo.svg';
+
 import PrimaryHeader from '../../components/PrimaryHeader';
 import ArtifactData from '../../components/ArtifactData';
 import TransactionCard from '../../components/TransactionCard';
 import ModalConfirm from '../../components/ModalConfirm';
 import ModalTransactionFilter from '../../components/ModalTransactionFilter';
 import ModalApp from '../../components/ModalApp';
+import PageContainer from '../../components/PageContainer';
+
 import { useAuth } from '../../context/auth';
 import { UserTransaction } from '../../utils/types';
 import { formatPrice } from '../../utils/formatPrice';
 import { period } from '../../utils/period';
 import {
   fetchAllTransactions,
-  fetchCurrentMonthTransactions,
+  fetchCurrentPeriodTransactions,
   fetchAllEntriesTransactions,
   fetchAllExpensesTransactions,
   fetchMonthAndYearTransactions,
 } from '../../utils/transactionsFilter';
 import { toastConfig } from '../../utils/toastConfig';
 import transactionService from '../../services/transactionService';
-import { colors } from '../../styles/colors';
+import theme from '../../styles/theme';
 
 const Transactions = () => {
   const [selectedMonth, setSelectedMonth] = useState(
@@ -80,7 +92,7 @@ const Transactions = () => {
 
   useEffect(() => {
     const fetchCurrentTransactions = async () => {
-      const currentMonthTransactions = await fetchCurrentMonthTransactions(
+      const currentMonthTransactions = await fetchCurrentPeriodTransactions(
         user!
       );
       setTransactionsFiltered(currentMonthTransactions.transactions);
@@ -105,7 +117,7 @@ const Transactions = () => {
   }, [selectedMonth, selectedYear, user]);
 
   return (
-    <Container>
+    <PageContainer>
       <PrimaryHeader title="Transações" goTo="/transactions/create" />
 
       <ToastContainer />
@@ -148,11 +160,11 @@ const Transactions = () => {
         }
       >
         <ModalAppContainer>
-          <img className="modal-app-logo" src={Logo} alt="Finance Logo" />
+          <img src={Logo} alt="Finance Logo" />
 
-          <h1 className="modal-app-title">Selecione mês e ano</h1>
+          <h1>Selecione mês e ano</h1>
 
-          <div className="modal-app-select-period">
+          <SelectBox className="modal-app-select-period">
             <select
               value={selectedMonth}
               onChange={(e) => setSelectedMonth(e.target.value)}
@@ -166,9 +178,9 @@ const Transactions = () => {
                 ))}
               </>
             </select>
-          </div>
+          </SelectBox>
 
-          <div className="modal-app-select-period">
+          <SelectBox className="modal-app-select-period">
             <select
               value={selectedYear}
               onChange={(e) => setSelectedYear(e.target.value)}
@@ -182,7 +194,7 @@ const Transactions = () => {
                 ))}
               </>
             </select>
-          </div>
+          </SelectBox>
         </ModalAppContainer>
       </ModalApp>
 
@@ -190,10 +202,9 @@ const Transactions = () => {
         title="Transações"
         subTitle={typeFilter}
         value={transactionsFiltered.length.toString()}
-        artifactType="Transações"
       />
 
-      <div className="buttons-container">
+      <ButtonsBox>
         <ButtonOption
           onClick={() =>
             history.push(
@@ -201,20 +212,20 @@ const Transactions = () => {
             )
           }
         >
-          <FiBarChart2 size={20} color={colors.grayMedium} />
-          <h1 className="button-title">Relatório</h1>
+          <FiBarChart2 size={20} color={theme.colors.artifactDark} />
+          <Title>Relatório</Title>
         </ButtonOption>
 
         <ButtonOption onClick={() => setIsModalTransacionFilterVisible(true)}>
-          <FiList size={20} color={colors.grayMedium} />
-          <h1 className="button-title">Ordenar</h1>
+          <FiList size={20} color={theme.colors.artifactDark} />
+          <Title>Ordenar</Title>
         </ButtonOption>
 
         <ButtonOption onClick={() => setIsModalSelectedMonthVisible(true)}>
-          <FiCalendar size={20} color={colors.grayMedium} />
-          <h1 className="button-title">Mês</h1>
+          <FiCalendar size={20} color={theme.colors.artifactDark} />
+          <Title>Mês</Title>
         </ButtonOption>
-      </div>
+      </ButtonsBox>
 
       <List>
         {transactionsFiltered ? (
@@ -235,10 +246,10 @@ const Transactions = () => {
             />
           ))
         ) : (
-          <img className="report-logo" src={ReportLogo} alt="Report" />
+          <img src={ReportLogo} alt="Report" />
         )}
       </List>
-    </Container>
+    </PageContainer>
   );
 };
 

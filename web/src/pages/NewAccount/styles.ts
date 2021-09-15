@@ -1,18 +1,9 @@
 import styled from 'styled-components';
 
-const Container = styled.div`
-  width: 100%;
-  height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
 const Content = styled.div`
   width: 100%;
   height: 100%;
-  margin: 5rem 0;
+  padding-top: 15rem;
   overflow-y: scroll;
 
   display: flex;
@@ -20,7 +11,7 @@ const Content = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  .new-account-image {
+  > img {
     width: 30rem;
   }
 `;
@@ -33,4 +24,4 @@ const Options = styled.div`
   align-items: center;
 `;
 
-export { Container, Content, Options };
+export { Content, Options };

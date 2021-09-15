@@ -1,17 +1,29 @@
 import { useEffect, useState } from 'react';
-import { Container, Content, Card, Options } from './styles';
+import {
+  Content,
+  Card,
+  Title,
+  Separator,
+  ValueBox,
+  Value,
+  Options,
+} from './styles';
 import { useParams, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
 import SecondaryHeader from '../../components/SecondaryHeader';
 import InputApp from '../../components/InputApp';
 import Button from '../../components/Button';
 import ModalConfirm from '../../components/ModalConfirm';
+import PageContainer from '../../components/PageContainer';
+
 import { UserAccount } from '../../utils/types';
 import { formatPrice } from '../../utils/formatPrice';
 import { toastConfig } from '../../utils/toastConfig';
+
 import accountService from '../../services/accountService';
 import { useAuth } from '../../context/auth';
-import { colors } from '../../styles/colors';
+import theme from '../../styles/theme';
 
 interface AccountParams {
   id: string;
@@ -79,7 +91,7 @@ const AccountDetail = () => {
   }, [params.id, user?._id]);
 
   return (
-    <Container>
+    <PageContainer>
       <SecondaryHeader title={account?.name!} goBack="/accounts" />
 
       <ModalConfirm
@@ -97,25 +109,31 @@ const AccountDetail = () => {
       />
 
       <Content>
-        <Card color={account?.balance! > 0 ? colors.greenDark : colors.redDark}>
-          <h1 className="account-detail-title">Valor total:</h1>
+        <Card>
+          <Title>Valor total:</Title>
 
-          <div className="account-detail-line" />
+          <Separator />
 
-          <div className="account-detail-value-container">
-            <h1 className="account-detail-value-title">
+          <ValueBox>
+            <Value
+              color={
+                account?.balance! > 0
+                  ? theme.colors.greenDark
+                  : theme.colors.redDark
+              }
+            >
               {formatPrice(account?.balance!)}
-            </h1>
-          </div>
+            </Value>
+          </ValueBox>
         </Card>
 
         <Options>
           <InputApp
             title="Nome da conta:"
-            name="Contas"
             value={newAccountName}
             onChange={(e) => setNewAccountName(e.target.value)}
           />
+
           <Button
             title="Atualizar conta"
             isCreate
@@ -127,6 +145,7 @@ const AccountDetail = () => {
               setIsModalVisible(true);
             }}
           />
+
           <Button
             title="Excluir conta"
             isCreate={false}
@@ -137,7 +156,7 @@ const AccountDetail = () => {
           />
         </Options>
       </Content>
-    </Container>
+    </PageContainer>
   );
 };
 

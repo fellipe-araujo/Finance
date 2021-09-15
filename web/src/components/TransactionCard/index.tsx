@@ -1,6 +1,16 @@
-import { Container } from "./styles";
-import { FiTrash2 } from "react-icons/fi";
-import { colors } from "../../styles/colors";
+import {
+  Container,
+  TransactionDataBox,
+  Title,
+  TrashButton,
+  Separator,
+  SubTitle,
+  Value,
+  Text,
+  CategoryCard,
+} from './styles';
+import { FiTrash2 } from 'react-icons/fi';
+import theme from '../../styles/theme';
 
 interface TransacionCardProps {
   name: string;
@@ -24,40 +34,42 @@ const TransactionCard = ({
   onDelete,
 }: TransacionCardProps) => {
   return (
-    <Container
-      color={expense ? colors.redDark : colors.greenDark}
-      backgroundColor={categoryColor}
-    >
-      <div className="transaction-card-info">
-        <h1 className="transaction-card-title">{name}</h1>
-        <button className="transaction-card-button" onClick={onDelete}>
-          <FiTrash2 size={20} color={colors.grayMedium} />
-        </button>
-      </div>
+    <Container>
+      <TransactionDataBox>
+        <Title>{name}</Title>
+        <TrashButton onClick={onDelete}>
+          <FiTrash2 size={20} color={theme.colors.grayDark} />
+        </TrashButton>
+      </TransactionDataBox>
 
-      <div className="transaction-card-line" />
+      <Separator />
 
-      <div className="transaction-card-info">
-        <h1 className="transaction-card-subtitle">Valor:</h1>
-        <h1 className="transaction-card-value">{price}</h1>
-      </div>
-      <div className="transaction-card-info">
-        <h1 className="transaction-card-subtitle">Data:</h1>
-        <h1 className="transaction-card-text">{date}</h1>
-      </div>
+      <TransactionDataBox>
+        <SubTitle>Valor:</SubTitle>
+        <Value color={expense ? theme.colors.redDark : theme.colors.greenDark}>
+          {price}
+        </Value>
+      </TransactionDataBox>
 
-      <div className="transaction-card-line" />
+      <TransactionDataBox>
+        <SubTitle>Data:</SubTitle>
+        <Text>{date}</Text>
+      </TransactionDataBox>
 
-      <div className="transaction-card-info">
-        <h1 className="transaction-card-subtitle">Conta:</h1>
-        <h1 className="transaction-card-text">{accountName}</h1>
-      </div>
-      <div className="transaction-card-info">
-        <h1 className="transaction-card-subtitle">Categoria:</h1>
-        <div className="transaction-card-category">
-          <h1 className="transaction-card-text">{categoryName}</h1>
-        </div>
-      </div>
+      <Separator />
+
+      <TransactionDataBox>
+        <SubTitle>Conta:</SubTitle>
+        <Text>{accountName}</Text>
+      </TransactionDataBox>
+
+      <TransactionDataBox>
+        <SubTitle>Categoria:</SubTitle>
+        <CategoryCard backgroundColor={categoryColor}>
+          <div />
+          <h2>{categoryName}</h2>
+        </CategoryCard>
+      </TransactionDataBox>
     </Container>
   );
 };

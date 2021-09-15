@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Container } from "./styles";
-import LogoFinance from "../../assets/LogoFinance.svg";
+import { Container, LogoContainer, LogoApp, LogoTitle } from "./styles";
+import LogoFinance from "../../assets/Logo/Logo.svg";
 import InputAuthenticate from "../../components/InputAuthenticate";
 import Button from "../../components/Button";
 import { useAuth } from "../../context/auth";
@@ -17,7 +17,10 @@ const Login = () => {
 
   return (
     <Container>
-      <img className="login-logo" src={LogoFinance} alt="Logo Finance" />
+      <LogoContainer>
+        <LogoApp src={LogoFinance} alt="Logo Finance" />
+        <LogoTitle>FINANCE</LogoTitle>
+      </LogoContainer>
 
       <div>
         <InputAuthenticate

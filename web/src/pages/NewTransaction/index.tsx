@@ -1,28 +1,43 @@
 import { useState, useEffect } from 'react';
-import { Container, Content, Options, Type } from './styles';
+import {
+  Content,
+  Options,
+  SubTitle,
+  OptionsBox,
+  Type,
+  Label,
+  CalendarButton,
+  CalendarText,
+  SelectBox,
+} from './styles';
+
 import { useHistory } from 'react-router-dom';
 import { FiCalendar } from 'react-icons/fi';
 import Modal from 'react-modal';
 import Calendar from 'react-calendar';
 import CurrencyInput from 'react-currency-input-field';
 import { toast } from 'react-toastify';
+
 import SecondaryHeader from '../../components/SecondaryHeader';
 import InputApp from '../../components/InputApp';
 import Button from '../../components/Button';
 import ModalConfirm from '../../components/ModalConfirm';
+import PageContainer from '../../components/PageContainer';
+
 import TransactionLogo from '../../assets/transaction-logo.svg';
 import { useAuth } from '../../context/auth';
-import 'react-calendar/dist/Calendar.css';
+import { toastConfig } from '../../utils/toastConfig';
+import transactionService from '../../services/transactionService';
+import accountService from '../../services/accountService';
+import categoryService from '../../services/categoryService';
 import {
   UserAccount,
   UserCategory,
   UserTransactionCreate,
 } from '../../utils/types';
-import { toastConfig } from '../../utils/toastConfig';
-import transactionService from '../../services/transactionService';
-import accountService from '../../services/accountService';
-import categoryService from '../../services/categoryService';
-import { colors } from '../../styles/colors';
+import theme from '../../styles/theme';
+
+import 'react-calendar/dist/Calendar.css';
 
 const NewTrasaction = () => {
   const [name, setName] = useState('');
@@ -95,7 +110,7 @@ const NewTrasaction = () => {
   }, [user?._id]);
 
   return (
-    <Container>
+    <PageContainer>
       <SecondaryHeader title="Nova Transação" goBack="/transactions" />
 
       <ModalConfirm
@@ -121,7 +136,7 @@ const NewTrasaction = () => {
             bottom: 'auto',
             marginRight: '-50%',
             transform: 'translate(-50%, -50%)',
-            background: colors.white,
+            background: theme.colors.white,
             overflow: 'auto',
             WebkitOverflowScrolling: 'touch',
             borderRadius: '4px',
@@ -136,21 +151,16 @@ const NewTrasaction = () => {
       </Modal>
 
       <Content>
-        <img
-          className="new-transaction-image"
-          src={TransactionLogo}
-          alt="Transaction Logo"
-        />
+        <img src={TransactionLogo} alt="Transaction Logo" />
 
         <Options>
           <InputApp
             title="Nome:"
-            name="Transações"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
 
-          <h1 className="new-transaction-value-title">Valor:</h1>
+          <SubTitle>Valor:</SubTitle>
           <CurrencyInput
             className="new-transaction-input-currency"
             placeholder="R$ 1.000,00"
@@ -160,40 +170,37 @@ const NewTrasaction = () => {
             intlConfig={{ locale: 'pt-BR', currency: 'BRL' }}
           />
 
-          <div className="transaction-option-container">
+          <OptionsBox>
             <Type
               add={optionAdd ? true : false}
               onClick={() => setOptionAdd(true)}
             >
-              <h1 className="option-title">Adicionar</h1>
+              <Label add={optionAdd ? true : false}>Adicionar</Label>
             </Type>
 
             <Type
               remove={optionAdd ? false : true}
               onClick={() => setOptionAdd(false)}
             >
-              <h1 className="option-title">Retirar</h1>
+              <Label remove={optionAdd ? false : true}>Retirar</Label>
             </Type>
-          </div>
+          </OptionsBox>
 
-          <h1 className="new-transaction-data-title">Data:</h1>
+          <SubTitle>Data:</SubTitle>
 
-          <div className="new-transaction-calendar-container">
-            <button
-              className="new-transaction-calendar-button"
-              onClick={() => openModal()}
-            >
-              <FiCalendar size={20} color={colors.grayLight} />
-            </button>
-
-            <h1 className="new-transaction-calendar-date">
+          <CalendarButton
+            className="new-transaction-calendar-container"
+            onClick={() => openModal()}
+          >
+            <FiCalendar size={20} color={theme.colors.artifactDark} />
+            <CalendarText className="new-transaction-calendar-date">
               {date.toLocaleDateString('pt-BR')}
-            </h1>
-          </div>
+            </CalendarText>
+          </CalendarButton>
 
-          <h1 className="new-transaction-data-title">Conta:</h1>
+          <SubTitle>Conta:</SubTitle>
 
-          <div className="new-transaction-select-artifacts">
+          <SelectBox>
             <select
               value={accountSelected}
               onChange={(e) => setAccountSelected(e.target.value)}
@@ -207,11 +214,11 @@ const NewTrasaction = () => {
                 ))}
               </>
             </select>
-          </div>
+          </SelectBox>
 
-          <h1 className="new-transaction-data-title">Categoria:</h1>
+          <SubTitle>Categoria:</SubTitle>
 
-          <div className="new-transaction-select-artifacts">
+          <SelectBox>
             <select
               value={categorySelected}
               onChange={(e) => setCategorySelected(e.target.value)}
@@ -225,7 +232,7 @@ const NewTrasaction = () => {
                 ))}
               </>
             </select>
-          </div>
+          </SelectBox>
 
           <Button
             title="Criar transação"
@@ -234,7 +241,7 @@ const NewTrasaction = () => {
           />
         </Options>
       </Content>
-    </Container>
+    </PageContainer>
   );
 };
 

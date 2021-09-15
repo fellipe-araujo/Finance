@@ -1,5 +1,13 @@
-import { colors } from "../../styles/colors";
-import { Container, Title, Value } from "./styles";
+import {
+  Container,
+  Title,
+  Separator,
+  ValuesBox,
+  SubTitle,
+  Value,
+  Description,
+} from './styles';
+import theme from '../../styles/theme';
 
 interface ObjectiveDetailCardProps {
   name: string;
@@ -18,29 +26,29 @@ const ObjectiveDetailCard = ({
 }: ObjectiveDetailCardProps) => {
   return (
     <Container>
-      <h1 className="objective-title">{name}</h1>
+      <Title className="objective-title">{name}</Title>
 
-      <div className="objective-card-line" />
+      <Separator className="objective-card-line" />
 
-      <div className="objective-value-group">
-        <Title>Valor a ser alcançado:</Title>
-        <Value color={colors.greenDark}>{goal}</Value>
-      </div>
+      <ValuesBox className="objective-value-group">
+        <SubTitle>Valor a ser alcançado:</SubTitle>
+        <Value color={theme.colors.greenDark}>{goal}</Value>
+      </ValuesBox>
 
-      <div className="objective-value-group">
-        <Title>Valor atual:</Title>
-        <Value color={colors.yellowDark}>{actual}</Value>
-      </div>
+      <ValuesBox className="objective-value-group">
+        <SubTitle>Valor atual:</SubTitle>
+        <Value color={theme.colors.yellowDark}>{actual}</Value>
+      </ValuesBox>
 
-      <div className="objective-value-group">
-        <Title>Valor restante:</Title>
-        <Value color={colors.redDark}>{remaining}</Value>
-      </div>
+      <ValuesBox className="objective-value-group">
+        <SubTitle>Valor restante:</SubTitle>
+        <Value color={theme.colors.redDark}>{remaining}</Value>
+      </ValuesBox>
 
-      <div className="objective-card-line" />
+      <Separator className="objective-card-line" />
 
-      <Title>Descrição:</Title>
-      <h1 className="objetive-description">{description}</h1>
+      <SubTitle>Descrição:</SubTitle>
+      <Description className="objetive-description">{description}</Description>
     </Container>
   );
 };

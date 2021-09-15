@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react';
-import { Container, List } from './styles';
+import { List } from './styles';
+
 import { Link } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+
 import PrimaryHeader from '../../components/PrimaryHeader';
 import ArtifactData from '../../components/ArtifactData';
 import CategoryCard from '../../components/CategoryCard';
+import PageContainer from '../../components/PageContainer';
+
 import { useAuth } from '../../context/auth';
 import { UserCategory } from '../../utils/types';
 import categoryService from '../../services/categoryService';
@@ -25,7 +29,7 @@ const Categories = () => {
   }, [user?._id]);
 
   return (
-    <Container>
+    <PageContainer>
       <PrimaryHeader title="Categorias" goTo="/categories/create" />
 
       <ToastContainer />
@@ -34,7 +38,6 @@ const Categories = () => {
         title="Categorias"
         subTitle="totais"
         value={categories.length.toString()}
-        artifactType="Categorias"
       />
 
       <List>
@@ -48,7 +51,7 @@ const Categories = () => {
           </Link>
         ))}
       </List>
-    </Container>
+    </PageContainer>
   );
 };
 

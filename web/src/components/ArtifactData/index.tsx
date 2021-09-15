@@ -1,27 +1,23 @@
-import { Container } from "./styles";
-import { setBackground } from "../../utils/setBackground";
+import { Container, TitlesBox, Title, SubTitle, Amount } from './styles';
 
 interface ArtifactDataProps {
   title: string;
   subTitle: string;
   value: string;
-  artifactType: string;
 }
 
-const ArtifactData = ({
-  title,
-  subTitle,
-  value,
-  artifactType,
-}: ArtifactDataProps) => {
+const ArtifactData = ({ title, subTitle, value }: ArtifactDataProps) => {
   return (
-    <Container artifact={setBackground(artifactType).artifact}>
-      <h2 className="artifact-data-title">{title}</h2>
+    <Container>
+      <TitlesBox>
+        <Title>{title}</Title>
 
-      <div className="artifact-data-line" />
+        <div />
 
-      <h2 className="artifact-data-title">{subTitle}</h2>
-      <h2 className="artifact-data-value">{value}</h2>
+        <SubTitle>{subTitle}</SubTitle>
+      </TitlesBox>
+
+      <Amount>{value}</Amount>
     </Container>
   );
 };
