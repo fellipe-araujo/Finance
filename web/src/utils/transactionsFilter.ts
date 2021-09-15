@@ -88,14 +88,14 @@ export const fetchCurrentPeriodTransactions = async (user: User) => {
     .reverse();
 
   const currentPeriodEntriesTransactions: UserTransaction[] =
-    currentPeriodTransactions
-      ?.filter((transaction: UserTransaction) => transaction.expense === false)
-      .reverse();
+    currentPeriodTransactions?.filter(
+      (transaction: UserTransaction) => transaction.expense === false
+    );
 
   const currentPeriodExpensesTransactions: UserTransaction[] =
-    currentPeriodTransactions
-      ?.filter((transaction: UserTransaction) => transaction.expense === true)
-      .reverse();
+    currentPeriodTransactions?.filter(
+      (transaction: UserTransaction) => transaction.expense === true
+    );
 
   const lastDayEntries = currentPeriodEntriesTransactions[0]?.date
     ?.toLocaleString('pt-BR')
