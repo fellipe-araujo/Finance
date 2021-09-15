@@ -27,8 +27,6 @@ const ButtonLogOut = styled.button`
   border: 0;
 `;
 
-const MoneySvg = styled.img``;
-
 const BalancesRow = styled.div`
   width: 90%;
   min-height: 10rem;
@@ -62,12 +60,4 @@ const Title = styled.h2`
   font-weight: ${({ theme }) => theme.fonts.weight.light};
 `;
 
-export {
-  Header,
-  Welcome,
-  ButtonLogOut,
-  MoneySvg,
-  BalancesRow,
-  HomeContent,
-  Title,
-};
+export { Header, Welcome, ButtonLogOut, BalancesRow, HomeContent, Title };

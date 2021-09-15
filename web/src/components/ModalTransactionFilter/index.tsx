@@ -1,7 +1,7 @@
-import { Container } from './styles';
+import { Container, Title, ButtonOption, SubTitle, Separator } from './styles';
 import Modal from 'react-modal';
-import Logo from '../../assets/Logo.svg';
-import { colors } from '../../styles/colors';
+import Logo from '../../assets/Logo/Logo.svg';
+import theme from '../../styles/theme';
 
 interface ModalConfirmProps {
   modalIsOpen: boolean;
@@ -34,10 +34,11 @@ const ModalConfirm = ({
           bottom: 'auto',
           marginRight: '-50%',
           transform: 'translate(-50%, -50%)',
-          background: colors.white,
+          background: theme.colors.grayDark,
           overflow: 'auto',
           WebkitOverflowScrolling: 'touch',
           borderRadius: '4px',
+          borderColor: theme.colors.grayDark,
           outline: 'none',
         },
       }}
@@ -45,25 +46,31 @@ const ModalConfirm = ({
       ariaHideApp={false}
     >
       <Container>
-        <img className="modal-filter-logo" src={Logo} alt="Finance Logo" />
+        <img src={Logo} alt="Finance Logo" />
 
-        <h1 className="modal-filter-title">Como deseja ordenar?</h1>
+        <Title className="modal-filter-title">Como deseja ordenar?</Title>
 
-        <button className="modal-filter-button" onClick={toggleModalAll}>
-          <h1 className="modal-filter-option">Todas Transações</h1>
-        </button>
+        <ButtonOption className="modal-filter-button" onClick={toggleModalAll}>
+          <SubTitle className="modal-filter-option">Todas Transações</SubTitle>
+        </ButtonOption>
 
-        <div className="modal-filter-line" />
+        <Separator className="modal-filter-line" />
 
-        <button className="modal-filter-button" onClick={toggleModalEntries}>
-          <h1 className="modal-filter-option">Entradas</h1>
-        </button>
+        <ButtonOption
+          className="modal-filter-button"
+          onClick={toggleModalEntries}
+        >
+          <SubTitle className="modal-filter-option">Entradas</SubTitle>
+        </ButtonOption>
 
-        <div className="modal-filter-line" />
+        <Separator className="modal-filter-line" />
 
-        <button className="modal-filter-button" onClick={toggleModalExpenses}>
-          <h1 className="modal-filter-option">Saídas</h1>
-        </button>
+        <ButtonOption
+          className="modal-filter-button"
+          onClick={toggleModalExpenses}
+        >
+          <SubTitle className="modal-filter-option">Saídas</SubTitle>
+        </ButtonOption>
       </Container>
     </Modal>
   );

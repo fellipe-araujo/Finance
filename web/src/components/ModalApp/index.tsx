@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import Modal from 'react-modal';
-import { colors } from '../../styles/colors';
+import theme from '../../styles/theme';
 
 interface ModalProps {
   modalIsOpen: boolean;
@@ -25,10 +25,11 @@ const ModalApp = ({ modalIsOpen, closeModal, children }: ModalProps) => {
           bottom: 'auto',
           marginRight: '-50%',
           transform: 'translate(-50%, -50%)',
-          background: colors.white,
+          background: theme.colors.grayDark,
           overflow: 'auto',
           WebkitOverflowScrolling: 'touch',
           borderRadius: '4px',
+          borderColor: theme.colors.grayDark,
           outline: 'none',
           padding: '2rem',
         },

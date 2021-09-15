@@ -1,35 +1,67 @@
 import React, { useState, useEffect } from 'react';
 import { Container, IconContainer, Title } from './styles';
 
-import { useHistory } from 'react-router'
-import { MdHome, MdCreditCard, MdFlag, MdExtension } from 'react-icons/md';
-import { FiPlus } from 'react-icons/fi';
+import { useHistory } from 'react-router';
+import {
+  MdHome,
+  MdCreditCard,
+  MdFlag,
+  MdExtension,
+  MdTrendingUp,
+} from 'react-icons/md';
+import { subscribe } from 'on-screen-keyboard-detector';
+import Emitter from 'emittery';
 
 import { useActivePage } from '../../context/activePage';
 import theme from '../../styles/theme';
 
-interface ActivePageProps {
-  active: 'home' | 'accounts' | 'transactions' | 'objectives' | 'categories';
-}
+// interface ActivePageProps {
+//   active: 'home' | 'accounts' | 'transactions' | 'objectives' | 'categories';
+// }
 
 const BottomBar = () => {
+  const [keyboardIsOpen, setKeyboardIsOpen] = useState(false);
   const [homeColor, setHomeColor] = useState(theme.colors.white);
   const [accountColor, setAccountColor] = useState(theme.colors.white);
   const [transactionColor, setTransactionColor] = useState(theme.colors.white);
   const [objectiveColor, setObjectiveColor] = useState(theme.colors.white);
   const [categoryColor, setCategoryColor] = useState(theme.colors.white);
 
+  const showBottomBar = () => {
+    setKeyboardIsOpen(true);
+  };
+
+  const hiddenBottomBar = () => {
+    setKeyboardIsOpen(false);
+  };
+
+  const emitter = new Emitter();
+  subscribe((visibility) => emitter.emit(visibility));
+
+  emitter.on('hidden', function () {
+    hiddenBottomBar();
+  });
+  emitter.on('visible', function () {
+    showBottomBar();
+  });
+
   const history = useHistory();
 
   const { activePage, setPage } = useActivePage();
 
-  function handleSetPage(page: ActivePageProps) {
+  function saveCurrentPage(page: string) {
+    sessionStorage.setItem('@Finance:current_page', page);
+  }
+
+  function handleSetPage(page: string) {
     setPage(page);
-    if (page.active === 'home') {
+    if (page === 'home') {
       history.push('/');
     } else {
-      history.push(`/${page.active}`)
+      history.push(`/${page}`);
     }
+
+    saveCurrentPage(page);
   }
 
   function setColorWhiteToAllPages() {
@@ -42,23 +74,23 @@ const BottomBar = () => {
 
   useEffect(() => {
     function checkPage() {
-      if (activePage.active === 'home') {
+      if (activePage === 'home') {
         setColorWhiteToAllPages();
         setHomeColor(theme.colors.financeBlue);
         return;
-      } else if (activePage.active === 'accounts') {
+      } else if (activePage === 'accounts') {
         setColorWhiteToAllPages();
         setAccountColor(theme.colors.financeBlue);
         return;
-      } else if (activePage.active === 'transactions') {
+      } else if (activePage === 'transactions') {
         setColorWhiteToAllPages();
         setTransactionColor(theme.colors.financeBlue);
         return;
-      } else if (activePage.active === 'objectives') {
+      } else if (activePage === 'objectives') {
         setColorWhiteToAllPages();
         setObjectiveColor(theme.colors.financeBlue);
         return;
-      } else if (activePage.active === 'categories') {
+      } else if (activePage === 'categories') {
         setColorWhiteToAllPages();
         setCategoryColor(theme.colors.financeBlue);
         return;
@@ -66,35 +98,34 @@ const BottomBar = () => {
     }
 
     checkPage();
-  }, [activePage.active]);
+  }, [activePage]);
 
   return (
-    <Container>
-      <IconContainer onClick={() => handleSetPage({ active: 'home' })}>
-        <MdHome size={30} color={homeColor} />
+    <Container isOpen={keyboardIsOpen}>
+      <IconContainer onClick={() => handleSetPage('home')}>
+        <MdHome size={25} color={homeColor} />
         <Title color={homeColor}>Home</Title>
       </IconContainer>
 
-      <IconContainer onClick={() => handleSetPage({ active: 'accounts' })}>
-        <MdCreditCard size={30} color={accountColor} />
+      <IconContainer onClick={() => handleSetPage('accounts')}>
+        <MdCreditCard size={25} color={accountColor} />
         <Title color={accountColor}>Contas</Title>
       </IconContainer>
 
-      <IconContainer onClick={() => handleSetPage({ active: 'transactions' })}>
-        <FiPlus size={30} color={transactionColor} />
+      <IconContainer onClick={() => handleSetPage('transactions')}>
+        <MdTrendingUp size={25} color={transactionColor} />
         <Title color={transactionColor}>Transações</Title>
       </IconContainer>
 
-      <IconContainer onClick={() => handleSetPage({ active: 'objectives' })}>
-        <MdFlag size={30} color={objectiveColor} />
+      <IconContainer onClick={() => handleSetPage('objectives')}>
+        <MdFlag size={25} color={objectiveColor} />
         <Title color={objectiveColor}>Objetivos</Title>
       </IconContainer>
 
-      <IconContainer onClick={() => handleSetPage({ active: 'categories' })}>
-        <MdExtension size={30} color={categoryColor} />
+      <IconContainer onClick={() => handleSetPage('categories')}>
+        <MdExtension size={25} color={categoryColor} />
         <Title color={categoryColor}>Categorias</Title>
       </IconContainer>
-
     </Container>
   );
 };
