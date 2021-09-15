@@ -3,15 +3,19 @@ import {
   Header,
   Welcome,
   ButtonLogOut,
-  MoneySvg,
   BalancesRow,
   HomeContent,
   Title,
 } from './styles';
-import { FiTrendingUp, FiTrendingDown, FiLogOut } from 'react-icons/fi';
+
+import {
+  FiTrendingUp,
+  FiTrendingDown,
+  FiDollarSign,
+  FiLogOut,
+} from 'react-icons/fi';
 import Loading from '../Loading';
-import MoneyLogo from '../../assets/money.svg';
-// import Header from '../../components/Header';
+
 import PageContainer from '../../components/PageContainer';
 import ArtifactResume from '../../components/ArtifactResume';
 import HighlightCard from '../../components/HighlightCard';
@@ -174,7 +178,7 @@ const Home = () => {
           amount={formatPrice(accountTotalValue)}
           lastTransaction={`Saldo até o dia ${currentDay}`}
         >
-          <MoneySvg src={MoneyLogo} alt="Money" />
+          <FiDollarSign size={25} color={theme.colors.artifactDark} />
         </HighlightCard>
       </BalancesRow>
 
