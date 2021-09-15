@@ -1,12 +1,9 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 
-// interface ActivePageProps {
-//   active: 'home' | 'accounts' | 'transactions' | 'objectives' | 'categories';
-// }
-
 interface ActivePageContextData {
   setPage(page: string): void;
   activePage: string;
+  firstTimeOpenApp: boolean;
 }
 
 const ActivePageContext = createContext<ActivePageContextData>(
@@ -15,6 +12,7 @@ const ActivePageContext = createContext<ActivePageContextData>(
 
 export const ActivePageProvider: React.FC = ({ children }) => {
   const [activePage, setActivePage] = useState('home');
+  const [firstTimeOpenApp, setFirstTimeOpenApp] = useState(false);
 
   function setPage(page: string) {
     if (page === 'home') {
@@ -33,7 +31,7 @@ export const ActivePageProvider: React.FC = ({ children }) => {
   useEffect(() => {
     function fetchPage() {
       const response = sessionStorage.getItem('@Finance:current_page');
-  
+
       if (response) {
         setActivePage(response);
       }
@@ -42,8 +40,26 @@ export const ActivePageProvider: React.FC = ({ children }) => {
     fetchPage();
   }, []);
 
+  useEffect(() => {
+    function fetchOpenApp() {
+      const response = sessionStorage.getItem('@Finance:first_open');
+
+      if (!response) {
+        setFirstTimeOpenApp(true);
+        setTimeout(function () {
+          setFirstTimeOpenApp(false);
+        }, 15000);
+        sessionStorage.setItem('@Finance:first_open', 'true');
+      }
+    }
+
+    fetchOpenApp();
+  }, []);
+
   return (
-    <ActivePageContext.Provider value={{ setPage, activePage }}>
+    <ActivePageContext.Provider
+      value={{ setPage, activePage, firstTimeOpenApp }}
+    >
       {children}
     </ActivePageContext.Provider>
   );
