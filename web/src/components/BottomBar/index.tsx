@@ -15,10 +15,6 @@ import Emitter from 'emittery';
 import { useActivePage } from '../../context/activePage';
 import theme from '../../styles/theme';
 
-// interface ActivePageProps {
-//   active: 'home' | 'accounts' | 'transactions' | 'objectives' | 'categories';
-// }
-
 const BottomBar = () => {
   const [keyboardIsOpen, setKeyboardIsOpen] = useState(false);
   const [homeColor, setHomeColor] = useState(theme.colors.white);
@@ -47,7 +43,7 @@ const BottomBar = () => {
 
   const history = useHistory();
 
-  const { activePage, setPage } = useActivePage();
+  const { activePage, setPage, firstTimeOpenApp } = useActivePage();
 
   function saveCurrentPage(page: string) {
     sessionStorage.setItem('@Finance:current_page', page);
@@ -101,7 +97,7 @@ const BottomBar = () => {
   }, [activePage]);
 
   return (
-    <Container isOpen={keyboardIsOpen}>
+    <Container keyboardIsOpen={keyboardIsOpen} isLoading={firstTimeOpenApp}>
       <IconContainer onClick={() => handleSetPage('home')}>
         <MdHome size={25} color={homeColor} />
         <Title color={homeColor}>Home</Title>
