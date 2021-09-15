@@ -1,23 +1,4 @@
 import styled from 'styled-components';
-import { colors } from '../../styles/colors';
-
-const Container = styled.div`
-  height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  .buttons-container {
-    width: 90%;
-    margin: 16rem 0 1rem;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-`;
 
 const ModalAppContainer = styled.div`
   width: 100%;
@@ -26,56 +7,66 @@ const ModalAppContainer = styled.div`
   flex-direction: column;
   align-items: center;
 
-  .modal-app-logo {
+  > img {
     width: 5rem;
   }
 
-  .modal-app-title {
-    font-size: 2.2rem;
+  > h1 {
+    color: ${({ theme }) => theme.colors.white};
+    font-size: ${({ theme }) => theme.fonts.size.title};
+    font-weight: ${({ theme }) => theme.fonts.weight.light};
     margin: 2rem 0;
-    color: ${colors.grayMedium};
   }
+`;
 
-  .modal-app-select-period {
-    height: 4.8rem;
-    margin: 1rem 0 2rem;
-    border: 0;
-    background-color: transparent;
-    padding: 0 2rem;
+const SelectBox = styled.div`
+  height: 4.8rem;
+  margin: 1rem 0 2rem;
+  border: 0;
+  background-color: transparent;
+  padding: 0 2rem;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  .modal-app-select-period select {
-    background-color: ${colors.white};
+  > select {
     width: 25rem;
     height: 4.8rem;
-    font-size: 1.8rem;
-
-    color: ${colors.grayLight};
+    background-color: ${({ theme }) => theme.colors.grayDark};
+    color: ${({ theme }) => theme.colors.grayLight};
+    font-size: ${({ theme }) => theme.fonts.size.title};
     border: 0;
     border-radius: 0.5rem;
   }
+`;
+
+const ButtonsBox = styled.div`
+  width: 90%;
+  margin-top: 30rem;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const ButtonOption = styled.button`
   background-color: transparent;
   border: 0;
   text-decoration: none;
-  border-bottom: 0.1rem solid ${colors.grayLight};
+  border-bottom: 0.1rem solid ${({ theme }) => theme.colors.grayMedium};
   padding: 0.7rem;
 
   display: flex;
   flex-direction: row;
   align-items: center;
+`;
 
-  .button-title {
-    margin-left: 1rem;
-    font-size: 1.6rem;
-    color: ${colors.grayMedium};
-  }
+const Title = styled.h2`
+  margin-left: 1rem;
+  font-size: ${({ theme }) => theme.fonts.size.subTitle};
+  color: ${({ theme }) => theme.colors.grayLight};
 `;
 
 const List = styled.div`
@@ -83,10 +74,10 @@ const List = styled.div`
   height: 65%;
   overflow-y: scroll;
 
-  .report-logo {
+  > img {
     width: 25rem;
     margin-bottom: 3rem;
   }
 `;
 
-export { Container, ModalAppContainer, List, ButtonOption };
+export { ModalAppContainer, SelectBox, ButtonsBox, ButtonOption, Title, List };
