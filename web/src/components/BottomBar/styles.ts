@@ -1,28 +1,38 @@
 import styled, { css } from 'styled-components';
 
-interface KeyboardProps {
-  isOpen: boolean;
+interface BottomBarProps {
+  keyboardIsOpen: boolean;
+  isLoading: boolean;
 }
 
-const Container = styled.div<KeyboardProps>`
+const Container = styled.div<BottomBarProps>`
   width: 100%;
   height: 7rem;
   background-color: ${({ theme }) => theme.colors.purpleMedium};
 
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
+  ${(props) =>
+    props.isLoading
+      ? css`
+          display: none;
+        `
+      : css`
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-around;
+        `}
 
-  ${(props) => !props.isOpen && css`
-    position: fixed;
-    bottom: 0;
-  `};
+  ${(props) =>
+    !props.keyboardIsOpen &&
+    css`
+      position: fixed;
+      bottom: 0;
+    `};
 `;
 
 const IconContainer = styled.button`
   width: 20%;
-  margin: 0 .5rem;
+  margin: 0 0.5rem;
   border: 0;
   background: transparent;
 
