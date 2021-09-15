@@ -1,15 +1,19 @@
 import { useState, useEffect } from 'react';
+import { Content, Title, List, ReportCardCategory, CategoryBox } from './styles';
+
 import { useParams } from 'react-router-dom';
-import { Container, ReportCardCategory } from './styles';
 import Charts from 'react-apexcharts';
+
 import SecondaryHeader from '../../components/SecondaryHeader';
+import PageContainer from '../../components/PageContainer';
+
 import { chartConfig } from '../../utils/chartConfig';
 import { UserCategory } from '../../utils/types';
 import { formatPrice } from '../../utils/formatPrice';
 import { fetchMonthAndYearTransactions } from '../../utils/transactionsFilter';
+import { period } from '../../utils/period';
 import { useAuth } from '../../context/auth';
 import ReportLogo from '../../assets/report-logo.svg';
-import { period } from '../../utils/period';
 
 interface CategoryChart {
   _id: string;
@@ -95,7 +99,7 @@ const TransactionsReport = () => {
   }, [params.monthId, params.yearId, user]);
 
   return (
-    <Container>
+    <PageContainer>
       <SecondaryHeader
         title={`Relatório - ${
           period.months.find((month) => month.id === params.monthId)?.value
@@ -103,35 +107,38 @@ const TransactionsReport = () => {
         goBack="/transactions"
       />
 
-      <h1 className="report-title">Despesas neste mês</h1>
-      <Charts
-        series={series?.valuesByCategory}
-        options={
-          chartConfig(series.colors, series.labels, series.colors).options
-        }
-        type="donut"
-        height={300}
-      />
-      {series?.categories.length > 0 ? (
-        series?.categories.map((category) => (
-          <ReportCardCategory
-            key={category._id}
-            backgroundColor={category.color!}
-          >
-            <div className="report-category-card-container">
-              <div className="report-category-card-color" />
-              <h1 className="report-category-card-name">{category.name}</h1>
-            </div>
+      <Content>
+        <Title className="report-title">Despesas neste mês</Title>
 
-            <h1 className="report-category-card-amount">
-              {formatPrice(category.amount)}
-            </h1>
-          </ReportCardCategory>
-        ))
-      ) : (
-        <img className="report-logo" src={ReportLogo} alt="Report" />
-      )}
-    </Container>
+        <Charts
+          series={series?.valuesByCategory}
+          options={
+            chartConfig(series.colors, series.labels, series.colors).options
+          }
+          type="donut"
+          height={300}
+        />
+
+        <List>
+          {series?.categories.length > 0 ? (
+            series?.categories.map((category) => (
+              <ReportCardCategory key={category._id}>
+                <CategoryBox backgroundColor={category.color!}>
+                  <div />
+                  <h2 className="report-category-card-name">{category.name}</h2>
+                </CategoryBox>
+
+                <h2 className="report-category-card-amount">
+                  {formatPrice(category.amount)}
+                </h2>
+              </ReportCardCategory>
+            ))
+          ) : (
+            <img src={ReportLogo} alt="Report" />
+          )}
+        </List>
+      </Content>
+    </PageContainer>
   );
 };
 
