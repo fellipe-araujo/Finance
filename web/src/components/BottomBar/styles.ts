@@ -8,7 +8,7 @@ interface BottomBarProps {
 const Container = styled.div<BottomBarProps>`
   width: 100%;
   height: 7rem;
-  background-color: ${({ theme }) => theme.colors.purpleMedium};
+  background-color: ${({ theme }) => theme.colors.purpleDark};
 
   ${(props) =>
     props.isLoading
