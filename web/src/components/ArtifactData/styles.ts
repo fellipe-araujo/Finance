@@ -11,7 +11,10 @@ const Container = styled.div`
     ${({ theme }) => theme.colors.artifactLight} 100%
   );
   margin: 8rem 0 1rem;
-  z-index: 10;
+  z-index: 0;
+
+  position: absolute;
+  top: 0;
 
   display: flex;
   flex-direction: column;
