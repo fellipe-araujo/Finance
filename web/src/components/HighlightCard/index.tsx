@@ -7,6 +7,7 @@ interface Props {
   amount?: string;
   lastTransaction?: string;
   children?: ReactNode;
+  totalAccounts?: boolean;
 }
 
 const HighlightCard = ({
@@ -15,13 +16,14 @@ const HighlightCard = ({
   amount,
   lastTransaction,
   children,
+  totalAccounts,
 }: Props) => {
   return (
-    <Container>
+    <Container totalAccounts={totalAccounts}>
       <Header>
         <Box>
           <Title>{title}</Title>
-          <SubTitle>Mês: {month}</SubTitle>
+          <SubTitle totalAccounts={totalAccounts}>Mês: {month}</SubTitle>
         </Box>
 
         {children}
@@ -29,7 +31,7 @@ const HighlightCard = ({
 
       <Box>
         <Amount>{amount}</Amount>
-        <SubTitle>{lastTransaction}</SubTitle>
+        <SubTitle totalAccounts={totalAccounts}>{lastTransaction}</SubTitle>
       </Box>
     </Container>
   );
