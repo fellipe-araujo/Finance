@@ -10,11 +10,17 @@ const Container = styled.div`
   }
 `;
 
-const Title = styled.div`
+const Title = styled.h2`
   margin: 2rem 0 1rem;
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fonts.size.title};
   text-align: center;
+`;
+
+const SubTitle = styled.h2`
+  color: ${({ theme }) => theme.colors.redDark};
+  font-size: ${({ theme }) => theme.fonts.size.subTitle};
+  text-align: justify;
 `;
 
 const ButtonsBox = styled.div`
@@ -51,4 +57,12 @@ const ConfirmAction = styled.div`
   justify-content: center;
 `;
 
-export { Container, Title, ButtonsBox, CancelAction, Text, ConfirmAction };
+export {
+  Container,
+  Title,
+  SubTitle,
+  ButtonsBox,
+  CancelAction,
+  Text,
+  ConfirmAction,
+};

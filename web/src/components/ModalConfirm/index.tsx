@@ -1,6 +1,7 @@
 import {
   Container,
   Title,
+  SubTitle,
   ButtonsBox,
   CancelAction,
   Text,
@@ -16,6 +17,7 @@ interface ModalConfirmProps {
   toggleModalConfirm?(): void;
   toggleModalCancel?(): void;
   closeModal(): void;
+  isTransactionDelete?: boolean;
 }
 
 const ModalConfirm = ({
@@ -24,6 +26,7 @@ const ModalConfirm = ({
   closeModal,
   toggleModalConfirm,
   toggleModalCancel,
+  isTransactionDelete,
 }: ModalConfirmProps) => {
   return (
     <Modal
@@ -56,6 +59,13 @@ const ModalConfirm = ({
         <img src={Logo} alt="Finance Logo" />
 
         <Title className="modal-confirm-description">{description}</Title>
+
+        {isTransactionDelete && (
+          <SubTitle>
+            LEMBRE-SE: excluindo uma transação, o valor dela não será
+            adicionado / retirado novamente de sua conta!
+          </SubTitle>
+        )}
 
         <ButtonsBox className="modal-confirm-buttons-group">
           <CancelAction
