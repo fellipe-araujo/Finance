@@ -26,7 +26,6 @@ import { useActivePage } from '../../context/activePage';
 
 import accountService from '../../services/accountService';
 import categoryService from '../../services/categoryService';
-import objectiveService from '../../services/objectiveService';
 import userService from '../../services/userService';
 
 import { formatPrice } from '../../utils/formatPrice';
@@ -35,6 +34,7 @@ import {
   fetchCurrentPeriodTransactions,
 } from '../../utils/transactionsFilter';
 import theme from '../../styles/theme';
+import { fetchAllObjectivesValues } from '../../utils/objectivesFilter';
 
 const Home = () => {
   const [username, setUsername] = useState('');
@@ -45,6 +45,7 @@ const Home = () => {
   const [allEntries, setAllEntries] = useState(0);
   const [allExpenses, setAllExpenses] = useState(0);
   const [accountTotalValue, setAccountTotalValue] = useState(0);
+  const [accountTotalMonth, setAccountTotalMonth] = useState(0);
   const [accountsTotal, setAccountsTotal] = useState(0);
   const [objectivesTotal, setObjectivesTotal] = useState(0);
   const [categoriesTotal, setCategoriesTotal] = useState(0);
@@ -64,8 +65,11 @@ const Home = () => {
         new Date().toLocaleString('pt-BR').slice(6, 10)
       );
 
+      const totalMonth = response.sumEntries - response.sumExpenses;
+
       setAllEntries(response.sumEntries);
       setAllExpenses(response.sumExpenses);
+      setAccountTotalMonth(totalMonth);
       setCurrentMonth(response.type!);
     };
 
@@ -110,8 +114,8 @@ const Home = () => {
     };
 
     const fetchObjectives = async () => {
-      const response = await objectiveService.objectiveAll(user!._id);
-      setObjectivesTotal(Object.keys(response).length);
+      const response = await fetchAllObjectivesValues(user!);
+      setObjectivesTotal(response);
     };
 
     const fetchCategories = async () => {
@@ -182,9 +186,10 @@ const Home = () => {
 
         <HighlightCard
           title="Total"
+          totalAccounts
           month={`${currentMonth}`}
-          amount={formatPrice(accountTotalValue)}
-          lastTransaction={`Saldo até o dia ${currentDay}`}
+          amount={formatPrice(accountTotalMonth)}
+          lastTransaction={`Saldo do dia 01 ao dia ${currentDay}`}
         >
           <FiDollarSign size={25} color={theme.colors.artifactDark} />
         </HighlightCard>
@@ -193,8 +198,8 @@ const Home = () => {
       <Title>Resumo</Title>
 
       <HomeContent>
-        <ArtifactResume name="Contas" total={accountsTotal} />
-        <ArtifactResume name="Objetivos" total={objectivesTotal} />
+        <ArtifactResume name="Contas" total={formatPrice(accountTotalValue)} />
+        <ArtifactResume name="Objetivos" total={formatPrice(objectivesTotal)} />
         <ArtifactResume name="Categorias" total={categoriesTotal} />
       </HomeContent>
     </PageContainer>

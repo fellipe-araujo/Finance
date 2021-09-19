@@ -9,7 +9,7 @@ import {
 
 interface ArtifactProps {
   name?: string;
-  total?: number;
+  total?: number | string;
 }
 
 const ArtifactResume = ({ name, total }: ArtifactProps) => {

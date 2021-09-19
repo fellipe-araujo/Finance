@@ -124,6 +124,7 @@ const Transactions = () => {
 
       <ModalConfirm
         modalIsOpen={isModalConfirmVisible}
+        isTransactionDelete
         description={`Deseja excluir a transação ${selectedTransaction?.name}?`}
         toggleModalConfirm={() => toggleModalDelete(selectedTransaction?._id!)}
         toggleModalCancel={() => setIsModalConfirmVisible(false)}
